@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="45e2e850-8ff9-4f4c-8b16-95ced97d8420" ChangeDateTime="03/07/2023 07:59:16">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a8905abf-9177-469b-8adc-2296fc490657" ChangeDateTime="03/07/2023 08:00:35">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[CarType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CarTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3bdc4581-ae4b-45e3-b86e-e910c2ff5b91" ChangeDateTime="03/07/2023 08:03:03">
+    <Property Name="ElementName" Value="[dbo].[CarBrands].[BrandName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CarBrands]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="48075362-da05-4441-a017-b6576acad94e" ChangeDateTime="03/07/2023 08:03:14">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[Date]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CarBrandId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dd41f474-691d-4254-ab78-d9cd92048b67" ChangeDateTime="03/07/2023 08:03:42">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[UserId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CarMileage" />
+  </Operation>
+</Operations>

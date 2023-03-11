@@ -74,8 +74,22 @@
     <Build Include="ForeignKeys\FK_AspNetUsers_AspNetUserTokens.sql" />
     <Build Include="ForeignKeys\FK_AspNetUsers_AspNetUserClaims.sql" />
     <Build Include="ForeignKeys\FK_AspNetUsers_AspNetUserLogins.sql" />
+    <Build Include="Tables\Services.sql" />
+    <Build Include="Tables\Appointments.sql" />
+    <Build Include="Tables\CarTypes.sql" />
+    <Build Include="Tables\CarBrands.sql" />
+    <Build Include="Tables\ServicesAppointments.sql" />
+    <Build Include="Tables\Discounts.sql" />
+    <Build Include="ForeignKeys\FK_CarBrands_Appointments.sql" />
+    <Build Include="ForeignKeys\FK_CarTypes_Appointments.sql" />
+    <Build Include="ForeignKeys\FK_Appointments_ServicesAppointments.sql" />
+    <Build Include="ForeignKeys\FK_Services_ServicesAppointments.sql" />
+    <Build Include="ForeignKeys\FK_Services_Discounts.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post\PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CarService.Database.refactorlog" />
   </ItemGroup>
 </Project>
