@@ -35,4 +35,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="CarMileage" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="2a85f480-ca29-4a5e-90b6-18d6997b7f34" ChangeDateTime="03/28/2023 07:16:41">
+    <Property Name="ElementName" Value="[dbo].[Discounts].[TimeStart]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Discounts]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateStart" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fd195aeb-e844-4d27-84eb-50fae895cfc6" ChangeDateTime="03/28/2023 07:16:44">
+    <Property Name="ElementName" Value="[dbo].[Discounts].[TimeEnd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Discounts]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateEnd" />
+  </Operation>
 </Operations>

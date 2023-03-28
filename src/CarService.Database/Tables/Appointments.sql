@@ -4,5 +4,6 @@
     [CarTypeId] INT NOT NULL, 
     [CarBrandId] INT NOT NULL, 
     [CarMileage] FLOAT NOT NULL, 
-    [Date] SMALLDATETIME NOT NULL
+    [Date] SMALLDATETIME NOT NULL, 
+    [Message] NVARCHAR(MAX) NULL
 )
