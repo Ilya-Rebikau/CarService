@@ -1,9 +1,11 @@
-﻿namespace CarService.DAL.Models
+﻿using CarService.DAL.Interfaces;
+
+namespace CarService.DAL.Models
 {
     /// <summary>
     /// Услуга.
     /// </summary>
-    public class Service
+    public class Service : IModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

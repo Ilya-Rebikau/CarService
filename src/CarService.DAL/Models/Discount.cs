@@ -1,9 +1,11 @@
-﻿namespace CarService.DAL.Models
+﻿using CarService.DAL.Interfaces;
+
+namespace CarService.DAL.Models
 {
     /// <summary>
     /// Скидка.
     /// </summary>
-    public class Discount
+    public class Discount : IModel
     {
         public int Id { get; set; }
         public int Percent { get; set; }

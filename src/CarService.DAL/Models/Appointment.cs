@@ -1,9 +1,11 @@
-﻿namespace CarService.DAL.Models
+﻿using CarService.DAL.Interfaces;
+
+namespace CarService.DAL.Models
 {
     /// <summary>
     /// Запись на прохождение технического обслуживания.
     /// </summary>
-    public class Appointment
+    public class Appointment : IModel
     {
         public int Id { get; set; }
         public int CarTypeId { get; set; }
