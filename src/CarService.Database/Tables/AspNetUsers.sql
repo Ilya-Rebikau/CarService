@@ -17,6 +17,5 @@
 	[LockoutEnd] datetimeoffset NULL,
 	[LockoutEnabled] bit NOT NULL,
 	[AccessFailedCount] int NOT NULL,
-	[TimeZone] NVARCHAR(150) NULL, 
     CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
 )

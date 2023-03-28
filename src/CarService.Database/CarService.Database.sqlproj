@@ -85,6 +85,7 @@
     <Build Include="ForeignKeys\FK_Appointments_ServicesAppointments.sql" />
     <Build Include="ForeignKeys\FK_Services_ServicesAppointments.sql" />
     <Build Include="ForeignKeys\FK_Services_Discounts.sql" />
+    <Build Include="ForeignKeys\FK_AspNetUsers_Appointments.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post\PostDeployment.sql" />

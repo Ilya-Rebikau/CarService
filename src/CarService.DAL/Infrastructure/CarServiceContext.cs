@@ -1,7 +1,7 @@
 ﻿using CarService.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarService.DAL
+namespace CarService.DAL.Infrastructure
 {
     internal class CarServiceContext : DbContext
     {

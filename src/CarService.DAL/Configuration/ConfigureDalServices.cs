@@ -1,4 +1,6 @@
-﻿using CarService.DAL.Interfaces;
+﻿using CarService.DAL.Infrastructure;
+using CarService.DAL.Interfaces;
+using CarService.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
