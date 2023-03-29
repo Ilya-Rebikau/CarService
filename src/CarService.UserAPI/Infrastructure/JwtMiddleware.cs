@@ -1,4 +1,4 @@
-﻿using CarService.UserAPI.Services;
+﻿using CarService.UserAPI.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -8,16 +8,16 @@ namespace CarService.UserAPI.Infrastructure
     {
         private const string AuthorizationKey = "Authorization";
         private readonly RequestDelegate _next;
-        private readonly JwtService _jwtTokenService;
-        public JwtMiddleware(RequestDelegate next, JwtService jwtTokenService)
+        private readonly IJwtService _jwtService;
+        public JwtMiddleware(RequestDelegate next, IJwtService jwtTokenService)
         {
             _next = next;
-            _jwtTokenService = jwtTokenService;
+            _jwtService = jwtTokenService;
         }
         public async Task Invoke(HttpContext context)
         {
             context.Request.Headers.TryGetValue(AuthorizationKey, out var token);
-            if (_jwtTokenService.ValidateJwt(token))
+            if (_jwtService.ValidateJwt(token))
             {
                 var handler = new JwtSecurityTokenHandler();
                 var jwtSecurityToken = handler.ReadJwtToken(token);
