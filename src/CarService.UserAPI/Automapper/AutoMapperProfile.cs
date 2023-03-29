@@ -4,7 +4,7 @@ using CarService.UserAPI.Models.Account;
 
 namespace CarService.UserAPI.Automapper
 {
-    public class AutoMapperProfile : Profile
+    internal class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
         {

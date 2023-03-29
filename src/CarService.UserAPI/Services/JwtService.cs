@@ -1,4 +1,5 @@
-﻿using CarService.UserAPI.Models;
+﻿using CarService.UserAPI.Interfaces;
+using CarService.UserAPI.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,14 +8,14 @@ using System.Text;
 
 namespace CarService.UserAPI.Services
 {
-    public class JwtTokenService
+    internal class JwtService : IJwtService
     {
-        private readonly JwtTokenSettings _settings;
-        public JwtTokenService(IOptions<JwtTokenSettings> options)
+        private readonly JwtSettings _settings;
+        public JwtService(IOptions<JwtSettings> options)
         {
             _settings = options.Value;
         }
-        public string GetToken(User user, IList<string> roles)
+        public string GetJwt(User user, IList<string> roles)
         {
             var roleClaims = roles.Select(role => new Claim(ClaimTypes.Role, role)).ToList();
             var userClaims = new List<Claim>
@@ -33,7 +34,7 @@ namespace CarService.UserAPI.Services
 
             return encodedJwt;
         }
-        public bool ValidateToken(string token)
+        public bool ValidateJwt(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             try

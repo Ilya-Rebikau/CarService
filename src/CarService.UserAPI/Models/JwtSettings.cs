@@ -1,6 +1,6 @@
 ﻿namespace CarService.UserAPI.Models
 {
-    public class JwtTokenSettings
+    public class JwtSettings
     {
         public string JwtIssuer { get; set; }
         public string JwtAudience { get; set; }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarService.UserAPI.Infrastructure
 {
-    public class IdentityContext : IdentityDbContext<User>
+    internal class IdentityContext : IdentityDbContext<User>
     {
         public IdentityContext(DbContextOptions<IdentityContext> options)
             : base(options)

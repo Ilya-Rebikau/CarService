@@ -15,11 +15,11 @@ namespace CarService.DAL.Repositories
         {
             return DbContext.Set<T>().AsNoTracking();
         }
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetById(int id)
         {
             return await DbContext.Set<T>().AsNoTracking().SingleOrDefaultAsync(e => e.Id == id);
         }
-        public virtual async Task<T> CreateAsync(T obj)
+        public virtual async Task<T> Create(T obj)
         {
             var temp = DbContext.Entry(obj);
             temp.State = EntityState.Added;
@@ -28,7 +28,7 @@ namespace CarService.DAL.Repositories
             temp.State = EntityState.Detached;
             return temp.Entity;
         }
-        public virtual async Task<T> UpdateAsync(T obj)
+        public virtual async Task<T> Update(T obj)
         {
             var temp = DbContext.Entry(obj);
             temp.State = EntityState.Modified;
@@ -36,7 +36,7 @@ namespace CarService.DAL.Repositories
             temp.State = EntityState.Detached;
             return temp.Entity;
         }
-        public virtual async Task<T> DeleteAsync(T obj)
+        public virtual async Task<T> Delete(T obj)
         {
             var temp = DbContext.Entry(obj);
             temp.State = EntityState.Deleted;
