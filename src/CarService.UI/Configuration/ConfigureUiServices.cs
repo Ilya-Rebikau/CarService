@@ -1,6 +1,8 @@
 ﻿using CarService.UI.Infrastructure;
 using CarService.UI.Interfaces;
+using CarService.UI.Interfaces.HttpClients;
 using CarService.UI.Models;
+using CarService.UI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

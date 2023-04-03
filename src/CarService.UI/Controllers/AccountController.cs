@@ -57,7 +57,7 @@ namespace CarService.UI.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(Index), typeof(EventsController).GetControllerName());
+                return RedirectToAction(nameof(Index), typeof(HomeController).GetControllerName());
             }
         }
 
@@ -67,7 +67,7 @@ namespace CarService.UI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _service.Logout(HttpContext);
-            return RedirectToAction(nameof(Index), typeof(EventsController).GetControllerName());
+            return RedirectToAction(nameof(Index), typeof(HomeController).GetControllerName());
         }
 
         [Authorize(Roles = "admin")]
@@ -100,7 +100,7 @@ namespace CarService.UI.Controllers
 
             return View(model);
         }
-
+        /*
         [Authorize(Roles = "admin")]
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -114,5 +114,6 @@ namespace CarService.UI.Controllers
             };
             return View(accountVmForPersonalAccout);
         }
+        */
     }
 }
