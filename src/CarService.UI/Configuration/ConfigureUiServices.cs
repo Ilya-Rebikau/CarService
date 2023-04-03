@@ -14,7 +14,7 @@ namespace CarService.UI.Configuration
 {
     public static class ConfigureUiServices
     {
-        public static IServiceCollection AddWebServices(this IServiceCollection services, string connection, IConfiguration configuration)
+        public static IServiceCollection AddUiServices(this IServiceCollection services, string connection, IConfiguration configuration)
         {
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUsersService, UsersService>();
