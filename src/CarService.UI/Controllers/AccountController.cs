@@ -63,7 +63,7 @@ namespace CarService.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager, user")]
         public async Task<IActionResult> Logout()
         {
             await _service.Logout(HttpContext);

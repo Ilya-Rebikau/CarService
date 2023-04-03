@@ -1,0 +1,53 @@
+﻿@model IEnumerable<User>
+@{
+    ViewData["Title"] = "Users";
+}
+<a class="btn btn-primary" asp-action="Create">Create</a>
+<br />
+<br />
+<table class="table table-striped">
+    <tr class="bg-success">
+        <th class="text-white">Email</th>
+        <th class="text-white">PhoneNumber</th>
+        <th class="text-white"></th>
+        <th class="text-white">Operations</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>@user.PhoneNumber</td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                    <a class="btn btn-sm btn-primary" asp-action="EditRoles" asp-route-userid="@user.Id">Permissions</a>
+                    <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@user.Id">ChangePassword</a>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+@{
+    int previousPage;
+    int nextPage;
+}
+@if (PageModel.PageNumber > 1)
+{
+    <a class="btn btn-primary" asp-action="Index" asp-route-pageNumber="1">1</a>
+    {
+        previousPage = PageModel.PageNumber - 1;
+    }
+    <a class="btn btn-primary" asp-action="Index" asp-route-pageNumber="@previousPage">
+        &lt;
+    </a>
+}
+@if (PageModel.NextPage)
+{
+    {
+        nextPage = PageModel.PageNumber + 1;
+    }
+    <a class="btn btn-primary" asp-action="Index" asp-route-pageNumber="@nextPage">
+        >
+    </a>
+}

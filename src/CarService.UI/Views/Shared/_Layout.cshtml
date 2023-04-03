@@ -19,13 +19,37 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-black" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
+                            </li>
+                        }
                     </ul>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav flex-grow-1 justify-content-end">
+                            <li class="nav-item justify-content-end">
+                                <a class="nav-link text-black" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item justify-content-end">
+                                <a class="nav-link text-black" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav flex-grow-1 justify-content-end">
+                            <li class="nav-item justify-content-end">
+                                <a class="nav-link text-black" asp-controller="Account" asp-action="Index">PersonalAccount</a>
+                            </li>
+                            <li class="nav-item justify-content-end">
+                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                    <input class="nav-link text-black bg-success border-0" type="submit" value="Logout" />
+                                </form>
+                            </li>
+                        </ul>
+                    }
                 </div>
             </div>
         </nav>
@@ -38,7 +62,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - CarService.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - CarService.UI
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

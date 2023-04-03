@@ -38,7 +38,7 @@ namespace CarService.UserAPI.Controllers
                 : Forbid();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
@@ -46,7 +46,7 @@ namespace CarService.UserAPI.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] string id)
         {
@@ -54,14 +54,14 @@ namespace CarService.UserAPI.Controllers
             return model is null ? NotFound() : Ok(model);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPut("edit")]
         public async Task<IActionResult> Edit([FromBody] EditAccountModel model)
         {
             return Ok(await _service.UpdateUserInEdit(model));
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost("validatetoken")]
         public IActionResult ValidateToken([FromHeader(Name = AuthorizationKey)] string token)
         {
