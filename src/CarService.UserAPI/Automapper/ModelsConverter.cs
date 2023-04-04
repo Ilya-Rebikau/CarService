@@ -12,33 +12,33 @@ namespace CarService.UserAPI.Automapper
         }
         public virtual Task<TDestination> ConvertSourceToDestination(TSource source)
         {
-            var dto = _mapper.Map<TSource, TDestination>(source);
-            return Task.FromResult(dto);
+            var destination = _mapper.Map<TSource, TDestination>(source);
+            return Task.FromResult(destination);
         }
         public virtual Task<TSource> ConvertDestinationToSource(TDestination destination)
         {
-            var model = _mapper.Map<TDestination, TSource>(destination);
-            return Task.FromResult(model);
+            var source = _mapper.Map<TDestination, TSource>(destination);
+            return Task.FromResult(source);
         }
         public async Task<IEnumerable<TDestination>> ConvertSourceModelRangeToDestinationModelRange(IEnumerable<TSource> sourceModels)
         {
-            var dtos = new List<TDestination>();
-            foreach (var model in sourceModels)
+            var destinations = new List<TDestination>();
+            foreach (var source in sourceModels)
             {
-                dtos.Add(await ConvertSourceToDestination(model));
+                destinations.Add(await ConvertSourceToDestination(source));
             }
 
-            return dtos;
+            return destinations;
         }
         public async Task<IEnumerable<TSource>> ConvertDestinationModelRangeToSourceModelRange(IEnumerable<TDestination> destinationModels)
         {
-            var models = new List<TSource>();
-            foreach (var dto in destinationModels)
+            var sources = new List<TSource>();
+            foreach (var destination in destinationModels)
             {
-                models.Add(await ConvertDestinationToSource(dto));
+                sources.Add(await ConvertDestinationToSource(destination));
             }
 
-            return models;
+            return sources;
         }
     }
 }

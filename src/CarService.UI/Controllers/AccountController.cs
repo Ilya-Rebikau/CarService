@@ -70,7 +70,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index), typeof(HomeController).GetControllerName());
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
@@ -78,7 +78,7 @@ namespace CarService.UI.Controllers
             return accountViewModel is null ? NotFound() : View(accountViewModel);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost]
         public async Task<IActionResult> Edit(EditAccountViewModel model)
         {
@@ -100,20 +100,13 @@ namespace CarService.UI.Controllers
 
             return View(model);
         }
-        /*
-        [Authorize(Roles = "admin")]
+
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var accountVm = await _purchaseClient.GetAccountViewModelForPersonalAccount(HttpContext.GetJwtToken());
-            var user = await _service.GetUserFromJwt(accountVm.JwtToken);
-            var accountVmForPersonalAccout = new AccountViewModelForPersonalAccount
-            {
-                User = user,
-                Tickets = accountVm.Tickets,
-            };
-            return View(accountVmForPersonalAccout);
+            var accountVm = await _service.GetAccountViewModel(HttpContext);
+            return View(accountVm);
         }
-        */
     }
 }

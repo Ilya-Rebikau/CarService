@@ -54,12 +54,6 @@ namespace CarService.UI.Services
             return await _userClient.Edit(httpContext.GetJwtToken(), model);
         }
 
-        public async Task<User> GetUserFromJwt(string token)
-        {
-            var userId = await _userClient.GetUserId(token);
-            return await _userManager.FindByIdAsync(userId);
-        }
-
         private async Task SignIn(string token, HttpContext httpContext)
         {
             if (string.IsNullOrEmpty(token) || httpContext is null)
@@ -72,6 +66,11 @@ namespace CarService.UI.Services
             var jwtSecurityToken = handler.ReadJwtToken(token);
             var user = await _userManager.FindByEmailAsync(jwtSecurityToken.Subject);
             await _signInManager.SignInAsync(user, false);
+        }
+
+        public async Task<AccountViewModel> GetAccountViewModel(HttpContext httpContext)
+        {
+            return await _userClient.GetAccountViewModel(httpContext.GetJwtToken());
         }
     }
 }

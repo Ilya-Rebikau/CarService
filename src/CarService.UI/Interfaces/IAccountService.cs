@@ -1,5 +1,4 @@
-﻿using CarService.UI.Models;
-using CarService.UI.Models.Account;
+﻿using CarService.UI.Models.Account;
 using Microsoft.AspNetCore.Identity;
 
 namespace CarService.UI.Interfaces
@@ -12,10 +11,10 @@ namespace CarService.UI.Interfaces
 
         Task Logout(HttpContext httpContext);
 
-        Task<User> GetUserFromJwt(string token);
-
         Task<EditAccountViewModel> GetEditAccountViewModelForEdit(HttpContext httpContext, string id);
 
         Task<IdentityResult> UpdateUserInEdit(HttpContext httpContext, EditAccountViewModel model);
+
+        Task<AccountViewModel> GetAccountViewModel(HttpContext httpContext);
     }
 }

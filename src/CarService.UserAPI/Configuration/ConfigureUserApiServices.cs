@@ -26,6 +26,7 @@ namespace CarService.DAL.Configuration
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IConverter<User, EditAccountModel>, ModelsConverter<User, EditAccountModel>>();
+            services.AddScoped<IConverter<User, AccountModel>, ModelsConverter<User, AccountModel>>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
             var tokenSettings = configuration.GetSection(nameof(JwtSettings));
             services.AddAuthentication(options =>

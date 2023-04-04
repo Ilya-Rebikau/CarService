@@ -12,16 +12,19 @@ namespace CarService.UserAPI.Services
         private readonly string _baseRoleForNewUser;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly IConverter<User, EditAccountModel> _converter;
+        private readonly IConverter<User, EditAccountModel> _converterForEdit;
+        private readonly IConverter<User, AccountModel> _converterForPersonalAccount;
         public AccountService(UserManager<User> userManager,
             SignInManager<User> signInManager,
             IConfiguration configuration,
-            IConverter<User, EditAccountModel> converter)
+            IConverter<User, EditAccountModel> converterForEdit,
+            IConverter<User, AccountModel> converterForPersonalAccount)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _baseRoleForNewUser = configuration.GetValue<string>("BaseRole");
-            _converter = converter;
+            _converterForEdit = converterForEdit;
+            _converterForPersonalAccount = converterForPersonalAccount;
         }
 
         public async Task<RegisterResultModel> RegisterUser(RegisterModel model)
@@ -71,7 +74,7 @@ namespace CarService.UserAPI.Services
         public async Task<EditAccountModel> GetEditAccountViewModelForEdit(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            return await _converter.ConvertSourceToDestination(user);
+            return await _converterForEdit.ConvertSourceToDestination(user);
         }
 
         public async Task<IdentityResult> UpdateUserInEdit(EditAccountModel model)
@@ -85,17 +88,6 @@ namespace CarService.UserAPI.Services
             return await _userManager.UpdateAsync(user);
         }
 
-        public async Task<string> GetUserId(string token)
-        {
-            var user = await _userManager.FindByEmailAsync(GetUserEmail(token));
-            return user.Id;
-        }
-
-        public async Task<User> GetUser(string jwtToken)
-        {
-            return await _userManager.FindByEmailAsync(GetUserEmail(jwtToken));
-        }
-
         private static string GetUserEmail(string token)
         {
             var handler = new JwtSecurityTokenHandler();
@@ -105,6 +97,17 @@ namespace CarService.UserAPI.Services
             var principalClaims = new ClaimsPrincipal(identity);
             var email = principalClaims.FindFirst(JwtRegisteredClaimNames.Sub).Value;
             return email;
+        }
+
+        public async Task<AccountModel> GetAccountModel(string token)
+        {
+            var user = await GetUser(token);
+            return await _converterForPersonalAccount.ConvertSourceToDestination(user);
+        }
+
+        private async Task<User> GetUser(string token)
+        {
+            return await _userManager.FindByEmailAsync(GetUserEmail(token));
         }
     }
 }

@@ -25,8 +25,8 @@ namespace CarService.UI.Interfaces.HttpClients
         [Put("account/edit")]
         public Task<IdentityResult> Edit([Header(AuthorizationKey)] string token, [Body] EditAccountViewModel model, CancellationToken cancellationToken = default);
 
-        [Post("account/getuserid")]
-        public Task<string> GetUserId([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
+        [Get("account/getaccountviewmodel")]
+        public Task<AccountViewModel> GetAccountViewModel([Header(AuthorizationKey)] string token);
 
         [Get("users/getusers")]
         public Task<IEnumerable<User>> GetUsers([Header(AuthorizationKey)] string token, [Body] int pageNumber, CancellationToken cancellationToken = default);

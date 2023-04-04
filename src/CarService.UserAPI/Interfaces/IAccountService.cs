@@ -6,12 +6,11 @@ namespace CarService.UserAPI.Interfaces
 {
     public interface IAccountService
     {
-        Task<User> GetUser(string jwtToken);
         Task<RegisterResultModel> RegisterUser(RegisterModel model);
         Task<LoginResultModel> Login(LoginModel model);
         Task Logout();
         Task<EditAccountModel> GetEditAccountViewModelForEdit(string id);
         Task<IdentityResult> UpdateUserInEdit(EditAccountModel model);
-        Task<string> GetUserId(string token);
+        Task<AccountModel> GetAccountModel(string token);
     }
 }

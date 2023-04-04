@@ -1,7 +1,6 @@
 ﻿using CarService.UserAPI.Infrastructure;
 using CarService.UserAPI.Interfaces;
 using CarService.UserAPI.Models.Account;
-using CarService.UserAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -68,18 +67,11 @@ namespace CarService.UserAPI.Controllers
             return Ok(_jwtService.ValidateJwt(token));
         }
 
-        [Authorize(Roles = "admin")]
-        [HttpPost("getuserid")]
-        public async Task<IActionResult> GetUserId([FromHeader(Name = AuthorizationKey)] string token)
+        [Authorize(Roles = "admin, manager, user")]
+        [HttpGet("getaccountviewmodel")]
+        public async Task<IActionResult> GetAccountModel([FromHeader(Name = AuthorizationKey)] string token)
         {
-            return _jwtService.ValidateJwt(token) ? Ok(await _service.GetUserId(token)) : NotFound();
-        }
-
-        [Authorize(Roles = "admin")]
-        [HttpGet("getuser")]
-        public async Task<IActionResult> GetUser([FromHeader(Name = AuthorizationKey)] string token)
-        {
-            return Ok(await _service.GetUser(token));
+            return _jwtService.ValidateJwt(token) ? Ok(await _service.GetAccountModel(token)) : NotFound();
         }
     }
 }
