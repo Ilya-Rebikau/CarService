@@ -72,5 +72,10 @@ namespace CarService.UI.Services
         {
             return await _userClient.GetAccountViewModel(httpContext.GetJwtToken());
         }
+
+        public async Task<IdentityResult> ChangePassword(HttpContext httpContext, ChangePasswordInPersonalAccountViewModel model)
+        {
+            return await _userClient.ChangePassword(httpContext.GetJwtToken(), model);
+        }
     }
 }

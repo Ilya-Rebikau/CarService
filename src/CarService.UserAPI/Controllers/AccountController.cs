@@ -68,10 +68,17 @@ namespace CarService.UserAPI.Controllers
         }
 
         [Authorize(Roles = "admin, manager, user")]
-        [HttpGet("getaccountviewmodel")]
+        [HttpGet("getaccountmodel")]
         public async Task<IActionResult> GetAccountModel([FromHeader(Name = AuthorizationKey)] string token)
         {
-            return _jwtService.ValidateJwt(token) ? Ok(await _service.GetAccountModel(token)) : NotFound();
+            return Ok(await _service.GetAccountModel(token));
+        }
+
+        [Authorize(Roles = "admin, manager, user")]
+        [HttpPost("changepassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordInPersonalAccountModel model)
+        {
+            return Ok(await _service.ChangePassword(model));
         }
     }
 }

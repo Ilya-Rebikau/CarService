@@ -16,5 +16,7 @@ namespace CarService.UI.Interfaces
         Task<IdentityResult> UpdateUserInEdit(HttpContext httpContext, EditAccountViewModel model);
 
         Task<AccountViewModel> GetAccountViewModel(HttpContext httpContext);
+
+        Task<IdentityResult> ChangePassword(HttpContext httpContext, ChangePasswordInPersonalAccountViewModel model);
     }
 }

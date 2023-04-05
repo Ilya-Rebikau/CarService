@@ -1,6 +1,7 @@
 ﻿using CarService.UI.Models;
 using CarService.UI.Models.Account;
 using CarService.UI.Models.Users;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
 using RestEase;
 
@@ -25,9 +26,12 @@ namespace CarService.UI.Interfaces.HttpClients
         [Put("account/edit")]
         public Task<IdentityResult> Edit([Header(AuthorizationKey)] string token, [Body] EditAccountViewModel model, CancellationToken cancellationToken = default);
 
-        [Get("account/getaccountviewmodel")]
-        public Task<AccountViewModel> GetAccountViewModel([Header(AuthorizationKey)] string token);
+        [Get("account/getaccountmodel")]
+        public Task<AccountViewModel> GetAccountViewModel([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
 
+        [Post("account/changepassword")]
+        public Task<IdentityResult> ChangePassword([Header(AuthorizationKey)] string token, [Body] ChangePasswordInPersonalAccountViewModel model, CancellationToken cancellationToken = default);
+        
         [Get("users/getusers")]
         public Task<IEnumerable<User>> GetUsers([Header(AuthorizationKey)] string token, [Body] int pageNumber, CancellationToken cancellationToken = default);
 

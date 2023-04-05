@@ -108,5 +108,36 @@ namespace CarService.UI.Controllers
             var accountVm = await _service.GetAccountViewModel(HttpContext);
             return View(accountVm);
         }
+
+        [Authorize(Roles = "admin, manager, user")]
+        [HttpGet]
+        public IActionResult ChangePassword(string id)
+        {
+            var model = new ChangePasswordInPersonalAccountViewModel { Id = id };
+            return View(model);
+        }
+
+        [Authorize(Roles = "admin, manager, user")]
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordInPersonalAccountViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var result = await _service.ChangePassword(HttpContext, model);
+            if (!result.Errors.Any())
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
     }
 }

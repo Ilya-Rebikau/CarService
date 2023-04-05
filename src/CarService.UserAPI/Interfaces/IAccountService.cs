@@ -12,5 +12,6 @@ namespace CarService.UserAPI.Interfaces
         Task<EditAccountModel> GetEditAccountViewModelForEdit(string id);
         Task<IdentityResult> UpdateUserInEdit(EditAccountModel model);
         Task<AccountModel> GetAccountModel(string token);
+        Task<IdentityResult> ChangePassword(ChangePasswordInPersonalAccountModel model);
     }
 }

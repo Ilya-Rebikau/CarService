@@ -88,7 +88,19 @@ namespace CarService.UserAPI.Services
             return await _userManager.UpdateAsync(user);
         }
 
-        private static string GetUserEmail(string token)
+        public async Task<AccountModel> GetAccountModel(string token)
+        {
+            var user = await GetUser(token);
+            return await _converterForPersonalAccount.ConvertSourceToDestination(user);
+        }
+
+        public async Task<IdentityResult> ChangePassword(ChangePasswordInPersonalAccountModel model)
+        {
+            var user = await _userManager.FindByIdAsync(model.Id);
+            return await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+        }
+
+        private async Task<User> GetUser(string token)
         {
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(token);
@@ -96,18 +108,7 @@ namespace CarService.UserAPI.Services
             var identity = new ClaimsIdentity(claims);
             var principalClaims = new ClaimsPrincipal(identity);
             var email = principalClaims.FindFirst(JwtRegisteredClaimNames.Sub).Value;
-            return email;
-        }
-
-        public async Task<AccountModel> GetAccountModel(string token)
-        {
-            var user = await GetUser(token);
-            return await _converterForPersonalAccount.ConvertSourceToDestination(user);
-        }
-
-        private async Task<User> GetUser(string token)
-        {
-            return await _userManager.FindByEmailAsync(GetUserEmail(token));
+            return await _userManager.FindByEmailAsync(email);
         }
     }
 }

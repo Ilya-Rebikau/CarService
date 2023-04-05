@@ -12,7 +12,16 @@ namespace CarService.UI.Infrastructure
         {
             var exceptionType = context.Exception.GetType();
             var content = exceptionType.GetProperty("Content");
-            string exceptionMessage = content.GetValue(context.Exception).ToString();
+            string exceptionMessage;
+            if (content != null)
+            {
+                exceptionMessage = content.GetValue(context.Exception).ToString();
+            }
+            else
+            {
+                exceptionMessage = context.Exception.Message;
+            }
+
             var viewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), context.ModelState)
             {
                 Model = new ErrorViewModel { Message = exceptionMessage },
