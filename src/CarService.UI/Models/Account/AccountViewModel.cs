@@ -6,16 +6,16 @@ namespace CarService.UI.Models.Account
     {
         public string Id { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Display(Name = "FirstName")]
+        [Display(Name = "Имя")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Surname")]
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
 
-        [Display(Name = "PhoneNumber")]
+        [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }
     }
 }

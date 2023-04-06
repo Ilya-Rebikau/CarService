@@ -1,26 +1,28 @@
 ﻿@model LoginViewModel
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Вход";
 }
-<h2>Login</h2>
-<form method="post" asp-controller="Account" asp-action="Login"
-      asp-route-returnUrl="@Model.ReturnUrl">
+<div class="row d-flex justify-content-center">
+    <p class="fs-1 row pb-3  d-flex justify-content-center">Вход в личный кабинет</p>
+    <form method="post" asp-controller="Account" asp-action="Login"
+          asp-route-returnUrl="@Model.ReturnUrl" class="col-md-7">
     <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
+    <div class="row pb-3 d-flex justify-content-center">
+        <label asp-for="Email" class="col-3 text-start"></label>
+        <input asp-for="Email" class="col-3" />
         <span asp-validation-for="Email"></span>
     </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
+    <div class="row pb-3 d-flex justify-content-center">
+        <label asp-for="Password" class="col-3 text-start"></label>
+        <input asp-for="Password" class="col-3" />
         <span asp-validation-for="Password"></span>
     </div>
-    <div>
-        <label asp-for="RememberMe"></label><br />
-        <input asp-for="RememberMe" />
+    <div class="row pb-3 d-flex justify-content-center">
+        <label asp-for="RememberMe" class="col-3 text-start"></label>
+        <input asp-for="RememberMe" class="col-3" />
     </div>
-    <div>
-        <input class="btn btn-success" type="submit" value="Login" />
+    <div class="row d-flex justify-content-center">
+        <input class="btn btn-dark bg-black text-white w-25" type="submit" value="Войти" />
     </div>
 </form>
+</div>

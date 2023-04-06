@@ -4,19 +4,19 @@ namespace CarService.UI.Models.Account
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "FieldRequired")]
-        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Поле обязательно для ввода!")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "FieldRequired")]
+        [Required(ErrorMessage = "Поле обязательно для ввода!")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "FieldRequired")]
-        [Compare("Password", ErrorMessage = "PasswordsDifferent")]
+        [Required(ErrorMessage = "Поле обязательно для ввода!")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают!")]
         [DataType(DataType.Password)]
-        [Display(Name = "PasswordConfirm")]
+        [Display(Name = "Подтвердите пароль")]
         public string PasswordConfirm { get; set; }
     }
 }
