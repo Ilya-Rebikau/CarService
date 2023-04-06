@@ -85,6 +85,7 @@ namespace CarService.UserAPI.Services
             user.FirstName = model.FirstName;
             user.Surname = model.Surname;
             user.PhoneNumber = model.PhoneNumber;
+            user.Photo = model.Photo;
             return await _userManager.UpdateAsync(user);
         }
 

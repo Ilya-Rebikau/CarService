@@ -21,10 +21,10 @@ namespace CarService.UI.Interfaces.HttpClients
         public Task Logout([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
 
         [Get("account/edit/{id}")]
-        public Task<EditAccountViewModel> Edit([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);
+        public Task<EditAccountModel> Edit([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);
 
         [Put("account/edit")]
-        public Task<IdentityResult> Edit([Header(AuthorizationKey)] string token, [Body] EditAccountViewModel model, CancellationToken cancellationToken = default);
+        public Task<IdentityResult> Edit([Header(AuthorizationKey)] string token, [Body] EditAccountModel model, CancellationToken cancellationToken = default);
 
         [Get("account/getaccountmodel")]
         public Task<AccountViewModel> GetAccountViewModel([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);

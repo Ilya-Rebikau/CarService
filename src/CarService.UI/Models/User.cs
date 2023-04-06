@@ -10,5 +10,8 @@ namespace CarService.UI.Models
 
         [Display(Name = "Surname")]
         public string Surname { get; set; }
+
+        [Display(Name = "Photo")]
+        public byte[] Photo { get; set; }
     }
 }

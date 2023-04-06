@@ -17,5 +17,7 @@ namespace CarService.UI.Models.Account
 
         [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }
+
+        public byte[] Photo { get; set; }
     }
 }

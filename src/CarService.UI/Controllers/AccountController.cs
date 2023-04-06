@@ -3,6 +3,9 @@ using CarService.UI.Interfaces;
 using CarService.UI.Models.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
+using System;
+using System.Collections;
 
 namespace CarService.UI.Controllers
 {
@@ -74,8 +77,8 @@ namespace CarService.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            var accountViewModel = await _service.GetEditAccountViewModelForEdit(HttpContext, id);
-            return accountViewModel is null ? NotFound() : View(accountViewModel);
+            var editAccountViewModel = await _service.GetEditAccountViewModelForEdit(HttpContext, id);
+            return editAccountViewModel is null ? NotFound() : View(editAccountViewModel);
         }
 
         [Authorize(Roles = "admin, manager, user")]

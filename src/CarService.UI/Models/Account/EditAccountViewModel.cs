@@ -17,5 +17,8 @@ namespace CarService.UI.Models.Account
 
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; }
+        public IFormFile Photo { get; set; }
+        public byte[] PhotoData { get; set; }
+        public bool DeletePhoto { get; set; }
     }
 }

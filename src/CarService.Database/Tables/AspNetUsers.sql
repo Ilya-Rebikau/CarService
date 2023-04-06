@@ -17,5 +17,6 @@
 	[LockoutEnd] datetimeoffset NULL,
 	[LockoutEnabled] bit NOT NULL,
 	[AccessFailedCount] int NOT NULL,
+    [Photo] VARBINARY(MAX) NULL, 
     CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
 )

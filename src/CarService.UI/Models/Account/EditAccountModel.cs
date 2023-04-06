@@ -1,6 +1,6 @@
-﻿namespace CarService.UserAPI.Models.Account
+﻿namespace CarService.UI.Models.Account
 {
-    public class AccountModel
+    public class EditAccountModel
     {
         public string Id { get; set; }
         public string Email { get; set; }

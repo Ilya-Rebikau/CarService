@@ -7,5 +7,6 @@
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string PhoneNumber { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using CarService.UI.Models;
 using CarService.UI.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 
 namespace CarService.UI.Services
 {
@@ -46,12 +47,66 @@ namespace CarService.UI.Services
 
         public async Task<EditAccountViewModel> GetEditAccountViewModelForEdit(HttpContext httpContext, string id)
         {
-            return await _userClient.Edit(httpContext.GetJwtToken(), id);
+            var editModel = await _userClient.Edit(httpContext.GetJwtToken(), id);
+            EditAccountViewModel editAccountViewModel;
+            editAccountViewModel = new EditAccountViewModel
+            {
+                Id = editModel.Id,
+                FirstName = editModel.FirstName,
+                Surname = editModel.Surname,
+                PhoneNumber = editModel.PhoneNumber,
+                Email = editModel.Email,
+                PhotoData = editModel.Photo
+            };
+            return editAccountViewModel;
         }
 
         public async Task<IdentityResult> UpdateUserInEdit(HttpContext httpContext, EditAccountViewModel model)
         {
-            return await _userClient.Edit(httpContext.GetJwtToken(), model);
+            if (model.DeletePhoto)
+            {
+                var editAccountModel = new EditAccountModel
+                {
+                    Id = model.Id,
+                    FirstName = model.FirstName,
+                    Surname = model.Surname,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    Photo = null
+                };
+
+                return await _userClient.Edit(httpContext.GetJwtToken(), editAccountModel);
+            }
+            if (model.Photo is not null)
+            {
+                using var binaryReader = new BinaryReader(model.Photo.OpenReadStream());
+                byte[] imageData = binaryReader.ReadBytes((int)model.Photo.Length);
+                var editAccountModel = new EditAccountModel
+                {
+                    Id = model.Id,
+                    FirstName = model.FirstName,
+                    Surname = model.Surname,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    Photo = imageData
+                };
+
+                return await _userClient.Edit(httpContext.GetJwtToken(), editAccountModel);
+            }
+            else
+            {
+                var editAccountModel = new EditAccountModel
+                {
+                    Id = model.Id,
+                    FirstName = model.FirstName,
+                    Surname = model.Surname,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    Photo = model.PhotoData
+                };
+
+                return await _userClient.Edit(httpContext.GetJwtToken(), editAccountModel);
+            }
         }
 
         private async Task SignIn(string token, HttpContext httpContext)
