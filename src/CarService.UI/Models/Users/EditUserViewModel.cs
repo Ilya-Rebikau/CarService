@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CarService.UI.Models.Users
 {
@@ -18,6 +17,8 @@ namespace CarService.UI.Models.Users
 
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; }
-
+        public IFormFile Photo { get; set; }
+        public byte[] PhotoData { get; set; }
+        public bool DeletePhoto { get; set; }
     }
 }

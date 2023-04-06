@@ -1,4 +1,4 @@
-﻿namespace CarService.UserAPI.Models.Users
+﻿namespace CarService.UI.Models.Users
 {
     public class EditUserModel
     {

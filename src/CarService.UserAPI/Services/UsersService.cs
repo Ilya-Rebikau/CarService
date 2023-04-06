@@ -11,12 +11,17 @@ namespace CarService.UserAPI.Services
         private readonly string _baseUserRole;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IConverter<User, EditUserModel> _converter;
         private readonly int _countOnPage;
 
-        public UsersService(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public UsersService(UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IConverter<User, EditUserModel> converter,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _converter = converter;
             _baseUserRole = configuration.GetValue<string>("BaseRole");
             _countOnPage = configuration.GetValue<int>("CountOnPage");
         }
@@ -29,6 +34,7 @@ namespace CarService.UserAPI.Services
             user.FirstName = model.FirstName;
             user.Surname = model.Surname;
             user.PhoneNumber = model.PhoneNumber;
+            user.Photo = model.Photo;
             var result = await _userManager.UpdateAsync(user);
             return result;
         }
@@ -100,15 +106,7 @@ namespace CarService.UserAPI.Services
         public async Task<EditUserModel> GetEditUserViewModel(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            var model = new EditUserModel
-            {
-                Id = user.Id,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                Surname = user.Surname,
-                PhoneNumber = user.PhoneNumber,
-            };
-            return model;
+            return await _converter.ConvertSourceToDestination(user);
         }
 
         public async Task<ChangePasswordModel> GetChangePasswordViewModel(string id)

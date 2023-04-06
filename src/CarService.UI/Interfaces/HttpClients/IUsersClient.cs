@@ -39,10 +39,10 @@ namespace CarService.UI.Interfaces.HttpClients
         public Task<IdentityResult> CreateUser([Header(AuthorizationKey)] string token, [Body] CreateUserViewModel model, CancellationToken cancellationToken = default);
 
         [Get("users/edit/{id}")]
-        public Task<EditUserViewModel> GetEditUserViewModel([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);
+        public Task<EditUserModel> GetEditUserModel([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);
 
         [Put("users/edit")]
-        public Task<IdentityResult> EditUser([Header(AuthorizationKey)] string token, [Body] EditUserViewModel model, CancellationToken cancellationToken = default);
+        public Task<IdentityResult> EditUser([Header(AuthorizationKey)] string token, [Body] EditUserModel model, CancellationToken cancellationToken = default);
 
         [Delete("users/delete/{id}")]
         public Task<string> DeleteUser([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);

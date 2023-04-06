@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using CarService.UserAPI.Models.Users;
 
 namespace CarService.DAL.Configuration
 {
@@ -27,6 +28,7 @@ namespace CarService.DAL.Configuration
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IConverter<User, EditAccountModel>, ModelsConverter<User, EditAccountModel>>();
             services.AddScoped<IConverter<User, AccountModel>, ModelsConverter<User, AccountModel>>();
+            services.AddScoped<IConverter<User, EditUserModel>, ModelsConverter<User, EditUserModel>>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
             var tokenSettings = configuration.GetSection(nameof(JwtSettings));
             services.AddAuthentication(options =>

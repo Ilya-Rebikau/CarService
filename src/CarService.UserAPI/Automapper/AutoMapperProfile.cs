@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CarService.UserAPI.Models;
 using CarService.UserAPI.Models.Account;
+using CarService.UserAPI.Models.Users;
 
 namespace CarService.UserAPI.Automapper
 {
@@ -8,8 +9,9 @@ namespace CarService.UserAPI.Automapper
     {
         public AutoMapperProfile()
         {
-            CreateMap<User, EditAccountModel>().ReverseMap();
-            CreateMap<User, AccountModel>().ReverseMap();
+            CreateMap<User, EditAccountModel>();
+            CreateMap<User, AccountModel>();
+            CreateMap<User, EditUserModel>();
         }
     }
 }

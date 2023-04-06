@@ -48,8 +48,7 @@ namespace CarService.UI.Services
         public async Task<EditAccountViewModel> GetEditAccountViewModelForEdit(HttpContext httpContext, string id)
         {
             var editModel = await _userClient.Edit(httpContext.GetJwtToken(), id);
-            EditAccountViewModel editAccountViewModel;
-            editAccountViewModel = new EditAccountViewModel
+            EditAccountViewModel editAccountViewModel = new EditAccountViewModel
             {
                 Id = editModel.Id,
                 FirstName = editModel.FirstName,
