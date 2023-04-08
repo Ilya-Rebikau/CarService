@@ -1,49 +1,62 @@
 ﻿@model EditAccountViewModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Редактирование профиля";
 }
-<h1>Edit</h1>
-<hr />
-<form asp-action="Edit" asp-controller="Account" enctype="multipart/form-data">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
+<div class="row d-flex justify-content-center pb-3">
+    <form asp-action="Edit" asp-controller="Account" class="col-md-5 border rounded
+            border-dark py-2 px-5 bg-light bg-gradient">
+        <p class="fs-1 row d-flex justify-content-center">Редактирование профиля</p>
+        <div asp-validation-summary="All" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input type="text" asp-for="Email" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="FirstName" class="control-label"></label>
-        <input type="text" asp-for="FirstName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Surname" class="control-label"></label>
-        <input type="text" asp-for="Surname" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="PhoneNumber" class="control-label"></label>
-        <input type="text" asp-for="PhoneNumber" class="form-control" />
-    </div>
-    @{
-        if (Model.PhotoData is not null && Model.PhotoData.Length != 0)
-        {
-            <input type="hidden" asp-for="PhotoData" />
-            <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@Convert.ToBase64String(Model.PhotoData)" />
-            <label asp-for="DeletePhoto"></label>
-            <input asp-for="DeletePhoto" />
+        <div class="form-group row pb-2">
+            <label asp-for="Email" class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                <input type="text" asp-for="Email" class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="FirstName" class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                <input type="text" asp-for="FirstName" class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="Surname" class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                <input type="text" asp-for="Surname" class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="PhoneNumber" class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                <input type="text" asp-for="PhoneNumber" class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="Photo" class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                <input type="file" asp-for="Photo" class="form-control shadow-none" />
+            </div>
+        </div>
+        @{
+            if (Model.PhotoData is not null && Model.PhotoData.Length != 0)
+            {
+                <input type="hidden" asp-for="PhotoData" />
+                <div class="pb-2">
+                    <img alt="Текущее фото" class="img-thumbnail img-fluid w-auto" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.PhotoData))" />
+                    <div class="row d-flex justify-content-center">
+                        <label class="col-auto" asp-for="DeletePhoto"></label>
+                        <div class="form-check col-auto">
+                            <input asp-for="DeletePhoto" class="form-check-input shadow-none ms-1" />
+                        </div>
+                    </div>
+                </div>
+            }
         }
-    }
-    <div class="form-group">
-        <label asp-for="Photo" class="control-label"></label>
-        <input type="file" asp-for="Photo" class="form-control" />
-    </div>
-    <br />
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-success" />
-    </div>
-    <hr />
-    <div>
-        <a class="btn btn-primary" asp-action="Index">Back</a>
-    </div>
-</form>
+        <div class="d-flex justify-content-center">
+            <div class="form-group">
+                <input type="submit" value="Редактировать" class="btn btn-dark shadow-none" />
+            </div>
+        </div>
+    </form>
+</div>

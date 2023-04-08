@@ -6,20 +6,17 @@ namespace CarService.UI.Models.Account
     {
         public string Id { get; set; }
 
-        [Required(ErrorMessage = "FieldRequired")]
         [DataType(DataType.Password)]
-        [Display(Name = "OldPassword")]
+        [Display(Name = "Старый пароль")]
         public string OldPassword { get; set; }
 
-        [Required(ErrorMessage = "FieldRequired")]
         [DataType(DataType.Password)]
-        [Display(Name = "NewPassword")]
+        [Display(Name = "Новый пароль")]
         public string NewPassword { get; set; }
 
-        [Required(ErrorMessage = "FieldRequired")]
         [DataType(DataType.Password)]
-        [Display(Name = "NewPasswordConfirmation")]
-        [Compare("NewPassword", ErrorMessage = "Passwords are different")]
+        [Display(Name = "Подтвердите пароль")]
+        [Compare("NewPassword", ErrorMessage = "Пароли не совпадают")]
         public string NewPasswordConfirmation { get; set; }
     }
 }
