@@ -5,13 +5,19 @@ namespace CarService.UI.Models
 {
     public class User : IdentityUser
     {
-        [Display(Name = "FirstName")]
+        [Display(Name = "E-mail")]
+        public override string  Email { get; set; }
+
+        [Display(Name = "Номер телефона")]
+        public override string PhoneNumber { get; set; }
+
+        [Display(Name = "Имя")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Surname")]
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
 
-        [Display(Name = "Photo")]
+        [Display(Name = "Фото")]
         public byte[] Photo { get; set; }
     }
 }

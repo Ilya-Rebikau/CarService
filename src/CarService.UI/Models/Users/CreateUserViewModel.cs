@@ -4,13 +4,11 @@ namespace CarService.UI.Models.Users
 {
     public class CreateUserViewModel
     {
-        [Required(ErrorMessage = "FieldRequired")]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "FieldRequired")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
     }
 }

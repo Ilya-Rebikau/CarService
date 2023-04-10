@@ -6,12 +6,11 @@ namespace CarService.UI.Models.Users
     {
         public string Id { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "FieldRequired")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Новый пароль")]
         public string NewPassword { get; set; }
     }
 }
