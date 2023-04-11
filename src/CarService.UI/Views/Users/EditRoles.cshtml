@@ -6,7 +6,7 @@
 <div class="row d-flex justify-content-center pt-5 pb-3">
     <form method="post" asp-action="EditRoles" asp-controller="Users" enctype="multipart/form-data" class="col-md-5 border rounded
             border-dark py-5 px-5 bg-light bg-gradient">
-        <p class="fs-1 row d-flex justify-content-center">Редактирование прав пользователя @Model.UserEmail</p>
+        <p class="fs-1 row text-center d-flex justify-content-center">Редактирование прав пользователя @Model.UserEmail</p>
         <input type="hidden" asp-for="UserId" />
         <input type="hidden" asp-for="UserEmail" />
         @foreach (IdentityRole role in Model.AllRoles)
