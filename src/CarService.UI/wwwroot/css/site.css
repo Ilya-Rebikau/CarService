@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+.btn_exit{
+    background: black;
+    border: none;
+    color: white;
+    margin-top: 7px;
+    padding:0;
+}
