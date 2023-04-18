@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Appointments]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT identity PRIMARY KEY, 
     [CarTypeId] INT NOT NULL, 
     [CarBrandId] INT NOT NULL, 
     [CarMileage] FLOAT NOT NULL, 
