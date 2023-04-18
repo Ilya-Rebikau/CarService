@@ -1,5 +1,4 @@
 ﻿using CarService.UI.Infrastructure;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.UI.Controllers

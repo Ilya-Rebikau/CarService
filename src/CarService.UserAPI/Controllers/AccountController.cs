@@ -26,15 +26,15 @@ namespace CarService.UserAPI.Controllers
         {
             var registerResult = await _service.RegisterUser(model);
             return registerResult.IdentityResult.Succeeded ? Ok(_jwtService.GetJwt(registerResult.User, registerResult.Roles))
-                : BadRequest(registerResult.IdentityResult.Errors);
+                : throw new MyException("Ошибка регистрации. Пользователь уже существует.");
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             var loginResult = await _service.Login(model);
-            return loginResult.SignInResult.Succeeded ? Ok(_jwtService.GetJwt(loginResult.User, loginResult.Roles))
-                : Forbid();
+            return loginResult.SignInResult.Succeeded? Ok(_jwtService.GetJwt(loginResult.User, loginResult.Roles))
+                : throw new MyException("Неверный логин и/или пароль");
         }
 
         [Authorize(Roles = "admin, manager, user")]
