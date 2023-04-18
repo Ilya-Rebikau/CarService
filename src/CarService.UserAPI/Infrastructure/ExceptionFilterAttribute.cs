@@ -8,7 +8,7 @@ namespace CarService.UserAPI.Infrastructure
         public void OnException(ExceptionContext context)
         {
             string exceptionMessage = context.Exception.Message;
-            if (context.Exception is MyValidationException)
+            if (context.Exception is MyException)
             {
                 context.Result = new BadRequestObjectResult(context.Exception)
                 {
