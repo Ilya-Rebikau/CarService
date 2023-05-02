@@ -12,7 +12,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using CarService.UserAPI.Models.Users;
 
-namespace CarService.DAL.Configuration
+namespace CarService.UserAPI.Configuration
 {
     public static class ConfigureUserApiServices
     {
