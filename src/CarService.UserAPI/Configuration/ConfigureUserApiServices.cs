@@ -23,7 +23,7 @@ namespace CarService.UserAPI.Configuration
                 .AddDefaultTokenProviders();
             services.AddTransient<IJwtService, JwtService>();
             services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
             var tokenSettings = configuration.GetSection(nameof(JwtSettings));
             services.AddAuthentication(options =>

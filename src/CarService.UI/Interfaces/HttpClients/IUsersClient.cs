@@ -1,7 +1,6 @@
 ﻿using CarService.UI.Models;
 using CarService.UI.Models.Account;
 using CarService.UI.Models.Users;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
 using RestEase;
 
@@ -32,31 +31,31 @@ namespace CarService.UI.Interfaces.HttpClients
         [Post("account/changepassword")]
         public Task<IdentityResult> ChangePassword([Header(AuthorizationKey)] string token, [Body] ChangePasswordInPersonalAccountViewModel model, CancellationToken cancellationToken = default);
         
-        [Get("users/getusers")]
+        [Get("user/getusers")]
         public Task<IEnumerable<User>> GetUsers([Header(AuthorizationKey)] string token, [Body] int pageNumber, CancellationToken cancellationToken = default);
 
-        [Post("users/create")]
+        [Post("user/create")]
         public Task<IdentityResult> CreateUser([Header(AuthorizationKey)] string token, [Body] CreateUserViewModel model, CancellationToken cancellationToken = default);
 
-        [Get("users/edit/{id}")]
+        [Get("user/edit/{id}")]
         public Task<EditUserModel> GetEditUserModel([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);
 
-        [Put("users/edit")]
+        [Put("user/edit")]
         public Task<IdentityResult> EditUser([Header(AuthorizationKey)] string token, [Body] EditUserModel model, CancellationToken cancellationToken = default);
 
-        [Delete("users/delete/{id}")]
+        [Delete("user/delete/{id}")]
         public Task<string> DeleteUser([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);
 
-        [Get("users/changepassword/{id}")]
+        [Get("user/changepassword/{id}")]
         public Task<ChangePasswordViewModel> GetChangePasswordViewModel([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);
 
-        [Put("users/changepassword")]
+        [Put("user/changepassword")]
         public Task<IdentityResult> ChangePassword([Header(AuthorizationKey)] string token, [Body] ChangePasswordViewModel model, CancellationToken cancellationToken = default);
 
-        [Get("users/editroles/{id}")]
+        [Get("user/editroles/{id}")]
         public Task<ChangeRoleViewModel> GetChangeRoleViewModel([Header(AuthorizationKey)] string token, [Path] string id, CancellationToken cancellationToken = default);
 
-        [Put("users/editroles")]
+        [Put("user/editroles")]
         public Task ChangeRoles([Header(AuthorizationKey)] string token, [Body] ChangeRoleViewModel model, CancellationToken cancellationToken = default);
     }
 }

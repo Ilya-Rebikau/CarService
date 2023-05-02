@@ -9,11 +9,11 @@ namespace CarService.UI.Controllers
 {
     [Authorize(Roles = "admin")]
     [ExceptionFilter]
-    public class UsersController : Controller
+    public class UserController : Controller
     {
-        private readonly IUsersService _service;
+        private readonly IUserService _service;
 
-        public UsersController(IUsersService service)
+        public UserController(IUserService service)
         {
             _service = service;
         }

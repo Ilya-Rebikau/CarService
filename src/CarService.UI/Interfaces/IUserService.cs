@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CarService.UI.Interfaces
 {
-    public interface IUsersService
+    public interface IUserService
     {
         Task<IEnumerable<User>> GetUsers(HttpContext httpContext, int pageNumber);
 

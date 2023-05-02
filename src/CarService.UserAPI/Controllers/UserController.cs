@@ -10,11 +10,11 @@ namespace CarService.UserAPI.Controllers
     [Route("[controller]")]
     [ApiController]
     [ExceptionFilter]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly IUsersService _service;
+        private readonly IUserService _service;
 
-        public UsersController(IUsersService service)
+        public UserController(IUserService service)
         {
             _service = service;
         }

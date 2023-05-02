@@ -7,7 +7,7 @@ using AutoMapper;
 
 namespace CarService.UserAPI.Services
 {
-    public class UsersService : IUsersService
+    public class UserService : IUserService
     {
         private readonly string _baseUserRole;
         private readonly UserManager<User> _userManager;
@@ -15,7 +15,7 @@ namespace CarService.UserAPI.Services
         private readonly IMapper _mapper;
         private readonly int _countOnPage;
 
-        public UsersService(UserManager<User> userManager,
+        public UserService(UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
             IMapper mapper,
             IConfiguration configuration)

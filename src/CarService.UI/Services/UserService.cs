@@ -2,17 +2,16 @@
 using CarService.UI.Interfaces;
 using CarService.UI.Interfaces.HttpClients;
 using CarService.UI.Models;
-using CarService.UI.Models.Account;
 using CarService.UI.Models.Users;
 using Microsoft.AspNetCore.Identity;
 
 namespace CarService.UI.Services
 {
-    public class UsersService : IUsersService
+    public class UserService : IUserService
     {
         private readonly IUsersClient _client;
 
-        public UsersService(IUsersClient client)
+        public UserService(IUsersClient client)
         {
             _client = client;
         }
