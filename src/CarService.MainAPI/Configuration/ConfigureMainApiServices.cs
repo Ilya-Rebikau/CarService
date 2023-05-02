@@ -1,4 +1,5 @@
 ﻿using CarService.DAL.Configuration;
+using CarService.DAL.Models;
 using CarService.MainAPI.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +17,7 @@ namespace CarService.MainAPI.Configuration
         {
             var connection = configuration.GetConnectionString("DefaultConnection");
             services.AddDalServices(connection);
+            //services.AddScoped<>;
             services.AddHttpClient();
             services.AddTransient(scope =>
             {

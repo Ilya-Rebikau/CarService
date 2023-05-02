@@ -5,7 +5,7 @@ namespace CarService.DAL.Models
     /// <summary>
     /// Модель, связующая услуги и записи на них.
     /// </summary>
-    public class ServicesAppointments : IModel
+    public class ServiceAppointment : IModel
     {
         public int Id { get; set; }
         public int ServiceId { get; set; }

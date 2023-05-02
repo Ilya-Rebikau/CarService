@@ -14,6 +14,6 @@ namespace CarService.DAL.Infrastructure
         public DbSet<CarType> CarTypes { get; set; }
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Service> Services { get; set; }
-        public DbSet<ServicesAppointments> ServicesAppointments { get; set; }
+        public DbSet<ServiceAppointment> ServicesAppointments { get; set; }
     }
 }
