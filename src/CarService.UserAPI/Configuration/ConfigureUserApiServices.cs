@@ -1,7 +1,6 @@
 ﻿using CarService.UserAPI.Automapper;
 using CarService.UserAPI.Infrastructure;
 using CarService.UserAPI.Interfaces;
-using CarService.UserAPI.Models.Account;
 using CarService.UserAPI.Models;
 using CarService.UserAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using CarService.UserAPI.Models.Users;
 
 namespace CarService.UserAPI.Configuration
 {
@@ -26,9 +24,6 @@ namespace CarService.UserAPI.Configuration
             services.AddTransient<IJwtService, JwtService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUsersService, UsersService>();
-            services.AddScoped<IConverter<User, EditAccountModel>, ModelsConverter<User, EditAccountModel>>();
-            services.AddScoped<IConverter<User, AccountModel>, ModelsConverter<User, AccountModel>>();
-            services.AddScoped<IConverter<User, EditUserModel>, ModelsConverter<User, EditUserModel>>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
             var tokenSettings = configuration.GetSection(nameof(JwtSettings));
             services.AddAuthentication(options =>

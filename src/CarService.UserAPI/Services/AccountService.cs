@@ -4,6 +4,7 @@ using CarService.UserAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using AutoMapper;
 
 namespace CarService.UserAPI.Services
 {
@@ -12,19 +13,16 @@ namespace CarService.UserAPI.Services
         private readonly string _baseRoleForNewUser;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly IConverter<User, EditAccountModel> _converterForEdit;
-        private readonly IConverter<User, AccountModel> _converterForPersonalAccount;
+        private readonly IMapper _mapper;
         public AccountService(UserManager<User> userManager,
             SignInManager<User> signInManager,
             IConfiguration configuration,
-            IConverter<User, EditAccountModel> converterForEdit,
-            IConverter<User, AccountModel> converterForPersonalAccount)
+            IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _baseRoleForNewUser = configuration.GetValue<string>("BaseRole");
-            _converterForEdit = converterForEdit;
-            _converterForPersonalAccount = converterForPersonalAccount;
+            _mapper = mapper;
         }
 
         public async Task<RegisterResultModel> RegisterUser(RegisterModel model)
@@ -74,7 +72,7 @@ namespace CarService.UserAPI.Services
         public async Task<EditAccountModel> GetEditAccountViewModelForEdit(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            return await _converterForEdit.ConvertSourceToDestination(user);
+            return _mapper.Map<User, EditAccountModel>(user);
         }
 
         public async Task<IdentityResult> UpdateUserInEdit(EditAccountModel model)
@@ -92,7 +90,7 @@ namespace CarService.UserAPI.Services
         public async Task<AccountModel> GetAccountModel(string token)
         {
             var user = await GetUser(token);
-            return await _converterForPersonalAccount.ConvertSourceToDestination(user);
+            return _mapper.Map<User, AccountModel>(user);
         }
 
         public async Task<IdentityResult> ChangePassword(ChangePasswordInPersonalAccountModel model)

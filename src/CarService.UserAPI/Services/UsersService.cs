@@ -3,6 +3,7 @@ using CarService.UserAPI.Models.Users;
 using CarService.UserAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using AutoMapper;
 
 namespace CarService.UserAPI.Services
 {
@@ -11,17 +12,17 @@ namespace CarService.UserAPI.Services
         private readonly string _baseUserRole;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IConverter<User, EditUserModel> _converter;
+        private readonly IMapper _mapper;
         private readonly int _countOnPage;
 
         public UsersService(UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
-            IConverter<User, EditUserModel> converter,
+            IMapper mapper,
             IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            _converter = converter;
+            _mapper = mapper;
             _baseUserRole = configuration.GetValue<string>("BaseRole");
             _countOnPage = configuration.GetValue<int>("CountOnPage");
         }
@@ -106,7 +107,7 @@ namespace CarService.UserAPI.Services
         public async Task<EditUserModel> GetEditUserViewModel(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            return await _converter.ConvertSourceToDestination(user);
+            return _mapper.Map<User, EditUserModel>(user);
         }
 
         public async Task<ChangePasswordModel> GetChangePasswordViewModel(string id)
