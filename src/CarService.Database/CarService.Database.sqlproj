@@ -80,12 +80,12 @@
     <Build Include="Tables\CarBrands.sql" />
     <Build Include="Tables\ServicesAppointments.sql" />
     <Build Include="Tables\Discounts.sql" />
-    <Build Include="ForeignKeys\FK_CarBrands_Appointments.sql" />
-    <Build Include="ForeignKeys\FK_CarTypes_Appointments.sql" />
     <Build Include="ForeignKeys\FK_Appointments_ServicesAppointments.sql" />
     <Build Include="ForeignKeys\FK_Services_ServicesAppointments.sql" />
     <Build Include="ForeignKeys\FK_Services_Discounts.sql" />
     <Build Include="ForeignKeys\FK_AspNetUsers_Appointments.sql" />
+    <Build Include="ForeignKeys\FK_CarTypes_Services.sql" />
+    <Build Include="ForeignKeys\FK_CarBrands_Services.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post\PostDeployment.sql" />

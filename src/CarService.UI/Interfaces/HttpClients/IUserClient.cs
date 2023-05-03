@@ -6,7 +6,7 @@ using RestEase;
 
 namespace CarService.UI.Interfaces.HttpClients
 {
-    public interface IUsersClient
+    public interface IUserClient
     {
         private const string AuthorizationKey = "Authorization";
 

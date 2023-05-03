@@ -18,6 +18,7 @@ namespace CarService.UI.Configuration
         {
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IServiceService, ServiceService>();
             services.AddControllersWithViews(options =>
                 options.CacheProfiles.Add("Caching",
                 new CacheProfile
@@ -30,8 +31,13 @@ namespace CarService.UI.Configuration
             services.AddHttpClient();
             services.AddScoped(scope =>
             {
-                var baseUrl = configuration["UsersApiAddress"];
-                return RestClient.For<IUsersClient>(baseUrl);
+                var baseUrl = configuration["UserApiAddress"];
+                return RestClient.For<IUserClient>(baseUrl);
+            });
+            services.AddScoped(scope =>
+            {
+                var baseUrl = configuration["MainApiAddress"];
+                return RestClient.For<IMainClient>(baseUrl);
             });
             services.AddSwaggerGen(c =>
             {

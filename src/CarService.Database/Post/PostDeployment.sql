@@ -28,3 +28,13 @@ values
 ('25ed5e6a-2563-45d8-b9eb-bd77f8c9f83e', '420ecee9-cf46-4824-9dd5-84cabe7748aa'),
 ('72357c52-99fd-43c1-898e-9ff3bb7aa6e9', '420ecee9-cf46-4824-9dd5-84cabe7748aa'),
 ('ffe41a98-cdbc-4799-b6a1-b7d3f9a924f0', '91f86e9a-9464-4686-aac3-a7e3788298e1')
+
+---CarBrands
+insert into dbo.CarBrands
+values
+('BMW'), ('Mersedes'), ('Audi')
+
+---CarTypes
+insert into dbo.CarTypes
+values
+(N'Легковой автомобиль'), (N'Грузовой автомобиль'), (N'Мотоцикл')

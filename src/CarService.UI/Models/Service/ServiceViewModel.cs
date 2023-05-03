@@ -1,11 +1,6 @@
-﻿using CarService.DAL.Interfaces;
-
-namespace CarService.DAL.Models
+﻿namespace CarService.UI.Models.Service
 {
-    /// <summary>
-    /// Услуга.
-    /// </summary>
-    public class Service : IModel
+    public class ServiceViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,5 +9,6 @@ namespace CarService.DAL.Models
         public int CarBrandId { get; set; }
         public int CarTypeId { get; set; }
         public byte[] ImageData { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

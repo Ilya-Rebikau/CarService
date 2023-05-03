@@ -23,8 +23,8 @@ namespace CarService.MainAPI.Configuration
             services.AddHttpClient();
             services.AddTransient(scope =>
             {
-                var baseUrl = configuration["UsersApiAddress"];
-                return RestClient.For<IUsersClient>(baseUrl);
+                var baseUrl = configuration["UserApiAddress"];
+                return RestClient.For<IUserClient>(baseUrl);
             });
             services.AddControllers();
             services.AddCors();

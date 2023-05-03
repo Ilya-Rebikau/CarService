@@ -2,7 +2,7 @@
 
 namespace CarService.MainAPI.Interfaces
 {
-    public interface IUsersClient
+    public interface IUserClient
     {
         private const string AuthorizationKey = "Authorization";
 

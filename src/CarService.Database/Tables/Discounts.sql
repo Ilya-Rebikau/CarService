@@ -2,7 +2,7 @@
 (
 	[Id] INT identity PRIMARY KEY, 
     [Percent] SMALLINT NOT NULL, 
-    [DateStart] TEXT NOT NULL, 
-    [DateEnd] TEXT NOT NULL, 
+    [DateStart] DATETIME NOT NULL, 
+    [DateEnd] DATETIME NOT NULL, 
     [ServiceId] INT NOT NULL
 )

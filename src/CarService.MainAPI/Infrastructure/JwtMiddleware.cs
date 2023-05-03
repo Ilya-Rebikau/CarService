@@ -8,9 +8,9 @@ namespace CarService.MainAPI.Infrastructure
     {
         private const string AuthorizationKey = "Authorization";
         private readonly RequestDelegate _next;
-        private readonly IUsersClient _usersClient;
+        private readonly IUserClient _usersClient;
 
-        public JwtMiddleware(RequestDelegate next, IUsersClient usersClient)
+        public JwtMiddleware(RequestDelegate next, IUserClient usersClient)
         {
             _next = next;
             _usersClient = usersClient;

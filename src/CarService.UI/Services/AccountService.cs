@@ -15,11 +15,11 @@ namespace CarService.UI.Services
 
         private readonly SignInManager<User> _signInManager;
 
-        private readonly IUsersClient _userClient;
+        private readonly IUserClient _userClient;
 
         public AccountService(UserManager<User> userManager,
             SignInManager<User> signInManager,
-            IUsersClient userClient)
+            IUserClient userClient)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -48,7 +48,7 @@ namespace CarService.UI.Services
         public async Task<EditAccountViewModel> GetEditAccountViewModelForEdit(HttpContext httpContext, string id)
         {
             var editModel = await _userClient.Edit(httpContext.GetJwtToken(), id);
-            EditAccountViewModel editAccountViewModel = new EditAccountViewModel
+            var editAccountViewModel = new EditAccountViewModel
             {
                 Id = editModel.Id,
                 FirstName = editModel.FirstName,

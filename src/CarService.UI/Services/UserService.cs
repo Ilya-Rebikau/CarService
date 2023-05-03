@@ -9,9 +9,9 @@ namespace CarService.UI.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUsersClient _client;
+        private readonly IUserClient _client;
 
-        public UserService(IUsersClient client)
+        public UserService(IUserClient client)
         {
             _client = client;
         }
@@ -29,7 +29,7 @@ namespace CarService.UI.Services
         public async Task<EditUserViewModel> GetEditUserViewModel(HttpContext httpContext, string id)
         {
             var editModel = await _client.GetEditUserModel(httpContext.GetJwtToken(), id);
-            EditUserViewModel editUserViewModel = new EditUserViewModel
+            var editUserViewModel = new EditUserViewModel
             {
                 Id = editModel.Id,
                 FirstName = editModel.FirstName,

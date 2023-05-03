@@ -1,0 +1,54 @@
+﻿@model ServiceViewModel
+@{
+    ViewData["Title"] = "Title";
+}
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MinutesSpent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MinutesSpent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarBrandId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarBrandId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarTypeId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarTypeId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageData)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.ImageData is not null && Model.ImageData.Length > 0)
+            {
+                <img alt="Моё фото" class="img-thumbnail img-fluid" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ImageData))" />
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>
+<hr />
+<a class="btn btn-primary" asp-action="Index">Back</a>
