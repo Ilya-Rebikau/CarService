@@ -123,12 +123,8 @@ namespace CarService.UserAPI.Services
 
         public async Task<IdentityResult> ChangePassword(ChangePasswordModel model, HttpContext httpContext)
         {
-            var user = await _userManager.FindByIdAsync(model.Id);
-            if (user is null)
-            {
-                throw new ValidationException("Пользователь не найден");
-            }
-
+            var user = await _userManager.FindByIdAsync(model.Id) ??
+                throw new ValidationException("user не найден");
             var passwordValidator = httpContext.RequestServices.GetService(typeof(IPasswordValidator<User>)) as IPasswordValidator<User>;
             var passwordHasher = httpContext.RequestServices.GetService(typeof(IPasswordHasher<User>)) as IPasswordHasher<User>;
             var result = await passwordValidator.ValidateAsync(_userManager, user, model.NewPassword);

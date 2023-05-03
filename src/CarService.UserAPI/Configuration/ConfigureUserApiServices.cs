@@ -52,7 +52,7 @@ namespace CarService.UserAPI.Configuration
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "UsersAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserAPI", Version = "v1" });
                 var jwtSecurityScheme = new OpenApiSecurityScheme
                 {
                     Scheme = "bearer",

@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[CarBrands]
 (
 	[Id] INT identity PRIMARY KEY, 
-    [Name] NVARCHAR(50) NOT NULL
+    [Name] NVARCHAR(50) NOT NULL, 
+    [ImageData] VARBINARY(MAX) NULL
 )

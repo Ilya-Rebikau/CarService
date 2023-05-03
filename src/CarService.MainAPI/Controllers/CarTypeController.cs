@@ -16,5 +16,12 @@ namespace CarService.MainAPI.Controllers
         {
             _carTypeService = carTypeService;
         }
+
+        [HttpGet("getcartypes")]
+        public IActionResult GetCarTypes([FromQuery] int pageNumber)
+        {
+            var carTypes = _carTypeService.GetAll(pageNumber);
+            return Ok(carTypes);
+        }
     }
 }

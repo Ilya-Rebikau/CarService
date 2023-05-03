@@ -1,6 +1,6 @@
-﻿@model IEnumerable<ServiceViewModel>
+﻿@model IEnumerable<CarBrandViewModel>
 @{
-    ViewData["Title"] = "Услуги";
+    ViewData["Title"] = "Title";
 }
 
 <p>
@@ -13,7 +13,7 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                image
+                @Html.DisplayNameFor(model => model.Image)
             </th>
             <th></th>
         </tr>
@@ -27,13 +27,14 @@
             <td>
                 @if (item.ImageData is not null && item.ImageData.Length > 0)
                 {
-                    <img alt="Картинка" class="img-thumbnail img-fluid" src="data:image/jpeg;base64,@(Convert.ToBase64String(item.ImageData))" />
+                    <img alt="Лого" class="img-thumbnail img-fluid" src="data:image/jpeg;base64,@(Convert.ToBase64String(item.ImageData))" />
                 }
             </td>
             <td>
                 <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">edit</a>
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                    <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
+                </form>
             </td>
         </tr>
 }

@@ -19,6 +19,7 @@ namespace CarService.UI.Configuration
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IServiceService, ServiceService>();
+            services.AddScoped<ICarBrandService, CarBrandService>();
             services.AddControllersWithViews(options =>
                 options.CacheProfiles.Add("Caching",
                 new CacheProfile

@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarService.MainAPI.Controllers
 {
-    [Authorize(Roles = "admin")]
     [Route("[controller]")]
     [ApiController]
     [ExceptionFilter]
@@ -18,8 +17,9 @@ namespace CarService.MainAPI.Controllers
         {
             _service = service;
         }
+
         [HttpGet("getservices")]
-        public IActionResult GetVenues([FromQuery] int pageNumber)
+        public IActionResult GetServices([FromQuery] int pageNumber)
         {
             var services = _service.GetAll(pageNumber);
             return Ok(services);
@@ -32,6 +32,7 @@ namespace CarService.MainAPI.Controllers
             return service is null ? NotFound() : Ok(service);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] Service service)
         {
@@ -39,6 +40,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -46,6 +48,7 @@ namespace CarService.MainAPI.Controllers
             return service is null ? NotFound() : Ok(service);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] Service service)
         {
@@ -72,6 +75,7 @@ namespace CarService.MainAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet("delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
@@ -79,6 +83,7 @@ namespace CarService.MainAPI.Controllers
             return service is null ? NotFound() : Ok(service);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("delete/{id}")]
         [ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed([FromRoute] int id)

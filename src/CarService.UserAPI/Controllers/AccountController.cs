@@ -26,7 +26,7 @@ namespace CarService.UserAPI.Controllers
         {
             var registerResult = await _service.RegisterUser(model);
             return registerResult.IdentityResult.Succeeded ? Ok(_jwtService.GetJwt(registerResult.User, registerResult.Roles))
-                : throw new MyException("Ошибка регистрации. Пользователь уже существует.");
+                : throw new MyException("Ошибка регистрации. user уже существует.");
         }
 
         [HttpPost("login")]
