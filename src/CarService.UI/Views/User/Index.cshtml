@@ -27,10 +27,10 @@
                         <td>@user.FirstName</td>
                         <td>@user.Surname</td>
                         <td>
-                            <a class="btn btn-dark shadow-none" asp-action="Edit" asp-route-id="@user.Id">Редактировать</a>
-                            <a class="btn btn-dark shadow-none" asp-action="EditRoles" asp-route-userid="@user.Id">Права доступа</a>
-                            <a class="btn btn-dark shadow-none" asp-action="ChangePassword" asp-route-id="@user.Id">Сменить пароль</a>
                             <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                                <a class="btn btn-dark shadow-none" asp-action="Edit" asp-route-id="@user.Id">Редактировать</a>
+                                <a class="btn btn-dark shadow-none" asp-action="EditRoles" asp-route-userid="@user.Id">Права доступа</a>
+                                <a class="btn btn-dark shadow-none" asp-action="ChangePassword" asp-route-id="@user.Id">Сменить пароль</a>
                                 <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
                             </form>
                         </td>
@@ -38,28 +38,32 @@
                 }
             </tbody>
         </table>
-        @{
-            int previousPage;
-            int nextPage;
-        }
-        @if (PageModel.PageNumber > 1)
-        {
-            <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="1">1</a>
-            {
-                previousPage = PageModel.PageNumber - 1;
+        <div class="d-flex justify-content-center pb-3">
+            @{
+                int previousPage;
+                int nextPage;
             }
-            <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@previousPage">
-                &lt;
-            </a>
-        }
-        @if (PageModel.NextPage)
-        {
+            @if (PageModel.PageNumber > 1)
             {
-                nextPage = PageModel.PageNumber + 1;
+                <div class="pe-1">
+                    <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="1">1</a>
+                    @{
+                        previousPage = PageModel.PageNumber - 1;
+                    }
+                    <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@previousPage">
+                        &lt;
+                    </a>
+                </div>
             }
-            <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@nextPage">
-                >
-            </a>
-        }
+            @if (PageModel.NextPage)
+            {
+                {
+                    nextPage = PageModel.PageNumber + 1;
+                }
+                <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@nextPage">
+                    >
+                </a>
+            }
+        </div>
     </div>
 </div>

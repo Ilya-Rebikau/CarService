@@ -62,50 +62,30 @@ namespace CarService.UI.Services
 
         public async Task<IdentityResult> UpdateUserInEdit(HttpContext httpContext, EditAccountViewModel model)
         {
+            var editAccountModel = new EditAccountModel
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                Surname = model.Surname,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+            };
             if (model.DeletePhoto)
             {
-                var editAccountModel = new EditAccountModel
-                {
-                    Id = model.Id,
-                    FirstName = model.FirstName,
-                    Surname = model.Surname,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    Photo = null
-                };
-
-                return await _userClient.Edit(httpContext.GetJwtToken(), editAccountModel);
+                editAccountModel.Photo = null;
             }
-            if (model.Photo is not null)
+            else if (model.Photo is not null)
             {
                 using var binaryReader = new BinaryReader(model.Photo.OpenReadStream());
-                byte[] imageData = binaryReader.ReadBytes((int)model.Photo.Length);
-                var editAccountModel = new EditAccountModel
-                {
-                    Id = model.Id,
-                    FirstName = model.FirstName,
-                    Surname = model.Surname,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    Photo = imageData
-                };
-
-                return await _userClient.Edit(httpContext.GetJwtToken(), editAccountModel);
+                byte[] photoData = binaryReader.ReadBytes((int)model.Photo.Length);
+                editAccountModel.Photo = photoData;
             }
             else
             {
-                var editAccountModel = new EditAccountModel
-                {
-                    Id = model.Id,
-                    FirstName = model.FirstName,
-                    Surname = model.Surname,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    Photo = model.PhotoData
-                };
-
-                return await _userClient.Edit(httpContext.GetJwtToken(), editAccountModel);
+                editAccountModel.Photo = model.PhotoData;
             }
+
+            return await _userClient.Edit(httpContext.GetJwtToken(), editAccountModel);
         }
 
         private async Task SignIn(string token, HttpContext httpContext)

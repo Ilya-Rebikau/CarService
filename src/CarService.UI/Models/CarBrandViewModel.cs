@@ -12,5 +12,8 @@ namespace CarService.UI.Models
 
         [Display(Name = "Лого")]
         public IFormFile Image { get; set; }
+
+        [Display(Name = "Удалить текущее лого?")]
+        public bool DeletePhoto { get; set; }
     }
 }

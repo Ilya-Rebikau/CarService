@@ -43,50 +43,31 @@ namespace CarService.UI.Services
 
         public async Task<IdentityResult> EditUser(HttpContext httpContext, EditUserViewModel model)
         {
+            var editUserModel = new EditUserModel
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                Surname = model.Surname,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Photo = null
+            };
             if (model.DeletePhoto)
             {
-                var editAccountModel = new EditUserModel
-                {
-                    Id = model.Id,
-                    FirstName = model.FirstName,
-                    Surname = model.Surname,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    Photo = null
-                };
-
-                return await _client.EditUser(httpContext.GetJwtToken(), editAccountModel);
+                editUserModel.Photo = null;
             }
-            if (model.Photo is not null)
+            else if (model.Photo is not null)
             {
                 using var binaryReader = new BinaryReader(model.Photo.OpenReadStream());
-                byte[] imageData = binaryReader.ReadBytes((int)model.Photo.Length);
-                var editAccountModel = new EditUserModel
-                {
-                    Id = model.Id,
-                    FirstName = model.FirstName,
-                    Surname = model.Surname,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    Photo = imageData
-                };
-
-                return await _client.EditUser(httpContext.GetJwtToken(), editAccountModel);
+                byte[] photoData = binaryReader.ReadBytes((int)model.Photo.Length);
+                editUserModel.Photo = photoData;
             }
             else
             {
-                var editAccountModel = new EditUserModel
-                {
-                    Id = model.Id,
-                    FirstName = model.FirstName,
-                    Surname = model.Surname,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    Photo = model.PhotoData
-                };
-
-                return await _client.EditUser(httpContext.GetJwtToken(), editAccountModel);
+                editUserModel.Photo = model.PhotoData;
             }
+
+            return await _client.EditUser(httpContext.GetJwtToken(), editUserModel);
         }
 
         public async Task<string> DeleteUser(HttpContext httpContext, string id)

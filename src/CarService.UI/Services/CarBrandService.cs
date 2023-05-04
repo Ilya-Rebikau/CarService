@@ -31,7 +31,11 @@ namespace CarService.UI.Services
 
         public async Task EditCarBrand(string token, int id, CarBrandViewModel model)
         {
-            if (model.Image is not null)
+            if (model.DeletePhoto)
+            {
+                model.ImageData = null;
+            }
+            else if (model.Image is not null)
             {
                 using var binaryReader = new BinaryReader(model.Image.OpenReadStream());
                 byte[] imageData = binaryReader.ReadBytes((int)model.Image.Length);
@@ -39,7 +43,7 @@ namespace CarService.UI.Services
             }
             else
             {
-                model.ImageData = null;
+                model.ImageData = model.ImageData;
             }
 
             await _mainClient.EditCarBrand(token, id, model);
