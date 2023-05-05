@@ -19,20 +19,28 @@ namespace CarService.MainAPI.Controllers
         }
 
         [HttpGet("getservices")]
-        public IActionResult GetServices([FromQuery] int pageNumber)
+        public IActionResult GetServices([FromQuery] int carTypeId, [FromQuery] int carBrandId)
         {
-            var services = _service.GetAll(pageNumber);
+            var services = _service.GetServiceListModel(carTypeId, carBrandId);
             return Ok(services);
         }
 
         [HttpGet("details/{id}")]
         public async Task<IActionResult> Details([FromRoute] int id)
         {
-            var service = await _service.GetById(id);
+            var service = await _service.GetServiceModelById(id);
             return service is null ? NotFound() : Ok(service);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
+        [HttpGet("create")]
+        public IActionResult Create()
+        {
+            var serviceModel = _service.GetServiceModelForCreate();
+            return Ok(serviceModel);
+        }
+
+        [Authorize(Roles = "admin, manager")]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] Service service)
         {
@@ -40,15 +48,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "admin")]
-        [HttpGet("edit/{id}")]
-        public async Task<IActionResult> Edit(int id)
-        {
-            var service = await _service.GetById(id);
-            return service is null ? NotFound() : Ok(service);
-        }
-
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] Service service)
         {
@@ -75,18 +75,9 @@ namespace CarService.MainAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "admin")]
-        [HttpGet("delete/{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
-        {
-            var service = await _service.GetById(id);
-            return service is null ? NotFound() : Ok(service);
-        }
-
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         [HttpDelete("delete/{id}")]
-        [ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await _service.DeleteById(id);
             return Ok();

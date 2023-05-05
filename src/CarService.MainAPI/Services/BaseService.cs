@@ -71,12 +71,7 @@ namespace CarService.MainAPI.Services
             }
 
             var model = await Repository.GetById(id);
-            if (model is null)
-            {
-                throw new ValidationException("Объект не найден!");
-            }
-
-            return model;
+            return model is null ? throw new ValidationException("Объект не найден!") : model;
         }
     }
 }

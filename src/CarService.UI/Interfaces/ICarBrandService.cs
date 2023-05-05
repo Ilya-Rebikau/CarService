@@ -1,4 +1,4 @@
-﻿using CarService.UI.Models;
+﻿using CarService.UI.Models.CarBrands;
 
 namespace CarService.UI.Interfaces
 {

@@ -1,13 +1,12 @@
 ﻿using CarService.UI.Infrastructure;
 using CarService.UI.Interfaces;
-using CarService.UI.Models;
+using CarService.UI.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarService.UI.Controllers
 {
-    [Authorize(Roles = "admin")]
     [ResponseCache(CacheProfileName = "Caching")]
     [ExceptionFilter]
     public class ServiceController : Controller
@@ -19,27 +18,27 @@ namespace CarService.UI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int pageNumber = 1)
+        public async Task<IActionResult> Index(int carTypeId = 0, int carBrandId = 0)
         {
-            var services = await _service.GetServiceViewModels(HttpContext.GetJwtToken(), pageNumber);
-            var nextServices = await _service.GetServiceViewModels(HttpContext.GetJwtToken(), pageNumber + 1);
-            PageModel.NextPage = nextServices is not null && nextServices.Any();
-            PageModel.PageNumber = pageNumber;
-            return View(services);
+            var serviceListModel = await _service.GetServiceListViewModel(HttpContext.GetJwtToken(), carTypeId, carBrandId);
+            return View(serviceListModel);
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
-            return id is null ? NotFound() : View(await _service.ServiceDetails(HttpContext.GetJwtToken(), (int)id));
+            return id is null ? NotFound() : View(await _service.GetServiceViewModelById(HttpContext.GetJwtToken(), (int)id));
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var serviceViewModel = await _service.GetServiceViewModelForCreate(HttpContext.GetJwtToken());
+            return View(serviceViewModel);
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ServiceViewModel service)
@@ -53,12 +52,14 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            return id is null ? NotFound() : View(await _service.GetServiceViewModelForEdit(HttpContext.GetJwtToken(), (int)id));
+            return id is null ? NotFound() : View(await _service.GetServiceViewModelById(HttpContext.GetJwtToken(), (int)id));
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ServiceViewModel service)
@@ -85,12 +86,14 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
-            return id is null ? NotFound() : View(await _service.GetServiceViewModelForDelete(HttpContext.GetJwtToken(), (int)id));
+            return id is null ? NotFound() : View(await _service.GetServiceViewModelById(HttpContext.GetJwtToken(), (int)id));
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -1,6 +1,9 @@
 ﻿using CarService.UI.Interfaces;
 using CarService.UI.Interfaces.HttpClients;
 using CarService.UI.Models;
+using CarService.UI.Models.CarBrands;
+using CarService.UI.Models.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CarService.UI.Services
 {
@@ -44,24 +47,40 @@ namespace CarService.UI.Services
             await _mainClient.EditService(token, id, model);
         }
 
-        public async Task<ServiceViewModel> GetServiceViewModelForDelete(string token, int id)
+        public async Task<ServiceListViewModel> GetServiceListViewModel(string token, int carTypeId, int carBrandId)
         {
-            return await _mainClient.GetServiceViewModelForDelete(token, id);
+            var serviceListViewModel = await _mainClient.GetServiceListViewModel(token, carTypeId, carBrandId);
+            CarType tempCarType;
+            CarBrand tempCarBrand;
+            serviceListViewModel.CarTypeSelectList = new SelectList(serviceListViewModel.CarTypes,
+                nameof(tempCarType.Id), nameof(tempCarType.Name));
+            serviceListViewModel.CarBrandSelectList = new SelectList(serviceListViewModel.CarBrands,
+                nameof(tempCarBrand.Id), nameof(tempCarBrand.Name));
+            return serviceListViewModel;
         }
 
-        public async Task<ServiceViewModel> GetServiceViewModelForEdit(string token, int id)
+        public async Task<ServiceViewModel> GetServiceViewModelById(string token, int id)
         {
-            return await _mainClient.GetServiceViewModelForEdit(token, id);
+            var serviceViewModel = await _mainClient.ServiceDetails(token, id);
+            CarType tempCarType;
+            CarBrand tempCarBrand;
+            serviceViewModel.CarTypeSelectList = new SelectList(serviceViewModel.CarTypes,
+                nameof(tempCarType.Id), nameof(tempCarType.Name));
+            serviceViewModel.CarBrandSelectList = new SelectList(serviceViewModel.CarBrands,
+                nameof(tempCarBrand.Id), nameof(tempCarBrand.Name));
+            return serviceViewModel;
         }
 
-        public async Task<IEnumerable<ServiceViewModel>> GetServiceViewModels(string token, int pageNumber)
+        public async Task<ServiceViewModel> GetServiceViewModelForCreate(string token)
         {
-            return await _mainClient.GetServiceViewModels(token, pageNumber);
-        }
-
-        public async Task<ServiceViewModel> ServiceDetails(string token, int id)
-        {
-            return await _mainClient.ServiceDetails(token, id);
+            var serviceViewModel = await _mainClient.GetServiceViewModelForCreate(token);
+            CarType tempCarType;
+            CarBrand tempCarBrand;
+            serviceViewModel.CarTypeSelectList = new SelectList(serviceViewModel.CarTypes,
+                nameof(tempCarType.Id), nameof(tempCarType.Name));
+            serviceViewModel.CarBrandSelectList = new SelectList(serviceViewModel.CarBrands,
+                nameof(tempCarBrand.Id), nameof(tempCarBrand.Name));
+            return serviceViewModel;
         }
     }
 }

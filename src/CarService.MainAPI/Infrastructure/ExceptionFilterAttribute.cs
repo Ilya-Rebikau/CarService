@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.MainAPI.Infrastructure
 {
+    [AttributeUsage(AttributeTargets.All)]
     internal class ExceptionFilterAttribute : Attribute, IExceptionFilter
     {
         public void OnException(ExceptionContext context)

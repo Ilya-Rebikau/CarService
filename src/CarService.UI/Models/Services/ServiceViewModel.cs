@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CarService.UI.Models.CarBrands;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace CarService.UI.Models
+namespace CarService.UI.Models.Services
 {
     public class ServiceViewModel
     {
@@ -20,5 +22,9 @@ namespace CarService.UI.Models
 
         [Display(Name = "Картинка")]
         public IFormFile Image { get; set; }
+        public IEnumerable<CarBrand> CarBrands { get; set; }
+        public IEnumerable<CarType> CarTypes { get; set; }
+        public SelectList CarBrandSelectList { get; set; }
+        public SelectList CarTypeSelectList { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.UI.Infrastructure
 {
+    [AttributeUsage(AttributeTargets.All)]
     public class ExceptionFilterAttribute : Attribute, IExceptionFilter
     {
         public void OnException(ExceptionContext context)

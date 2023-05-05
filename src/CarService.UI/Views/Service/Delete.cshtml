@@ -25,16 +25,16 @@
             @Html.DisplayFor(model => model.MinutesSpent)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CarBrandId)
+            @Html.DisplayNameFor(model => model.CarBrands.FirstOrDefault(cb => cb.Id == model.CarBrandId).Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CarBrandId)
+            @Html.DisplayFor(model => model.CarBrands.FirstOrDefault(cb => cb.Id == model.CarBrandId).Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CarTypeId)
+            @Html.DisplayNameFor(model => model.CarTypes.FirstOrDefault(ct => ct.Id == model.CarTypeId).Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CarTypeId)
+            @Html.DisplayFor(model => model.CarTypes.FirstOrDefault(ct => ct.Id == model.CarTypeId).Name)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ImageData)

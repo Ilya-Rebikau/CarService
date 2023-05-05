@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServiceViewModel>
+﻿@model ServiceListViewModel
 @{
     ViewData["Title"] = "Услуги";
 }
@@ -6,11 +6,22 @@
 <p>
     <a class="btn btn-primary" asp-action="Create">Add</a>
 </p>
+
+@using(Html.BeginForm("Index", "Service", FormMethod.Get))
+{
+    @Html.DropDownList("carTypeId", Model.CarTypeSelectList)
+    @Html.DropDownList("carBrandId", Model.CarBrandSelectList)
+    <br />
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
             </th>
             <th>
                 image
@@ -19,7 +30,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Services) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -39,26 +50,3 @@
 }
     </tbody>
 </table>
-@{
-    int previousPage;
-    int nextPage;
-}
-@if (PageModel.PageNumber > 1)
-{
-    <a class="btn btn-primary" asp-action="Index" asp-route-pageNumber="1">1</a>
-    {
-        previousPage = PageModel.PageNumber - 1;
-    }
-    <a class="btn btn-primary" asp-action="Index" asp-route-pageNumber="@previousPage">
-        &lt;
-    </a>
-}
-@if (PageModel.NextPage)
-{
-    {
-        nextPage = PageModel.PageNumber + 1;
-    }
-    <a class="btn btn-primary" asp-action="Index" asp-route-pageNumber="@nextPage">
-        >
-    </a>
-}
