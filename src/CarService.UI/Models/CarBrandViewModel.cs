@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CarService.UI.Models.CarBrands
+namespace CarService.UI.Models
 {
     public class CarBrandViewModel
     {

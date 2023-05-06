@@ -9,6 +9,7 @@ namespace CarService.MainAPI.Automapper
         public AutoMapperProfile()
         {
             CreateMap<Service, ServiceModel>().ReverseMap();
+            CreateMap<Discount, DiscountModel>().ReverseMap();
         }
     }
 }

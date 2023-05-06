@@ -26,6 +26,13 @@ namespace CarService.MainAPI.Controllers
             return Ok(serviceDatas);
         }
 
+        [HttpGet("getallservicedatas")]
+        public IActionResult GetServiceDatas()
+        {
+            var serviceDatas = _service.GetAll();
+            return Ok(serviceDatas);
+        }
+
         [Authorize(Roles = "admin, manager")]
         [HttpGet("details/{id}")]
         public async Task<IActionResult> Details([FromRoute] int id)

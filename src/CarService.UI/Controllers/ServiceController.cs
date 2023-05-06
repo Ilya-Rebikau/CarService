@@ -1,7 +1,6 @@
 ﻿using CarService.UI.Infrastructure;
 using CarService.UI.Interfaces;
 using CarService.UI.Models;
-using CarService.UI.Models.CarBrands;
 using CarService.UI.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

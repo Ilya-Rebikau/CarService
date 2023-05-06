@@ -1,6 +1,6 @@
 ﻿using CarService.UI.Interfaces;
 using CarService.UI.Interfaces.HttpClients;
-using CarService.UI.Models.CarBrands;
+using CarService.UI.Models;
 
 namespace CarService.UI.Services
 {

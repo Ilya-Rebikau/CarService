@@ -10,5 +10,10 @@ namespace CarService.MainAPI.Services
             : base(repository, configuration)
         {
         }
+
+        public IEnumerable<ServiceData> GetAll()
+        {
+            return Repository.GetAll();
+        }
     }
 }

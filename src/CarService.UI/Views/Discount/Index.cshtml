@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DiscountViewModel>
+@{
+    ViewData["Title"] = "Акции и скидки";
+}
+
+<p class="fs-1 row d-flex justify-content-center">Акции и скидки</p>
+<div class="table-responsive row">
+    <div class="col-md-auto">
+        <a class="btn btn-success shadow-none fs-5" asp-action="Create">+</a>
+    </div>
+    <div class="col-md-11">
+        <table class="table align-middle table-bordered table-striped table-hover">
+            <thead class="bg-dark text-center">
+                <tr>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.ServiceDataName)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.CarTypeName)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.CarBrandName)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.Percent)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.DateStart)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.DateEnd)</th>
+                    @if (User.IsInRole("admin") || User.IsInRole("manager"))
+                    {
+                        <th class="text-white">Управление</th>
+                    }
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var discount in Model)
+                {
+                    <tr>
+                        <td>@discount.ServiceDataName</td>
+                        <td>@discount.CarTypeName</td>
+                        <td>@discount.CarBrandName</td>
+                        <td>@discount.Percent</td>
+                        <td>@discount.DateStart.ToShortDateString()</td>
+                        <td>@discount.DateEnd.ToShortDateString()</td>
+                        @if (User.IsInRole("admin") || User.IsInRole("manager"))
+                        {
+                            <td>
+                                <form asp-action="Delete" asp-route-id="@discount.Id" method="post">
+                                    <a class="btn btn-dark shadow-none" asp-action="Edit" asp-route-id="@discount.Id">Редактировать</a>
+                                    <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
+                                </form>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

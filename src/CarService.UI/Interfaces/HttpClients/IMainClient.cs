@@ -1,5 +1,4 @@
 ﻿using CarService.UI.Models;
-using CarService.UI.Models.CarBrands;
 using CarService.UI.Models.Services;
 using RestEase;
 
@@ -47,7 +46,10 @@ namespace CarService.UI.Interfaces.HttpClients
         
         [Get("servicedata/getservicedatas")]
         public Task<IEnumerable<ServiceDataViewModel>> GetServiceDatas([Header(AuthorizationKey)] string token, [Query] int pageNumber, CancellationToken cancellationToken = default);
-        
+
+        [Get("servicedata/getallservicedatas")]
+        public Task<IEnumerable<ServiceDataViewModel>> GetServiceDatas([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
+
         [Get("servicedata/details/{id}")]
         public Task<ServiceDataViewModel> GetServiceDataById([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
         
@@ -59,5 +61,12 @@ namespace CarService.UI.Interfaces.HttpClients
         
         [Delete("servicedata/delete/{id}")]
         public Task DeleteServiceData([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
+
+        [Get("discount/getdiscounts")]
+        public Task<IEnumerable<DiscountViewModel>> GetDiscounts([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
+
+        [Post("discount/create")]
+        public Task CreateDiscount([Header(AuthorizationKey)] string token, [Body] DiscountViewModel model, CancellationToken cancellationToken = default);
+
     }
 }

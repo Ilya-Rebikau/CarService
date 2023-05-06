@@ -1,11 +1,6 @@
-﻿using CarService.DAL.Interfaces;
-
-namespace CarService.DAL.Models
+﻿namespace CarService.MainAPI.Models
 {
-    /// <summary>
-    /// Скидка.
-    /// </summary>
-    public class Discount : IModel
+    public class DiscountModel
     {
         public int Id { get; set; }
         public int Percent { get; set; }
@@ -14,5 +9,8 @@ namespace CarService.DAL.Models
         public int? ServiceDataId { get; set; }
         public int? CarBrandId { get; set; }
         public int? CarTypeId { get; set; }
+        public string ServiceDataName { get; set; }
+        public string CarBrandName { get; set; }
+        public string CarTypeName { get; set; }
     }
 }
