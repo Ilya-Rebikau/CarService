@@ -18,17 +18,17 @@ namespace CarService.UI.Services
 
         public async Task<IEnumerable<User>> GetUsers(HttpContext httpContext, int pageNumber)
         {
-            return await _client.GetUsers(httpContext.GetJwtToken(), pageNumber);
+            return await _client.GetUsers(httpContext.GetJwt(), pageNumber);
         }
 
         public async Task<IdentityResult> CreateUser(HttpContext httpContext, CreateUserViewModel model)
         {
-            return await _client.CreateUser(httpContext.GetJwtToken(), model);
+            return await _client.CreateUser(httpContext.GetJwt(), model);
         }
 
         public async Task<EditUserViewModel> GetEditUserViewModel(HttpContext httpContext, string id)
         {
-            var editModel = await _client.GetEditUserModel(httpContext.GetJwtToken(), id);
+            var editModel = await _client.GetEditUserModel(httpContext.GetJwt(), id);
             var editUserViewModel = new EditUserViewModel
             {
                 Id = editModel.Id,
@@ -67,32 +67,32 @@ namespace CarService.UI.Services
                 editUserModel.Photo = model.PhotoData;
             }
 
-            return await _client.EditUser(httpContext.GetJwtToken(), editUserModel);
+            return await _client.EditUser(httpContext.GetJwt(), editUserModel);
         }
 
         public async Task<string> DeleteUser(HttpContext httpContext, string id)
         {
-            return await _client.DeleteUser(httpContext.GetJwtToken(), id);
+            return await _client.DeleteUser(httpContext.GetJwt(), id);
         }
 
         public async Task<ChangePasswordViewModel> GetChangePasswordViewModel(HttpContext httpContext, string id)
         {
-            return await _client.GetChangePasswordViewModel(httpContext.GetJwtToken(), id);
+            return await _client.GetChangePasswordViewModel(httpContext.GetJwt(), id);
         }
 
         public async Task<IdentityResult> ChangePassowrd(HttpContext httpContext, ChangePasswordViewModel model)
         {
-            return await _client.ChangePassword(httpContext.GetJwtToken(), model);
+            return await _client.ChangePassword(httpContext.GetJwt(), model);
         }
 
         public async Task<ChangeRoleViewModel> GetChangeRoleViewModel(HttpContext httpContext, string id)
         {
-            return await _client.GetChangeRoleViewModel(httpContext.GetJwtToken(), id);
+            return await _client.GetChangeRoleViewModel(httpContext.GetJwt(), id);
         }
 
         public async Task ChangeRoles(HttpContext httpContext, ChangeRoleViewModel model)
         {
-            await _client.ChangeRoles(httpContext.GetJwtToken(), model);
+            await _client.ChangeRoles(httpContext.GetJwt(), model);
         }
     }
 }

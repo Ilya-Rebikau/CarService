@@ -21,8 +21,8 @@ namespace CarService.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int pageNumber = 1)
         {
-            var serviceDatas = await _service.GetServiceDatas(HttpContext.GetJwtToken(), pageNumber);
-            var nextServiceDatas = await _service.GetServiceDatas(HttpContext.GetJwtToken(), pageNumber + 1);
+            var serviceDatas = await _service.GetServiceDatas(HttpContext.GetJwt(), pageNumber);
+            var nextServiceDatas = await _service.GetServiceDatas(HttpContext.GetJwt(), pageNumber + 1);
             PageModel.NextPage = nextServiceDatas is not null && nextServiceDatas.Any();
             PageModel.PageNumber = pageNumber;
             return View(serviceDatas);
@@ -45,7 +45,7 @@ namespace CarService.UI.Controllers
                 return View(serviceData);
             }
 
-            await _service.CreateServiceData(HttpContext.GetJwtToken(), serviceData);
+            await _service.CreateServiceData(HttpContext.GetJwt(), serviceData);
             return RedirectToAction(nameof(Index));
         }
 
@@ -53,7 +53,7 @@ namespace CarService.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            return id is null ? NotFound() : View(await _service.GetServiceDataById(HttpContext.GetJwtToken(), (int)id));
+            return id is null ? NotFound() : View(await _service.GetServiceDataById(HttpContext.GetJwt(), (int)id));
         }
 
         [Authorize(Roles = "admin, manager")]
@@ -73,7 +73,7 @@ namespace CarService.UI.Controllers
 
             try
             {
-                await _service.EditServiceData(HttpContext.GetJwtToken(), id, serviceData);
+                await _service.EditServiceData(HttpContext.GetJwt(), id, serviceData);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -87,7 +87,7 @@ namespace CarService.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteServiceData(HttpContext.GetJwtToken(), id);
+            await _service.DeleteServiceData(HttpContext.GetJwt(), id);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -58,5 +58,10 @@ namespace CarService.UI.Services
         {
             return await _mainClient.GetCarBrandViewModels(token, pageNumber);
         }
+
+        public async Task<IEnumerable<CarBrandViewModel>> GetCarBrandViewModels(string token)
+        {
+            return await _mainClient.GetCarBrandViewModels(token);
+        }
     }
 }

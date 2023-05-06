@@ -18,6 +18,11 @@ namespace CarService.MainAPI.Services
             return await base.Create(obj);
         }
 
+        public IEnumerable<CarBrand> GetAll()
+        {
+            return Repository.GetAll();
+        }
+
         public override async Task<CarBrand> Update(CarBrand obj)
         {
             CheckForSameBrand(obj);

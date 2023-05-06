@@ -25,6 +25,13 @@ namespace CarService.MainAPI.Controllers
             return Ok(carBrands);
         }
 
+        [HttpGet("getallcarbrands")]
+        public IActionResult GetCarBrands()
+        {
+            var carBrands = _carBrandService.GetAll();
+            return Ok(carBrands);
+        }
+
         [Authorize(Roles = "admin")]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] CarBrand carBrand)

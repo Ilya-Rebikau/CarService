@@ -40,14 +40,14 @@ namespace CarService.UI.Services
 
         public async Task Logout(HttpContext httpContext)
         {
-            await _userClient.Logout(httpContext.GetJwtToken());
+            await _userClient.Logout(httpContext.GetJwt());
             await _signInManager.SignOutAsync();
             httpContext.DeleteCookies();
         }
 
         public async Task<EditAccountViewModel> GetEditAccountViewModelForEdit(HttpContext httpContext, string id)
         {
-            var editModel = await _userClient.Edit(httpContext.GetJwtToken(), id);
+            var editModel = await _userClient.Edit(httpContext.GetJwt(), id);
             var editAccountViewModel = new EditAccountViewModel
             {
                 Id = editModel.Id,
@@ -85,7 +85,7 @@ namespace CarService.UI.Services
                 editAccountModel.Photo = model.PhotoData;
             }
 
-            return await _userClient.Edit(httpContext.GetJwtToken(), editAccountModel);
+            return await _userClient.Edit(httpContext.GetJwt(), editAccountModel);
         }
 
         private async Task SignIn(string token, HttpContext httpContext)
@@ -104,12 +104,12 @@ namespace CarService.UI.Services
 
         public async Task<AccountViewModel> GetAccountViewModel(HttpContext httpContext)
         {
-            return await _userClient.GetAccountViewModel(httpContext.GetJwtToken());
+            return await _userClient.GetAccountViewModel(httpContext.GetJwt());
         }
 
         public async Task<IdentityResult> ChangePassword(HttpContext httpContext, ChangePasswordInPersonalAccountViewModel model)
         {
-            return await _userClient.ChangePassword(httpContext.GetJwtToken(), model);
+            return await _userClient.ChangePassword(httpContext.GetJwt(), model);
         }
     }
 }

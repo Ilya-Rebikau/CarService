@@ -21,8 +21,8 @@ namespace CarService.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int pageNumber = 1)
         {
-            var carBrands = await _service.GetCarBrandViewModels(HttpContext.GetJwtToken(), pageNumber);
-            var nextCarBrands = await _service.GetCarBrandViewModels(HttpContext.GetJwtToken(), pageNumber + 1);
+            var carBrands = await _service.GetCarBrandViewModels(HttpContext.GetJwt(), pageNumber);
+            var nextCarBrands = await _service.GetCarBrandViewModels(HttpContext.GetJwt(), pageNumber + 1);
             PageModel.NextPage = nextCarBrands is not null && nextCarBrands.Any();
             PageModel.PageNumber = pageNumber;
             return View(carBrands);
@@ -45,7 +45,7 @@ namespace CarService.UI.Controllers
                 return View(carBrand);
             }
 
-            await _service.CreateCarBrand(HttpContext.GetJwtToken(), carBrand);
+            await _service.CreateCarBrand(HttpContext.GetJwt(), carBrand);
             return RedirectToAction(nameof(Index));
         }
 
@@ -53,7 +53,7 @@ namespace CarService.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            return id is null ? NotFound() : View(await _service.GetCarBrandViewModelForEdit(HttpContext.GetJwtToken(), (int)id));
+            return id is null ? NotFound() : View(await _service.GetCarBrandViewModelForEdit(HttpContext.GetJwt(), (int)id));
         }
 
         [Authorize(Roles = "admin")]
@@ -73,7 +73,7 @@ namespace CarService.UI.Controllers
 
             try
             {
-                await _service.EditCarBrand(HttpContext.GetJwtToken(), id, carBrand);
+                await _service.EditCarBrand(HttpContext.GetJwt(), id, carBrand);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -87,7 +87,7 @@ namespace CarService.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteCarBrand(HttpContext.GetJwtToken(), id);
+            await _service.DeleteCarBrand(HttpContext.GetJwt(), id);
             return RedirectToAction(nameof(Index));
         }
     }

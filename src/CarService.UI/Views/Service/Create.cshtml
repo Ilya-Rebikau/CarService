@@ -1,0 +1,42 @@
+﻿@model ServiceViewModel
+@{
+    ViewData["Title"] = "Title";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ServiceDataId" />
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinutesSpent" class="control-label"></label>
+                <input asp-for="MinutesSpent" class="form-control" />
+                <span asp-validation-for="MinutesSpent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarBrandId" class="control-label"></label>
+                @Html.DropDownListFor(c => c.CarBrandId, Model.CarBrandSelectList)
+                <span asp-validation-for="CarBrandId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarTypeId" class="control-label"></label>
+                @Html.DropDownListFor(c => c.CarTypeId, Model.CarTypeSelectList)
+                <span asp-validation-for="CarTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
