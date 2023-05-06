@@ -1,8 +1,9 @@
-﻿insert into dbo.AspNetRoles
+﻿---AspNetRoles
+insert into dbo.AspNetRoles
 values 
-('420ecee9-cf46-4824-9dd5-84cabe7748aa', 'admin', 'АДМИНИСТРАТОР', '463fddb3-0509-498d-bec2-2762dd825cbb'),
-('55b4665d-f989-47d9-ae4d-5bc66150603c', 'manager', 'МЕНЕДЖЕР', 'c3b4b8a8-db6f-4113-936f-e710885dc0e9'),
-('91f86e9a-9464-4686-aac3-a7e3788298e1', 'user', 'ПОЛЬЗОВАТЕЛЬ', 'ba426d36-4cff-48a0-b726-b734128c418d')
+('420ecee9-cf46-4824-9dd5-84cabe7748aa', 'admin', 'ADMIN', '463fddb3-0509-498d-bec2-2762dd825cbb'),
+('55b4665d-f989-47d9-ae4d-5bc66150603c', 'manager', 'MANAGER', 'c3b4b8a8-db6f-4113-936f-e710885dc0e9'),
+('91f86e9a-9464-4686-aac3-a7e3788298e1', 'user', 'USER', 'ba426d36-4cff-48a0-b726-b734128c418d')
 
 ---AspNetUsers
 insert into dbo.AspNetUsers
@@ -32,7 +33,7 @@ values
 ---CarBrands
 insert into dbo.CarBrands
 values
-('BMW'), ('Mersedes'), ('Audi')
+('BMW', NULL), ('Mersedes', NULL), ('Audi', NULL)
 
 ---CarTypes
 insert into dbo.CarTypes

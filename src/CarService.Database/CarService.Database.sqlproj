@@ -82,10 +82,17 @@
     <Build Include="Tables\Discounts.sql" />
     <Build Include="ForeignKeys\FK_Appointments_ServicesAppointments.sql" />
     <Build Include="ForeignKeys\FK_Services_ServicesAppointments.sql" />
-    <Build Include="ForeignKeys\FK_Services_Discounts.sql" />
+    <Build Include="ForeignKeys\FK_ServiceDatas_Discounts.sql" />
     <Build Include="ForeignKeys\FK_AspNetUsers_Appointments.sql" />
     <Build Include="ForeignKeys\FK_CarTypes_Services.sql" />
     <Build Include="ForeignKeys\FK_CarBrands_Services.sql" />
+    <Build Include="Tables\PersonalDiscounts.sql" />
+    <Build Include="Tables\ServiceDatas.sql" />
+    <Build Include="ForeignKeys\FK_ServiceDatas_Services.sql" />
+    <Build Include="ForeignKeys\FK_CarBrands_Discounts.sql" />
+    <Build Include="ForeignKeys\FK_CarTypes_Discounts.sql" />
+    <Build Include="ForeignKeys\FK_Services_PersonalDiscounts.sql" />
+    <Build Include="ForeignKeys\FK_AspNetUsers_PersonalDiscounts.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post\PostDeployment.sql" />

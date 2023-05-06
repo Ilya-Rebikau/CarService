@@ -13,7 +13,9 @@ namespace CarService.DAL.Infrastructure
         public DbSet<CarBrand> CarBrands { get; set; }
         public DbSet<CarType> CarTypes { get; set; }
         public DbSet<Discount> Discounts { get; set; }
+        public DbSet<PersonalDiscount> PersonalDiscounts { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<ServiceData> ServiceDatas { get; set; }
         public DbSet<ServiceAppointment> ServicesAppointments { get; set; }
     }
 }

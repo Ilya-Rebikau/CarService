@@ -1,5 +1,4 @@
 ﻿using CarService.DAL.Configuration;
-using CarService.MainAPI.Automapper;
 using CarService.MainAPI.Interfaces;
 using CarService.MainAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,13 +14,13 @@ namespace CarService.MainAPI.Configuration
         {
             var connection = configuration.GetConnectionString("DefaultConnection");
             services.AddDalServices(connection);
-            services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IServiceAppointmentService, ServiceAppointmentService>();
             services.AddScoped<ICarBrandService, CarBrandService>();
             services.AddScoped<ICarTypeService, CarTypeService>();
             services.AddScoped<IServiceService, ServiceService>();
+            services.AddScoped<IServiceDataService, ServiceDataService>();
             services.AddHttpClient();
             services.AddTransient(scope =>
             {

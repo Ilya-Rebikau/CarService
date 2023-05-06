@@ -2,7 +2,7 @@
 
 namespace CarService.MainAPI.Interfaces
 {
-    public interface IServiceService : IBaseService<Service>
+    public interface IServiceDataService : IBaseService<ServiceData>
     {
     }
 }

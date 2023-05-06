@@ -4,9 +4,9 @@ using CarService.MainAPI.Interfaces;
 
 namespace CarService.MainAPI.Services
 {
-    internal class ServiceService : BaseService<Service>, IServiceService
+    internal class ServiceDataService : BaseService<ServiceData>, IServiceDataService
     {
-        public ServiceService(IRepository<Service> repository, IConfiguration configuration)
+        public ServiceDataService(IRepository<ServiceData> repository, IConfiguration configuration)
             : base(repository, configuration)
         {
         }
