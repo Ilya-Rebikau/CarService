@@ -10,6 +10,9 @@ namespace CarService.UI.Models.Services
         [Display(Name = "Цена, BYN")]
         public decimal Price { get; set; }
 
+        [Display(Name = "Цена с учётом скидки, BYN")]
+        public decimal? NewPrice { get; set; }
+
         [Display(Name = "Примерное время ремонта, мин")]
         public int MinutesSpent { get; set; }
         public int CarBrandId { get; set; }

@@ -18,6 +18,7 @@
                     <th class="text-white">Тип техники</th>
                     <th class="text-white">Марка автомобиля</th>
                     <th class="text-white">Цена, BYN</th>
+                    <th class="text-white">Цена с учётом скидки, BYN</th>
                     <th class="text-white">Примерное время ремонта, мин</th>
                     @if (User.IsInRole("admin") || User.IsInRole("manager"))
                     {
@@ -31,7 +32,17 @@
                     <tr>
                         <td>@service.CarTypeName</td>
                         <td>@service.CarBrandName</td>
-                        <td>@service.Price</td>
+                        <td>@service.Price.ToString("#.##")</td>
+                        @if (service.NewPrice is not null)
+                        {
+                            var newPrice = (decimal)service.NewPrice;
+                            <td>@newPrice.ToString("#.##")</td>
+                        }
+                        else
+                        {
+                            <td>В данный момент на эту услугу нет скидок</td>
+                        }
+
                         <td>@service.MinutesSpent</td>
                         @if (User.IsInRole("admin") || User.IsInRole("manager"))
                         {
