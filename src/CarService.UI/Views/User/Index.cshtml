@@ -28,6 +28,7 @@
                         <td>@user.Surname</td>
                         <td>
                             <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                                <a class="btn btn-dark shadow-none" asp-controller="Promocode" asp-action="Create" asp-route-userId="@user.Id">Выдать промокод</a>
                                 <a class="btn btn-dark shadow-none" asp-action="Edit" asp-route-id="@user.Id">Редактировать</a>
                                 <a class="btn btn-dark shadow-none" asp-action="EditRoles" asp-route-userid="@user.Id">Права доступа</a>
                                 <a class="btn btn-dark shadow-none" asp-action="ChangePassword" asp-route-id="@user.Id">Сменить пароль</a>

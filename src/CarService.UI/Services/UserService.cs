@@ -16,19 +16,19 @@ namespace CarService.UI.Services
             _client = client;
         }
 
-        public async Task<IEnumerable<User>> GetUsers(HttpContext httpContext, int pageNumber)
+        public async Task<IEnumerable<User>> GetUsers(string token, int pageNumber)
         {
-            return await _client.GetUsers(httpContext.GetJwt(), pageNumber);
+            return await _client.GetUsers(token, pageNumber);
         }
 
-        public async Task<IdentityResult> CreateUser(HttpContext httpContext, CreateUserViewModel model)
+        public async Task<IdentityResult> CreateUser(string token, CreateUserViewModel model)
         {
-            return await _client.CreateUser(httpContext.GetJwt(), model);
+            return await _client.CreateUser(token, model);
         }
 
-        public async Task<EditUserViewModel> GetEditUserViewModel(HttpContext httpContext, string id)
+        public async Task<EditUserViewModel> GetEditUserViewModel(string token, string id)
         {
-            var editModel = await _client.GetEditUserModel(httpContext.GetJwt(), id);
+            var editModel = await _client.GetEditUserModel(token, id);
             var editUserViewModel = new EditUserViewModel
             {
                 Id = editModel.Id,
@@ -41,7 +41,7 @@ namespace CarService.UI.Services
             return editUserViewModel;
         }
 
-        public async Task<IdentityResult> EditUser(HttpContext httpContext, EditUserViewModel model)
+        public async Task<IdentityResult> EditUser(string token, EditUserViewModel model)
         {
             var editUserModel = new EditUserModel
             {
@@ -67,32 +67,32 @@ namespace CarService.UI.Services
                 editUserModel.Photo = model.PhotoData;
             }
 
-            return await _client.EditUser(httpContext.GetJwt(), editUserModel);
+            return await _client.EditUser(token, editUserModel);
         }
 
-        public async Task<string> DeleteUser(HttpContext httpContext, string id)
+        public async Task<string> DeleteUser(string token, string id)
         {
-            return await _client.DeleteUser(httpContext.GetJwt(), id);
+            return await _client.DeleteUser(token, id);
         }
 
-        public async Task<ChangePasswordViewModel> GetChangePasswordViewModel(HttpContext httpContext, string id)
+        public async Task<ChangePasswordViewModel> GetChangePasswordViewModel(string token, string id)
         {
-            return await _client.GetChangePasswordViewModel(httpContext.GetJwt(), id);
+            return await _client.GetChangePasswordViewModel(token, id);
         }
 
-        public async Task<IdentityResult> ChangePassowrd(HttpContext httpContext, ChangePasswordViewModel model)
+        public async Task<IdentityResult> ChangePassowrd(string token, ChangePasswordViewModel model)
         {
-            return await _client.ChangePassword(httpContext.GetJwt(), model);
+            return await _client.ChangePassword(token, model);
         }
 
-        public async Task<ChangeRoleViewModel> GetChangeRoleViewModel(HttpContext httpContext, string id)
+        public async Task<ChangeRoleViewModel> GetChangeRoleViewModel(string token, string id)
         {
-            return await _client.GetChangeRoleViewModel(httpContext.GetJwt(), id);
+            return await _client.GetChangeRoleViewModel(token, id);
         }
 
-        public async Task ChangeRoles(HttpContext httpContext, ChangeRoleViewModel model)
+        public async Task ChangeRoles(string token, ChangeRoleViewModel model)
         {
-            await _client.ChangeRoles(httpContext.GetJwt(), model);
+            await _client.ChangeRoles(token, model);
         }
     }
 }

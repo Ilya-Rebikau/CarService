@@ -4,6 +4,7 @@
 }
 
 <p class="fs-1 row pb-3 justify-content-center">Личный кабинет</p>
+
 <div class="row d-flex">
     <div class="col-6 border rounded border-dark py-3 px-3 bg-light bg-gradient" style="max-width: 35%">
         @{
@@ -45,4 +46,31 @@
             <a class="btn btn-dark shadow-none" asp-controller="Account" asp-action="ChangePassword" asp-route-id="@Model.Id">Сменить пароль</a>
         </div>
     </div>
+    @if (Model.Promocodes is not null && Model.Promocodes.Any())
+    {
+        <div class="col-6">
+            <p class="fs-4 row pb-3 justify-content-center">Мои промокоды</p>
+            <div class="table-responsive">
+                <table class="table align-middle table-bordered table-striped table-hover">
+                    <thead class="bg-dark text-center">
+                        <tr class="text-white">
+                            <th>Промокод</th>
+                            <th>Размер скидки, %</th>
+                            <th>Срок действия</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach (var promocode in Model.Promocodes)
+                        {
+                            <tr>
+                                <td>@promocode.Text</td>
+                                <td>@promocode.Percent</td>
+                                <td>@promocode.DateEnd</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
 </div>

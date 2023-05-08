@@ -6,22 +6,22 @@ namespace CarService.UI.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetUsers(HttpContext httpContext, int pageNumber);
+        Task<IEnumerable<User>> GetUsers(string token, int pageNumber);
 
-        Task<IdentityResult> CreateUser(HttpContext httpContext, CreateUserViewModel model);
+        Task<IdentityResult> CreateUser(string token, CreateUserViewModel model);
 
-        Task<EditUserViewModel> GetEditUserViewModel(HttpContext httpContext, string id);
+        Task<EditUserViewModel> GetEditUserViewModel(string token, string id);
 
-        Task<IdentityResult> EditUser(HttpContext httpContext, EditUserViewModel model);
+        Task<IdentityResult> EditUser(string token, EditUserViewModel model);
 
-        Task<string> DeleteUser(HttpContext httpContext, string id);
+        Task<string> DeleteUser(string token, string id);
 
-        Task<ChangePasswordViewModel> GetChangePasswordViewModel(HttpContext httpContext, string id);
+        Task<ChangePasswordViewModel> GetChangePasswordViewModel(string token, string id);
 
-        Task<IdentityResult> ChangePassowrd(HttpContext httpContext, ChangePasswordViewModel model);
+        Task<IdentityResult> ChangePassowrd(string token, ChangePasswordViewModel model);
 
-        Task<ChangeRoleViewModel> GetChangeRoleViewModel(HttpContext httpContext, string id);
+        Task<ChangeRoleViewModel> GetChangeRoleViewModel(string token, string id);
 
-        Task ChangeRoles(HttpContext httpContext, ChangeRoleViewModel model);
+        Task ChangeRoles(string token, ChangeRoleViewModel model);
     }
 }

@@ -76,5 +76,14 @@ namespace CarService.UI.Interfaces.HttpClients
 
         [Delete("discount/delete/{id}")]
         public Task DeleteDiscount([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
+
+        [Get("promocode/getpromocodes")]
+        public Task<IEnumerable<PromocodeViewModel>> GetPromocodes([Header(AuthorizationKey)] string token, [Query] string userId, CancellationToken cancellationToken = default);
+
+        [Post("promocode/usepromocode")]
+        public Task UsePromocode([Header(AuthorizationKey)] string token, [Query] string text, CancellationToken cancellationToken = default);
+
+        [Post("promocode/create")]
+        Task CreatePromocode([Header(AuthorizationKey)] string token, [Body] PromocodeViewModel promocode, CancellationToken cancellationToken = default);
     }
 }

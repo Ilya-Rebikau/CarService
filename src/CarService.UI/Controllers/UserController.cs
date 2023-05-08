@@ -21,8 +21,8 @@ namespace CarService.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int pageNumber = 1)
         {
-            var users = await _service.GetUsers(HttpContext, pageNumber);
-            var nextUsers = await _service.GetUsers(HttpContext, pageNumber + 1);
+            var users = await _service.GetUsers(HttpContext.GetJwt(), pageNumber);
+            var nextUsers = await _service.GetUsers(HttpContext.GetJwt(), pageNumber + 1);
             PageModel.NextPage = nextUsers is not null && nextUsers.Any();
             PageModel.PageNumber = pageNumber;
             return View(users);
@@ -39,7 +39,7 @@ namespace CarService.UI.Controllers
                 return View(model);
             }
 
-            var result = await _service.CreateUser(HttpContext, model);
+            var result = await _service.CreateUser(HttpContext.GetJwt(), model);
             if (!result.Errors.Any())
             {
                 return RedirectToAction(nameof(Index));
@@ -58,7 +58,7 @@ namespace CarService.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            return View(await _service.GetEditUserViewModel(HttpContext, id));
+            return View(await _service.GetEditUserViewModel(HttpContext.GetJwt(), id));
         }
 
         [HttpPost]
@@ -69,7 +69,7 @@ namespace CarService.UI.Controllers
                 return View(model);
             }
 
-            var result = await _service.EditUser(HttpContext, model);
+            var result = await _service.EditUser(HttpContext.GetJwt(), model);
             if (!result.Errors.Any())
             {
                 return RedirectToAction(nameof(Index));
@@ -86,14 +86,14 @@ namespace CarService.UI.Controllers
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
-            await _service.DeleteUser(HttpContext, id);
+            await _service.DeleteUser(HttpContext.GetJwt(), id);
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
         public async Task<IActionResult> ChangePassword(string id)
         {
-            return View(await _service.GetChangePasswordViewModel(HttpContext, id));
+            return View(await _service.GetChangePasswordViewModel(HttpContext.GetJwt(), id));
         }
 
         [HttpPost]
@@ -104,7 +104,7 @@ namespace CarService.UI.Controllers
                 return View(model);
             }
 
-            var result = await _service.ChangePassowrd(HttpContext, model);
+            var result = await _service.ChangePassowrd(HttpContext.GetJwt(), model);
             if (!result.Errors.Any())
             {
                 return RedirectToAction(nameof(Index));
@@ -121,13 +121,13 @@ namespace CarService.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> EditRoles(string userId)
         {
-            return View(await _service.GetChangeRoleViewModel(HttpContext, userId));
+            return View(await _service.GetChangeRoleViewModel(HttpContext.GetJwt(), userId));
         }
 
         [HttpPost]
         public async Task<IActionResult> EditRoles(ChangeRoleViewModel model)
         {
-            await _service.ChangeRoles(HttpContext, model);
+            await _service.ChangeRoles(HttpContext.GetJwt(), model);
             return RedirectToAction(nameof(Index));
         }
     }

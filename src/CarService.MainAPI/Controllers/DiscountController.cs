@@ -1,5 +1,4 @@
-﻿using CarService.DAL.Models;
-using CarService.MainAPI.Infrastructure;
+﻿using CarService.MainAPI.Infrastructure;
 using CarService.MainAPI.Interfaces;
 using CarService.MainAPI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarService.MainAPI.Controllers
 {
-    [Authorize(Roles = "admin")]
     [Route("[controller]")]
     [ApiController]
     [ExceptionFilter]

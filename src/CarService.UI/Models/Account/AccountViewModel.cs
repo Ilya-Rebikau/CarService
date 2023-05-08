@@ -18,6 +18,8 @@ namespace CarService.UI.Models.Account
         [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }
 
+        public List<PromocodeViewModel> Promocodes { get; set; }
+
         public byte[] Photo { get; set; }
     }
 }

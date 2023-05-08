@@ -14,10 +14,11 @@ namespace CarService.UI.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _service;
-
-        public AccountController(IAccountService service)
+        private readonly IPromocodeService _promocodeService;
+        public AccountController(IAccountService service, IPromocodeService promocodeService)
         {
             _service = service;
+            _promocodeService = promocodeService;
         }
 
         [HttpGet]
@@ -109,6 +110,8 @@ namespace CarService.UI.Controllers
         public async Task<IActionResult> Index()
         {
             var accountVm = await _service.GetAccountViewModel(HttpContext);
+            var promocodes = await _promocodeService.GetAllByUser(HttpContext.GetJwt(), accountVm.Id);
+            accountVm.Promocodes = promocodes.ToList();
             return View(accountVm);
         }
 
