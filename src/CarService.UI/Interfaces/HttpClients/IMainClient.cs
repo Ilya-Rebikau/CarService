@@ -65,8 +65,16 @@ namespace CarService.UI.Interfaces.HttpClients
         [Get("discount/getdiscounts")]
         public Task<IEnumerable<DiscountViewModel>> GetDiscounts([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
 
+        [Get("discount/details/{id}")]
+        public Task<DiscountViewModel> GetDiscountById([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
+        
         [Post("discount/create")]
         public Task CreateDiscount([Header(AuthorizationKey)] string token, [Body] DiscountViewModel model, CancellationToken cancellationToken = default);
 
+        [Put("discount/edit/{id}")]
+        public Task EditDiscount([Header(AuthorizationKey)] string token, [Path] int id, [Body] DiscountViewModel model, CancellationToken cancellationToken = default);
+
+        [Delete("discount/delete/{id}")]
+        public Task DeleteDiscount([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
     }
 }

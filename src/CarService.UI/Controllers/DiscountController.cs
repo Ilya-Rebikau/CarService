@@ -5,6 +5,7 @@ using CarService.UI.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarService.UI.Controllers
 {
@@ -66,6 +67,58 @@ namespace CarService.UI.Controllers
 
             await _discountService.CreateDiscount(HttpContext.GetJwt(), discount);
             return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "admin, manager")]
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            var discount = await _discountService.GetDiscountById(HttpContext.GetJwt(), (int)id);
+            var carBrands = await _carBrandService.GetCarBrandViewModels(HttpContext.GetJwt());
+            var carTypes = await _carTypeService.GetAll(HttpContext.GetJwt());
+            var serviceDatas = await _serviceDataService.GetServiceDatas(HttpContext.GetJwt());
+            CarBrandViewModel tempCarBrand;
+            CarType tempCarType;
+            ServiceDataViewModel tempServiceData;
+            discount.CarBrandSelectList = new SelectList(carBrands, nameof(tempCarBrand.Id), nameof(tempCarBrand.Name));
+            discount.CarTypeSelectList = new SelectList(carTypes, nameof(tempCarType.Id), nameof(tempCarType.Name));
+            discount.ServiceDataSelectList = new SelectList(serviceDatas, nameof(tempServiceData.Id), nameof(tempServiceData.Name));
+            return id is null ? NotFound() : View(discount);
+        }
+
+        [Authorize(Roles = "admin, manager")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, DiscountViewModel discount)
+        {
+            if (id != discount.Id)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(discount);
+            }
+
+            try
+            {
+                await _discountService.EditDiscount(HttpContext.GetJwt(), id, discount);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return Conflict();
+            }
+
+            return RedirectToAction(nameof(Index), new { serviceDataId = discount.ServiceDataId });
+        }
+
+        [Authorize(Roles = "admin, manager")]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, int serviceDataId)
+        {
+            await _discountService.DeleteDiscount(HttpContext.GetJwt(), id);
+            return RedirectToAction(nameof(Index), new { serviceDataId });
         }
     }
 }

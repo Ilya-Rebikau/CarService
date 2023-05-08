@@ -17,9 +17,24 @@ namespace CarService.UI.Services
             await _mainClient.CreateDiscount(token, discountViewModel);
         }
 
+        public async Task DeleteDiscount(string token, int id)
+        {
+            await _mainClient.DeleteDiscount(token, id);
+        }
+
+        public async Task<DiscountViewModel> GetDiscountById(string token, int id)
+        {
+            return await _mainClient.GetDiscountById(token, id);
+        }
+
         public async Task<IEnumerable<DiscountViewModel>> GetDiscounts(string token)
         {
             return await _mainClient.GetDiscounts(token);
+        }
+
+        public async Task EditDiscount(string token, int id, DiscountViewModel discountViewModel)
+        {
+            await _mainClient.EditDiscount(token, id, discountViewModel);
         }
     }
 }

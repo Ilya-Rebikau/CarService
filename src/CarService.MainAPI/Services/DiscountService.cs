@@ -71,5 +71,48 @@ namespace CarService.MainAPI.Services
 
             return discountModels;
         }
+
+        public async Task<DiscountModel> GetDiscountModelById(int id)
+        {
+            var discount = await Repository.GetById(id);
+            var discountModel = _mapper.Map<DiscountModel>(discount);
+            if (discount.CarBrandId is not null)
+            {
+                var carBrand = await _carBrandRepository.GetById((int)discount.CarBrandId);
+                discountModel.CarBrandName = carBrand.Name;
+            }
+            else
+            {
+                discountModel.CarBrandName = "Любая";
+            }
+
+            if (discount.CarTypeId is not null)
+            {
+                var carType = await _carTypeRepository.GetById((int)discount.CarTypeId);
+                discountModel.CarTypeName = carType.Name;
+            }
+            else
+            {
+                discountModel.CarTypeName = "Любой";
+            }
+
+            if (discount.ServiceDataId is not null)
+            {
+                var serviceData = await _serviceDataRepository.GetById((int)discount.ServiceDataId);
+                discountModel.ServiceDataName = serviceData.Name;
+            }
+            else
+            {
+                discountModel.ServiceDataName = "Любой";
+            }
+
+            return discountModel;
+        }
+
+        public async Task UpdateDiscountModel(DiscountModel model)
+        {
+            var discount = _mapper.Map<Discount>(model);
+            await Update(discount);
+        }
     }
 }

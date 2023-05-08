@@ -27,7 +27,14 @@ namespace CarService.MainAPI.Controllers
             return Ok(discounts);
         }
 
-        [Authorize(Roles = "admin")]
+        [HttpGet("details/{id}")]
+        public async Task<IActionResult> Details([FromRoute] int id)
+        {
+            var discount = await _discountService.GetDiscountModelById(id);
+            return discount is null ? NotFound() : Ok(discount);
+        }
+
+        [Authorize(Roles = "admin, manager")]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] DiscountModel discount)
         {
@@ -35,52 +42,52 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
-        //[Authorize(Roles = "admin")]
-        //[HttpGet("edit/{id}")]
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    var carBrand = await _carBrandService.GetById(id);
-        //    return carBrand is null ? NotFound() : Ok(carBrand);
-        //}
+        [Authorize(Roles = "admin, manager")]
+        [HttpGet("edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var discount = await _discountService.GetDiscountModelById(id);
+            return discount is null ? NotFound() : Ok(discount);
+        }
 
-        //[Authorize(Roles = "admin")]
-        //[HttpPut("edit/{id}")]
-        //public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] CarBrand carBrand)
-        //{
-        //    if (id != carBrand.Id)
-        //    {
-        //        return NotFound();
-        //    }
+        [Authorize(Roles = "admin")]
+        [HttpPut("edit/{id}")]
+        public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] DiscountModel discount)
+        {
+            if (id != discount.Id)
+            {
+                return NotFound();
+            }
 
-        //    try
-        //    {
-        //        await _carBrandService.Update(carBrand);
-        //        return Ok();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!await CarBrandExists(carBrand.Id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            return Conflict();
-        //        }
-        //    }
-        //}
+            try
+            {
+                await _discountService.UpdateDiscountModel(discount);
+                return Ok();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!await DiscountExists(discount.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Conflict();
+                }
+            }
+        }
 
-        //[Authorize(Roles = "admin")]
-        //[HttpDelete("delete/{id}")]
-        //public async Task<IActionResult> Delete([FromRoute] int id)
-        //{
-        //    await _carBrandService.DeleteById(id);
-        //    return Ok();
-        //}
+        [Authorize(Roles = "admin, manager")]
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            await _discountService.DeleteById(id);
+            return Ok();
+        }
 
-        //private async Task<bool> CarBrandExists(int id)
-        //{
-        //    return await _carBrandService.GetById(id) is not null;
-        //}
+        private async Task<bool> DiscountExists(int id)
+        {
+            return await _discountService.GetById(id) is not null;
+        }
     }
 }
