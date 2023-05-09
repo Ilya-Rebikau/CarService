@@ -12,5 +12,6 @@ namespace CarService.DAL.Models
         public string Message { get; set; }
         public string UserId { get; set; }
         public bool WasFinished { get; set; }
+        public int ServiceId { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace CarService.MainAPI.Configuration
             services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IDiscountService, DiscountService>();
-            services.AddScoped<IServiceAppointmentService, ServiceAppointmentService>();
             services.AddScoped<ICarBrandService, CarBrandService>();
             services.AddScoped<ICarTypeService, CarTypeService>();
             services.AddScoped<IServiceService, ServiceService>();

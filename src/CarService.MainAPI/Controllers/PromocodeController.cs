@@ -35,7 +35,6 @@ namespace CarService.MainAPI.Controllers
                 return NotFound();
             }
 
-            promocode.WasUsed = true;
             await _promocodeService.DeleteById(promocode.Id);
             return Ok();
         }

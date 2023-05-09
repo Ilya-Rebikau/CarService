@@ -15,13 +15,12 @@ namespace CarService.MainAPI.Services
         public override Task<Promocode> Create(Promocode obj)
         {
             obj.Text = GeneratePromocode();
-            obj.WasUsed = false;
             return base.Create(obj);
         }
 
         public IEnumerable<Promocode> GetAllByUser(string userId)
         {
-            return Repository.GetAll().Where(p => p.UserId == userId && p.WasUsed == false && p.DateEnd >= DateTime.Now);
+            return Repository.GetAll().Where(p => p.UserId == userId && p.DateEnd >= DateTime.Now);
         }
 
         public Promocode GetPromocodeByText(string text)

@@ -11,7 +11,6 @@ namespace CarService.UI.Models
 
         [Display(Name = "Срок действия")]
         public DateTime DateEnd { get; set; }
-        public bool WasUsed { get; set; }
         public string UserId { get; set; }
 
         [Display(Name = "Промокод")]
