@@ -109,5 +109,11 @@ namespace CarService.UserAPI.Services
             var email = principalClaims.FindFirst(JwtRegisteredClaimNames.Sub).Value;
             return await _userManager.FindByEmailAsync(email);
         }
+
+        public async Task<string> GetUserEmail(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            return user.Email;
+        }
     }
 }

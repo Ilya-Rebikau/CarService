@@ -29,7 +29,7 @@ namespace CarService.MainAPI.Controllers
         public async Task<IActionResult> UsePromocode([FromQuery] string text)
         {
             var promocode = _promocodeService.GetPromocodeByText(text);
-            if (promocode is null)
+            if (promocode is null || promocode.DateEnd.Date < DateTime.Now.Date)
             {
                 return NotFound();
             }

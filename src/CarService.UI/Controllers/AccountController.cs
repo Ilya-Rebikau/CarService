@@ -1,5 +1,6 @@
 ﻿using CarService.UI.Infrastructure;
 using CarService.UI.Interfaces;
+using CarService.UI.Models;
 using CarService.UI.Models.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,13 @@ namespace CarService.UI.Controllers
     {
         private readonly IAccountService _service;
         private readonly IPromocodeService _promocodeService;
-        public AccountController(IAccountService service, IPromocodeService promocodeService)
+        private readonly IAppointmentService _appointmentService;
+        public AccountController(IAccountService service, IPromocodeService promocodeService,
+            IAppointmentService appointmentService)
         {
             _service = service;
             _promocodeService = promocodeService;
+            _appointmentService = appointmentService;
         }
 
         [HttpGet]
@@ -109,12 +113,14 @@ namespace CarService.UI.Controllers
         public async Task<IActionResult> Index()
         {
             var accountVm = await _service.GetAccountViewModel(HttpContext);
+            var appointments = await _appointmentService.GetAppointmentsByUser(HttpContext.GetJwt(), accountVm.Id);
             var promocodes = await _promocodeService.GetAllByUser(HttpContext.GetJwt(), accountVm.Id);
-            accountVm.Promocodes = promocodes.ToList();
+            accountVm.Promocodes = promocodes;
+            accountVm.Appointments = appointments;
             return View(accountVm);
         }
 
-        
+
         [HttpGet]
         public IActionResult ChangePassword(string id)
         {

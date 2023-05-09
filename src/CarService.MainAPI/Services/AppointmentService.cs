@@ -1,18 +1,42 @@
-﻿using CarService.DAL.Interfaces;
+﻿using AutoMapper;
+using CarService.DAL.Interfaces;
 using CarService.DAL.Models;
 using CarService.MainAPI.Infrastructure;
 using CarService.MainAPI.Interfaces;
+using CarService.MainAPI.Interfaces.HttpClients;
+using CarService.MainAPI.Models;
+using Newtonsoft.Json.Linq;
 
 namespace CarService.MainAPI.Services
 {
     internal class AppointmentService : BaseService<Appointment>, IAppointmentService
     {
+        private readonly int _promocodeDays;
+        private readonly int _percent;
+        private readonly int _appointmentCountForPromocode;
         private readonly IRepository<Service> _serviceRepository;
+        private readonly IMapper _mapper;
+        private readonly IUserClient _userClient;
+        private readonly IRepository<CarType> _carTypeRepository;
+        private readonly IRepository<CarBrand> _carBrandRepository;
+        private readonly IRepository<ServiceData> _serviceDataRepository;
+        private readonly IPromocodeService _promocodeService;
         public AppointmentService(IRepository<Appointment> repository, IConfiguration configuration,
-            IRepository<Service> serviceRepository)
+            IRepository<Service> serviceRepository, IMapper mapper, IUserClient userClient,
+            IRepository<ServiceData> serviceDataRepository, IRepository<CarType> carTypeRepository,
+            IRepository<CarBrand> carBrandRepository, IPromocodeService promocodeService)
             : base(repository, configuration)
         {
             _serviceRepository = serviceRepository;
+            _mapper = mapper;
+            _userClient = userClient;
+            _serviceDataRepository = serviceDataRepository;
+            _carBrandRepository = carBrandRepository;
+            _carTypeRepository = carTypeRepository;
+            _promocodeService = promocodeService;
+            _promocodeDays = configuration.GetValue<int>("PromocodeDays");
+            _percent = configuration.GetValue<int>("Percent");
+            _appointmentCountForPromocode = configuration.GetValue<int>("AppointmentCountForPromocode");
         }
 
         public async Task<IEnumerable<Appointment>> GetAllByDateAndServiceData(DateTime date, int serviceId)
@@ -33,11 +57,43 @@ namespace CarService.MainAPI.Services
             return appointments;
         }
 
-        public IEnumerable<Appointment> GetAllByUserId(string userId, int pageNumber)
+        public async Task<IEnumerable<AppointmentModel>> GetAllByUserId(string userId)
         {
-            var appointments = Repository.GetAll().Where(a => a.UserId == userId);
-            appointments = appointments.OrderByDescending(a => a.DateTimeStart).Skip((pageNumber - 1) * CountOnPage).Take(CountOnPage);
-            return appointments;
+            var appointments = Repository.GetAll().Where(a => a.UserId == userId).OrderByDescending(a => a.DateTimeStart).ToList();
+            if (appointments.Count(a => a.WasFinished) >= _appointmentCountForPromocode)
+            {
+                await GivePromocode(userId);
+                foreach (var appointment in appointments.Where(a => a.WasFinished))
+                {
+                    await DeleteById(appointment.Id);
+                }
+
+                appointments = Repository.GetAll().Where(a => a.UserId == userId).OrderByDescending(a => a.DateTimeStart).ToList();
+            }
+
+            var appointmentModels = new List<AppointmentModel>();
+            foreach (var appointment in appointments)
+            {
+                var appointmentModel = _mapper.Map<AppointmentModel>(appointment);
+                var service = await _serviceRepository.GetById(appointment.ServiceId);
+                var serviceData = await _serviceDataRepository.GetById(service.ServiceDataId);
+                var carBrand = await _carBrandRepository.GetById(service.CarBrandId);
+                var carType = await _carTypeRepository.GetById(service.CarTypeId);
+                appointmentModel.ServiceData = $"{serviceData.Name}, марка {carBrand.Name}, тип {carType.Name}";
+                appointmentModels.Add(appointmentModel);
+            }
+
+            return appointmentModels;
+        }
+
+        private async Task GivePromocode(string userId)
+        {
+            await _promocodeService.Create(new Promocode
+            {
+                UserId = userId,
+                Percent = _percent,
+                DateEnd = DateTime.Now.AddDays(_promocodeDays)
+            });
         }
 
         public override async Task<Appointment> Create(Appointment obj)
@@ -56,7 +112,8 @@ namespace CarService.MainAPI.Services
             if (obj.DateTimeStart.Hour >= maxTimeEnd.Hours || obj.DateTimeStart.Hour < minTimeStart.Hours ||
                 obj.DateTimeEnd.Hour > maxTimeEnd.Hours)
             {
-                throw new MyException($"Мы не работаем в это время {obj.DateTimeStart.ToShortTimeString()} - {obj.DateTimeEnd.ToShortTimeString()}!");
+                throw new MyException($"Мы не работаем в это время {obj.DateTimeStart.ToShortTimeString()} - {obj.DateTimeEnd.ToShortTimeString()}! " +
+                    $"Наше время работы {minTimeStart} - {maxTimeEnd}");
             }
         }
 
@@ -78,6 +135,33 @@ namespace CarService.MainAPI.Services
         private static bool IsBewteenTwoDates(DateTime currentDateTime, DateTime dateTimeStart, DateTime dateTimeEnd)
         {
             return currentDateTime >= dateTimeStart && currentDateTime <= dateTimeEnd;
+        }
+
+        public async Task<IEnumerable<AppointmentModel>> GetAllAppointments(string token, int pageNumber)
+        {
+            var appointments = Repository.GetAll().OrderByDescending(a => a.DateTimeStart)
+                .Skip((pageNumber - 1) * CountOnPage).Take(CountOnPage);
+            var appointmentModels = new List<AppointmentModel>();
+            foreach (var appointment in appointments)
+            {
+                var appointmentModel = _mapper.Map<AppointmentModel>(appointment);
+                var service = await _serviceRepository.GetById(appointment.ServiceId);
+                var serviceData = await _serviceDataRepository.GetById(service.ServiceDataId);
+                var carBrand = await _carBrandRepository.GetById(service.CarBrandId);
+                var carType = await _carTypeRepository.GetById(service.CarTypeId);
+                appointmentModel.UserEmail = await _userClient.GetUserEmail(token, appointment.UserId);
+                appointmentModel.ServiceData = $"{serviceData.Name}, марка {carBrand.Name}, тип {carType.Name}";
+                appointmentModels.Add(appointmentModel);
+            }
+
+            return appointmentModels;
+        }
+
+        public async Task FinishAppointment(int id)
+        {
+            var appointment = await Repository.GetById(id);
+            appointment.WasFinished = true;
+            await Repository.Update(appointment);
         }
     }
 }

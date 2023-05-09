@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AppointmentViewModel>
+@{
+    ViewData["Title"] = "Все записи";
+}
+<p class="fs-1 row d-flex justify-content-center">Все записи</p>
+<div class="table-responsive row">
+    <div class="col-md-11">
+        <table class="table align-middle table-bordered table-striped table-hover">
+            <thead class="bg-dark text-center">
+                <tr>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.ServiceData)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.DateTimeStart)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.DateTimeEnd)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.UserEmail)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.Message)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.WasFinished)</th>
+                    <th class="text-white">Управление</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var appointment in Model)
+                {
+                    <tr>
+                        <td>@appointment.ServiceData</td>
+                        <td>@appointment.DateTimeStart</td>
+                        <td>@appointment.DateTimeEnd</td>
+                        <td>@appointment.UserEmail</td>
+                        <td>@appointment.Message</td>
+                        <td><input type="checkbox" asp-for="@appointment.WasFinished" disabled></td>
+                        <td>
+                            @if (!appointment.WasFinished)
+                            {
+                                <form asp-action="Finish" asp-route-id="@appointment.Id" method="post">
+                                    <button type="submit" class="btn btn-danger shadow-none">Завершить</button>
+                                </form>
+                            }
+                            <form asp-action="Delete" asp-route-id="@appointment.Id" method="post">
+                                <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center pb-3">
+            @{
+                int previousPage;
+                int nextPage;
+            }
+            @if (PageModel.PageNumber > 1)
+            {
+                <div class="pe-1">
+                    <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="1">1</a>
+                    @{
+                        previousPage = PageModel.PageNumber - 1;
+                    }
+                    <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@previousPage">
+                        &lt;
+                    </a>
+                </div>
+            }
+            @if (PageModel.NextPage)
+            {
+                {
+                    nextPage = PageModel.PageNumber + 1;
+                }
+                <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@nextPage">
+                    >
+                </a>
+            }
+        </div>
+    </div>
+</div>

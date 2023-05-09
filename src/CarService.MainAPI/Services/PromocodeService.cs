@@ -13,7 +13,7 @@ namespace CarService.MainAPI.Services
 
         public override async Task<Promocode> Create(Promocode obj)
         {
-            var oldPromocodes = Repository.GetAll().Where(p => p.DateEnd < DateTime.Now);
+            var oldPromocodes = Repository.GetAll().Where(p => p.DateEnd.Date < DateTime.Now.Date);
             foreach (var oldPromocode in oldPromocodes)
             {
                 await Repository.Delete(oldPromocode);
@@ -25,7 +25,7 @@ namespace CarService.MainAPI.Services
 
         public IEnumerable<Promocode> GetAllByUser(string userId)
         {
-            return Repository.GetAll().Where(p => p.UserId == userId && p.DateEnd >= DateTime.Now);
+            return Repository.GetAll().Where(p => p.UserId == userId && p.DateEnd.Date >= DateTime.Now.Date);
         }
 
         public Promocode GetPromocodeByText(string text)
@@ -39,12 +39,24 @@ namespace CarService.MainAPI.Services
             var random = new Random();
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var text = string.Empty;
-            do
+            while (true)
             {
+                int count = 0;
                 text = new string(Enumerable.Repeat(chars, 10)
                     .Select(s => s[random.Next(s.Length)]).ToArray());
+                foreach (var promocode in promocodes)
+                {
+                    if (promocode.Text != text)
+                    {
+                        count++;
+                    }
+                }
+                if (count == promocodes.Count)
+                {
+                    break;
+                }
             }
-            while (promocodes.Any(p => p.Text != text));
+
             return text;
         }
     }

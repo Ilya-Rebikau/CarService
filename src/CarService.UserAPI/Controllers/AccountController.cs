@@ -37,7 +37,7 @@ namespace CarService.UserAPI.Controllers
                 : throw new MyException("Неверный логин и/или пароль");
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
@@ -45,7 +45,7 @@ namespace CarService.UserAPI.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] string id)
         {
@@ -53,32 +53,38 @@ namespace CarService.UserAPI.Controllers
             return model is null ? NotFound() : Ok(model);
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpPut("edit")]
         public async Task<IActionResult> Edit([FromBody] EditAccountModel model)
         {
             return Ok(await _service.UpdateUserInEdit(model));
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpPost("validatetoken")]
         public IActionResult ValidateToken([FromHeader(Name = AuthorizationKey)] string token)
         {
             return Ok(_jwtService.ValidateJwt(token));
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpGet("getaccountmodel")]
         public async Task<IActionResult> GetAccountModel([FromHeader(Name = AuthorizationKey)] string token)
         {
             return Ok(await _service.GetAccountModel(token));
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpPost("changepassword")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordInPersonalAccountModel model)
         {
             return Ok(await _service.ChangePassword(model));
+        }
+
+        [HttpGet("getuseremail")]
+        public async Task<IActionResult> GetUserEmail([FromQuery] string userId)
+        {
+            return Ok(await _service.GetUserEmail(userId));
         }
     }
 }

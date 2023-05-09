@@ -19,6 +19,16 @@ namespace CarService.UI.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetAll(int pageNumber = 1)
+        {
+            var appointments = await _appointmentService.GetAllAppointments(HttpContext.GetJwt(), pageNumber);
+            var nextAppointments = await _appointmentService.GetAllAppointments(HttpContext.GetJwt(), pageNumber + 1);
+            PageModel.NextPage = nextAppointments is not null && nextAppointments.Any();
+            PageModel.PageNumber = pageNumber;
+            return View(appointments);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Index(int serviceId, string dateTime)
         {
             var newDateTime = DateTime.Now.ToString("dd-MM-yyyy");
@@ -41,16 +51,6 @@ namespace CarService.UI.Controllers
             return View(appointmentListViewModel);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAppointmentsByUser(string userId, int pageNumber = 1)
-        {
-            var appointments = await _appointmentService.GetAppointmentsByUser(HttpContext.GetJwt(), userId, pageNumber);
-            var nextAppointments = await _appointmentService.GetAppointmentsByUser(HttpContext.GetJwt(), userId, pageNumber + 1);
-            PageModel.NextPage = nextAppointments is not null && nextAppointments.Any();
-            PageModel.PageNumber = pageNumber;
-            return View(appointments);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AppointmentListViewModel appointmentList)
@@ -68,6 +68,27 @@ namespace CarService.UI.Controllers
                 serviceId = appointmentList.NewAppointment.ServiceId,
                 dateTime = appointmentList.NewAppointment.DateTimeStart.ToString("dd-MM-yyyy")
             });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Finish(int id)
+        {
+            await _appointmentService.FinishAppointment(HttpContext.GetJwt(), id);
+            return RedirectToAction(nameof(GetAll));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _appointmentService.DeleteAppointment(HttpContext.GetJwt(), id);
+            return RedirectToAction(nameof(GetAll));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteForUser(int id)
+        {
+            await _appointmentService.DeleteAppointment(HttpContext.GetJwt(), id);
+            return RedirectToAction(nameof(Index), typeof(AccountController).GetControllerName());
         }
     }
 }

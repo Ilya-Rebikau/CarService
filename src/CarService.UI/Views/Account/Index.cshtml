@@ -54,9 +54,9 @@
                 <table class="table align-middle table-bordered table-striped table-hover">
                     <thead class="bg-dark text-center">
                         <tr class="text-white">
-                            <th>Промокод</th>
-                            <th>Размер скидки, %</th>
-                            <th>Срок действия</th>
+                            <th>@Html.DisplayNameFor(model => model.Promocodes.FirstOrDefault().Text)</th>
+                            <th>@Html.DisplayNameFor(model => model.Promocodes.FirstOrDefault().Percent)</th>
+                            <th>@Html.DisplayNameFor(model => model.Promocodes.FirstOrDefault().DateEnd)</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
@@ -65,7 +65,47 @@
                             <tr>
                                 <td>@promocode.Text</td>
                                 <td>@promocode.Percent</td>
-                                <td>@promocode.DateEnd</td>
+                                <td>@promocode.DateEnd.ToLongDateString()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Model.Appointments is not null && Model.Appointments.Any())
+    {
+        <div>
+            <p class="fs-4 row pb-3 justify-content-center">Мои записи</p>
+            <div class="table-responsive">
+                <table class="table align-middle table-bordered table-striped table-hover">
+                    <thead class="bg-dark text-center">
+                        <tr class="text-white">
+                            <th>@Html.DisplayNameFor(model => model.Appointments.FirstOrDefault().ServiceData)</th>
+                            <th>@Html.DisplayNameFor(model => model.Appointments.FirstOrDefault().DateTimeStart)</th>
+                            <th>@Html.DisplayNameFor(model => model.Appointments.FirstOrDefault().DateTimeEnd)</th>
+                            <th>@Html.DisplayNameFor(model => model.Appointments.FirstOrDefault().Message)</th>
+                            <th>@Html.DisplayNameFor(model => model.Appointments.FirstOrDefault().WasFinished)</th>
+                            <th>Управление</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach (var appointment in Model.Appointments)
+                        {
+                            <tr>
+                                <td>@appointment.ServiceData</td>
+                                <td>@appointment.DateTimeStart</td>
+                                <td>@appointment.DateTimeEnd</td>
+                                <td>@appointment.Message</td>
+                                <td><input type="checkbox" asp-for="@appointment.WasFinished" disabled></td>
+                                <td>
+                                    @if (!@appointment.WasFinished)
+                                    {
+                                        <form asp-controller="Appointment" asp-action="DeleteForUser" asp-route-id="@appointment.Id" method="post">
+                                            <button type="submit" class="btn btn-danger shadow-none">Отменить</button>
+                                        </form>
+                                    }
+                                </td>
                             </tr>
                         }
                     </tbody>

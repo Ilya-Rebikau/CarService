@@ -88,13 +88,22 @@ namespace CarService.UI.Interfaces.HttpClients
         [Post("promocode/create")]
         public Task CreatePromocode([Header(AuthorizationKey)] string token, [Body] PromocodeViewModel promocode, CancellationToken cancellationToken = default);
 
+        [Get("appointment/getallappointments")]
+        public Task<IEnumerable<AppointmentViewModel>> GetAllAppointments([Header(AuthorizationKey)] string token, [Query] int pageNumber, CancellationToken cancellationToken = default);
+
         [Get("appointment/getappointmentsbydateandservice")]
         public Task<IEnumerable<AppointmentViewModel>> GetAppointmentsByDateAndService([Header(AuthorizationKey)] string token, [Query] string stringDateTime, [Query] int serviceId, CancellationToken cancellationToken = default);
         
         [Get("appointment/getappointmentsbyuser")]
-        public Task<IEnumerable<AppointmentViewModel>> GetAppointmentsByUser([Header(AuthorizationKey)] string token, [Query] string userId, [Query] int pageNumber, CancellationToken cancellationToken = default);
+        public Task<IEnumerable<AppointmentViewModel>> GetAppointmentsByUser([Header(AuthorizationKey)] string token, [Query] string userId, CancellationToken cancellationToken = default);
 
         [Post("appointment/create")]
         public Task CreateAppointment([Header(AuthorizationKey)] string token, [Body] AppointmentViewModel model, CancellationToken cancellationToken = default);
+
+        [Put("appointment/finish/{id}")]
+        public Task FinishAppointment([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
+
+        [Delete("appointment/delete/{id}")]
+        public Task DeleteAppointment([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
     }
 }
