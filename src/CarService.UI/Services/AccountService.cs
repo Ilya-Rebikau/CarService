@@ -9,7 +9,7 @@ using System.IO;
 
 namespace CarService.UI.Services
 {
-    public class AccountService : IAccountService
+    internal class AccountService : IAccountService
     {
         private readonly UserManager<User> _userManager;
 

@@ -1,5 +1,7 @@
 ﻿using CarService.UI.Models;
-using CarService.UI.Models.Services;
+using CarService.UI.Models.Appointment;
+using CarService.UI.Models.Service;
+using Microsoft.AspNetCore.Mvc;
 using RestEase;
 
 namespace CarService.UI.Interfaces.HttpClients
@@ -84,6 +86,15 @@ namespace CarService.UI.Interfaces.HttpClients
         public Task UsePromocode([Header(AuthorizationKey)] string token, [Query] string text, CancellationToken cancellationToken = default);
 
         [Post("promocode/create")]
-        Task CreatePromocode([Header(AuthorizationKey)] string token, [Body] PromocodeViewModel promocode, CancellationToken cancellationToken = default);
+        public Task CreatePromocode([Header(AuthorizationKey)] string token, [Body] PromocodeViewModel promocode, CancellationToken cancellationToken = default);
+
+        [Get("appointment/getappointmentsbydateandservice")]
+        public Task<IEnumerable<AppointmentViewModel>> GetAppointmentsByDateAndService([Header(AuthorizationKey)] string token, [Query] string stringDateTime, [Query] int serviceId, CancellationToken cancellationToken = default);
+        
+        [Get("appointment/getappointmentsbyuser")]
+        public Task<IEnumerable<AppointmentViewModel>> GetAppointmentsByUser([Header(AuthorizationKey)] string token, [Query] string userId, [Query] int pageNumber, CancellationToken cancellationToken = default);
+
+        [Post("appointment/create")]
+        public Task CreateAppointment([Header(AuthorizationKey)] string token, [Body] AppointmentViewModel model, CancellationToken cancellationToken = default);
     }
 }

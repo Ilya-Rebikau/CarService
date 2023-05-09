@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 namespace CarService.UI.Controllers
 {
     [ResponseCache(CacheProfileName = "Caching")]
-    [ExceptionFilter]
     public class CarBrandController : Controller
     {
         private readonly ICarBrandService _service;
@@ -27,14 +26,14 @@ namespace CarService.UI.Controllers
             return View(carBrands);
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CarBrandViewModel carBrand)
@@ -48,14 +47,14 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             return id is null ? NotFound() : View(await _service.GetCarBrandViewModelForEdit(HttpContext.GetJwt(), (int)id));
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CarBrandViewModel carBrand)
@@ -82,7 +81,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

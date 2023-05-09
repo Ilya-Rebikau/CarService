@@ -1,6 +1,8 @@
 ﻿using CarService.DAL.Configuration;
 using CarService.MainAPI.Automapper;
+using CarService.MainAPI.Infrastructure;
 using CarService.MainAPI.Interfaces;
+using CarService.MainAPI.Interfaces.HttpClients;
 using CarService.MainAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +31,10 @@ namespace CarService.MainAPI.Configuration
                 var baseUrl = configuration["UserApiAddress"];
                 return RestClient.For<IUserClient>(baseUrl);
             });
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ExceptionFilter>();
+            });
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

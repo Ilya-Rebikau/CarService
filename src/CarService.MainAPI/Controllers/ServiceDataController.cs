@@ -7,10 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarService.MainAPI.Controllers
 {
-    [Authorize(Roles = "admin")]
+    
     [Route("[controller]")]
     [ApiController]
-    [ExceptionFilter]
     public class ServiceDataController : ControllerBase
     {
         private readonly IServiceDataService _service;
@@ -33,7 +32,7 @@ namespace CarService.MainAPI.Controllers
             return Ok(serviceDatas);
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpGet("details/{id}")]
         public async Task<IActionResult> Details([FromRoute] int id)
         {
@@ -41,7 +40,7 @@ namespace CarService.MainAPI.Controllers
             return service is null ? NotFound() : Ok(service);
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] ServiceData serviceData)
         {
@@ -49,7 +48,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] ServiceData serviceData)
         {
@@ -76,7 +75,7 @@ namespace CarService.MainAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

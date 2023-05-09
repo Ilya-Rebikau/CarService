@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.MainAPI.Controllers
 {
-    [Authorize(Roles = "admin")]
+    
     [Route("[controller]")]
     [ApiController]
-    [ExceptionFilter]
     public class CarTypeController : ControllerBase
     {
         private readonly ICarTypeService _carTypeService;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace CarService.UI.Models.Services
+namespace CarService.UI.Models.Service
 {
     public class ServiceViewModel
     {

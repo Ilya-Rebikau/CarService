@@ -9,7 +9,6 @@ namespace CarService.MainAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [ExceptionFilter]
     public class DiscountController : ControllerBase
     {
         private readonly IDiscountService _discountService;
@@ -32,7 +31,7 @@ namespace CarService.MainAPI.Controllers
             return discount is null ? NotFound() : Ok(discount);
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] DiscountModel discount)
         {
@@ -40,7 +39,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -48,7 +47,7 @@ namespace CarService.MainAPI.Controllers
             return discount is null ? NotFound() : Ok(discount);
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] DiscountModel discount)
         {
@@ -75,7 +74,7 @@ namespace CarService.MainAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

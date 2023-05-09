@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CarService.UI.Services
 {
-    public class UserService : IUserService
+    internal class UserService : IUserService
     {
         private readonly IUserClient _client;
 

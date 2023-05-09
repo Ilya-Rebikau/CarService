@@ -1,7 +1,6 @@
 ﻿using CarService.DAL.Interfaces;
 using CarService.DAL.Models;
 using CarService.MainAPI.Interfaces;
-using System;
 
 namespace CarService.MainAPI.Services
 {
@@ -12,10 +11,16 @@ namespace CarService.MainAPI.Services
         {
         }
 
-        public override Task<Promocode> Create(Promocode obj)
+        public override async Task<Promocode> Create(Promocode obj)
         {
+            var oldPromocodes = Repository.GetAll().Where(p => p.DateEnd < DateTime.Now);
+            foreach (var oldPromocode in oldPromocodes)
+            {
+                await Repository.Delete(oldPromocode);
+            }
+
             obj.Text = GeneratePromocode();
-            return base.Create(obj);
+            return await base.Create(obj);
         }
 
         public IEnumerable<Promocode> GetAllByUser(string userId)

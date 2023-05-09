@@ -1,6 +1,6 @@
 ﻿using RestEase;
 
-namespace CarService.MainAPI.Interfaces
+namespace CarService.MainAPI.Interfaces.HttpClients
 {
     public interface IUserClient
     {

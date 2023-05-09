@@ -4,12 +4,11 @@
 }
 
 <p class="fs-1 row justify-content-center">Список всех услуг</p>
-@if (User.IsInRole("admin"))
-{
-    <div class="pb-3">
-        <a class="btn btn-success shadow-none fs-5" asp-action="Create">+</a>
-    </div>
-}
+
+<div class="pb-3">
+    <a class="btn btn-success shadow-none fs-5" asp-action="Create">+</a>
+</div>
+
 @for (int i = 0; i < Math.Ceiling(Model.Count() / 3f); i++)
 {
     <div class="row pb-3">

@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.UI.Controllers
 {
-    [Authorize(Roles = "admin")]
-    [ExceptionFilter]
     public class UserController : Controller
     {
         private readonly IUserService _service;

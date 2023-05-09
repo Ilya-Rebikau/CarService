@@ -10,7 +10,6 @@ using System.Collections;
 namespace CarService.UI.Controllers
 {
     [ResponseCache(CacheProfileName = "Caching")]
-    [ExceptionFilter]
     public class AccountController : Controller
     {
         private readonly IAccountService _service;
@@ -67,14 +66,14 @@ namespace CarService.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, manager, user")]
+        
         public async Task<IActionResult> Logout()
         {
             await _service.Logout(HttpContext);
             return RedirectToAction(nameof(Index), typeof(HomeController).GetControllerName());
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
@@ -82,7 +81,7 @@ namespace CarService.UI.Controllers
             return editAccountViewModel is null ? NotFound() : View(editAccountViewModel);
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpPost]
         public async Task<IActionResult> Edit(EditAccountViewModel model)
         {
@@ -105,7 +104,7 @@ namespace CarService.UI.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -115,7 +114,7 @@ namespace CarService.UI.Controllers
             return View(accountVm);
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpGet]
         public IActionResult ChangePassword(string id)
         {
@@ -123,7 +122,7 @@ namespace CarService.UI.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordInPersonalAccountViewModel model)
         {

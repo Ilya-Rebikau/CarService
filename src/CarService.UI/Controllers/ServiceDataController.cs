@@ -1,7 +1,7 @@
 ﻿using CarService.UI.Infrastructure;
 using CarService.UI.Interfaces;
 using CarService.UI.Models;
-using CarService.UI.Models.Services;
+using CarService.UI.Models.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 namespace CarService.UI.Controllers
 {
     [ResponseCache(CacheProfileName = "Caching")]
-    [ExceptionFilter]
     public class ServiceDataController : Controller
     {
         private readonly IServiceDataService _service;
@@ -28,14 +27,14 @@ namespace CarService.UI.Controllers
             return View(serviceDatas);
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ServiceDataViewModel serviceData)
@@ -49,14 +48,14 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             return id is null ? NotFound() : View(await _service.GetServiceDataById(HttpContext.GetJwt(), (int)id));
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ServiceDataViewModel serviceData)
@@ -83,7 +82,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

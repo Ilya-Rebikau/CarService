@@ -4,7 +4,7 @@ using CarService.UI.Models;
 
 namespace CarService.UI.Services
 {
-    public class CarBrandService : ICarBrandService
+    internal class CarBrandService : ICarBrandService
     {
         private readonly IMainClient _mainClient;
         public CarBrandService(IMainClient mainClient)

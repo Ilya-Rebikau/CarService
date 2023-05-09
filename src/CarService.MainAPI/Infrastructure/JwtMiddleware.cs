@@ -1,4 +1,4 @@
-﻿using CarService.MainAPI.Interfaces;
+﻿using CarService.MainAPI.Interfaces.HttpClients;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 

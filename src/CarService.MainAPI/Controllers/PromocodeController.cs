@@ -8,7 +8,6 @@ namespace CarService.MainAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [ExceptionFilter]
     public class PromocodeController : ControllerBase
     {
         private readonly IPromocodeService _promocodeService;
@@ -17,7 +16,7 @@ namespace CarService.MainAPI.Controllers
             _promocodeService = promocodeService;
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpGet("getpromocodes")]
         public IActionResult GetPromocodesByUser([FromQuery] string userId)
         {
@@ -25,7 +24,7 @@ namespace CarService.MainAPI.Controllers
             return Ok(promocodes);
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpPost("usepromocode")]
         public async Task<IActionResult> UsePromocode([FromQuery] string text)
         {
@@ -39,7 +38,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] Promocode promocode)
         {

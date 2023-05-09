@@ -24,13 +24,16 @@ namespace CarService.UI.Configuration
             services.AddScoped<ICarTypeService, CarTypeService>();
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IPromocodeService, PromocodeService>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddControllersWithViews(options =>
-                options.CacheProfiles.Add("Caching",
-                new CacheProfile
+            {
+                options.Filters.Add<ExceptionFilter>();
+                options.CacheProfiles.Add("Caching", new CacheProfile
                 {
                     Location = ResponseCacheLocation.Client,
                     Duration = 300,
-                }));
+                });
+            });
             services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
             services.AddHttpClient();

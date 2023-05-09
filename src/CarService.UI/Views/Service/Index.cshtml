@@ -14,16 +14,13 @@
     <div class="col-md-11">
         <table class="table align-middle table-bordered table-striped table-hover">
             <thead class="bg-dark text-center">
-                <tr>
-                    <th class="text-white">Тип техники</th>
-                    <th class="text-white">Марка автомобиля</th>
-                    <th class="text-white">Цена, BYN</th>
-                    <th class="text-white">Цена с учётом скидки, BYN</th>
-                    <th class="text-white">Примерное время ремонта, мин</th>
-                    @if (User.IsInRole("admin") || User.IsInRole("manager"))
-                    {
-                        <th class="text-white">Управление</th>
-                    }
+                <tr class="text-white">
+                    <th>Тип техники</th>
+                    <th>Марка автомобиля</th>
+                    <th>Цена, BYN</th>
+                    <th>Цена с учётом скидки, BYN</th>
+                    <th >Примерное время ремонта, мин</th>
+                    <th>Управление</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -44,16 +41,14 @@
                         }
 
                         <td>@service.MinutesSpent</td>
-                        @if (User.IsInRole("admin") || User.IsInRole("manager"))
-                        {
-                            <td>
-                                <form asp-action="Delete" asp-route-id="@service.Id"
-                                    asp-route-serviceDataId="@Model.ServiceDataId" method="post">
-                                    <a class="btn btn-dark shadow-none" asp-action="Edit" asp-route-id="@service.Id">Редактировать</a>
-                                    <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
-                                </form>
-                            </td>
-                        }
+                        <td>
+                            <form asp-action="Delete" asp-route-id="@service.Id"
+                                asp-route-serviceDataId="@Model.ServiceDataId" method="post">
+                                <a class="btn btn-dark shadow-none" asp-controller="Appointment" asp-action="Index" asp-route-serviceId="@service.Id">Записаться</a>
+                                <a class="btn btn-dark shadow-none" asp-action="Edit" asp-route-id="@service.Id">Редактировать</a>
+                                <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>

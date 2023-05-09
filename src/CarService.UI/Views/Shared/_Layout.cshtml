@@ -28,18 +28,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Discount" asp-action="Index">Акции и скидки</a>
                         </li>
-                        @if (User.IsInRole("admin") || User.IsInRole("manager"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Promocode" asp-action="UsePromocode">Использовать промокод</a>
-                            </li>
-                        }
-                        @if (User.IsInRole("admin"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Index">Пользователи</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Promocode" asp-action="UsePromocode">Использовать промокод</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Index">Пользователи</a>
+                        </li>
                     </ul>
                     @if (!User.Identity.IsAuthenticated)
                     {

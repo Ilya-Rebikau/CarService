@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CarService.UI.Controllers
 {
     [ResponseCache(CacheProfileName = "Caching")]
-    [ExceptionFilter]
     public class PromocodeController : Controller
     {
         private readonly IPromocodeService _promocodeService;
@@ -16,14 +15,14 @@ namespace CarService.UI.Controllers
             _promocodeService = promocodeService;
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpGet]
         public IActionResult UsePromocode()
         {
             return View();
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpPost]
         public async Task<IActionResult> UsePromocode(PromocodeViewModel promocode)
         {
@@ -31,7 +30,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index), typeof(HomeController).GetControllerName());
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpGet]
         public IActionResult Create(string userId)
         {
@@ -42,7 +41,7 @@ namespace CarService.UI.Controllers
             return View(promocode);
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        
         [HttpPost]
         public async Task<IActionResult> Create(PromocodeViewModel promocode)
         {

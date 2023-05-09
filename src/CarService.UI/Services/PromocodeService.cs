@@ -4,7 +4,7 @@ using CarService.UI.Models;
 
 namespace CarService.UI.Services
 {
-    public class PromocodeService : IPromocodeService
+    internal class PromocodeService : IPromocodeService
     {
         private readonly IMainClient _mainClient;
         public PromocodeService(IMainClient mainClient)

@@ -1,5 +1,4 @@
 ﻿using CarService.DAL.Models;
-using CarService.MainAPI.Infrastructure;
 using CarService.MainAPI.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +8,6 @@ namespace CarService.MainAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [ExceptionFilter]
     public class CarBrandController : ControllerBase
     {
         private readonly ICarBrandService _carBrandService;
@@ -32,7 +30,7 @@ namespace CarService.MainAPI.Controllers
             return Ok(carBrands);
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] CarBrand carBrand)
         {
@@ -40,7 +38,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -48,7 +46,7 @@ namespace CarService.MainAPI.Controllers
             return carBrand is null ? NotFound() : Ok(carBrand);
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] CarBrand carBrand)
         {
@@ -75,7 +73,7 @@ namespace CarService.MainAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

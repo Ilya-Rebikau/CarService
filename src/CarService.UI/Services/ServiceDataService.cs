@@ -1,10 +1,10 @@
 ﻿using CarService.UI.Interfaces;
 using CarService.UI.Interfaces.HttpClients;
-using CarService.UI.Models.Services;
+using CarService.UI.Models.Service;
 
 namespace CarService.UI.Services
 {
-    public class ServiceDataService : IServiceDataService
+    internal class ServiceDataService : IServiceDataService
     {
         private readonly IMainClient _mainClient;
         public ServiceDataService(IMainClient mainClient)

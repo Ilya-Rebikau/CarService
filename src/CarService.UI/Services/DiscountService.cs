@@ -4,7 +4,7 @@ using CarService.UI.Models;
 
 namespace CarService.UI.Services
 {
-    public class DiscountService : IDiscountService
+    internal class DiscountService : IDiscountService
     {
         private readonly IMainClient _mainClient;
         public DiscountService(IMainClient mainClient)

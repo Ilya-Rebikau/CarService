@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc;
+using Azure.Core;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace CarService.UI.Infrastructure
 {
-    [AttributeUsage(AttributeTargets.All)]
-    public class ExceptionFilterAttribute : Attribute, IExceptionFilter
+    public class ExceptionFilter : IExceptionFilter
     {
         public void OnException(ExceptionContext context)
         {
@@ -25,7 +26,10 @@ namespace CarService.UI.Infrastructure
 
             var viewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), context.ModelState)
             {
-                Model = new ErrorViewModel { Message = exceptionMessage },
+                Model = new ErrorViewModel
+                {
+                    Message = exceptionMessage
+                },
             };
             context.Result = new ViewResult
             {
