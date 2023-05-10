@@ -27,6 +27,7 @@ namespace CarService.UI.Controllers
             _serviceDataService = serviceDataService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Index(int serviceDataId)
         {
@@ -42,7 +43,7 @@ namespace CarService.UI.Controllers
             return View(serviceListViewModel);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Create(int serviceDataId)
         {
@@ -60,7 +61,7 @@ namespace CarService.UI.Controllers
             return View(serviceViewModel);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ServiceViewModel service)
@@ -74,7 +75,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index), new { serviceDataId = service.ServiceDataId });
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -88,7 +89,7 @@ namespace CarService.UI.Controllers
             return id is null ? NotFound() : View(service);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ServiceViewModel service)
@@ -115,7 +116,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index), new { serviceDataId = service.ServiceDataId });
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id, int serviceDataId)
         {

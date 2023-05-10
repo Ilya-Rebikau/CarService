@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.UI.Controllers
 {
+    [Authorize(Roles = "admin, manager")]
     [ResponseCache(CacheProfileName = "Caching")]
     public class PromocodeController : Controller
     {
@@ -15,14 +16,12 @@ namespace CarService.UI.Controllers
             _promocodeService = promocodeService;
         }
 
-        
         [HttpGet]
         public IActionResult UsePromocode()
         {
             return View();
         }
 
-        
         [HttpPost]
         public async Task<IActionResult> UsePromocode(PromocodeViewModel promocode)
         {
@@ -30,7 +29,6 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index), typeof(HomeController).GetControllerName());
         }
 
-        
         [HttpGet]
         public IActionResult Create(string userId)
         {
@@ -41,7 +39,6 @@ namespace CarService.UI.Controllers
             return View(promocode);
         }
 
-        
         [HttpPost]
         public async Task<IActionResult> Create(PromocodeViewModel promocode)
         {

@@ -8,6 +8,7 @@ namespace CarService.UI.Models
 
         [Display(Name = "Тип техники")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Длина должна быть от 1 до 50 символов")]
+        [Required(ErrorMessage = "Тип техники обязатален для ввода")]
         public string Name { get; set; }
     }
 }

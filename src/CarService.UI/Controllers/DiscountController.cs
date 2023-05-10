@@ -27,6 +27,7 @@ namespace CarService.UI.Controllers
             _serviceDataService = serviceDataService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -34,7 +35,7 @@ namespace CarService.UI.Controllers
             return View(discounts);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -54,7 +55,7 @@ namespace CarService.UI.Controllers
             return View(discountViewModel);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DiscountViewModel discount)
@@ -68,7 +69,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -85,7 +86,7 @@ namespace CarService.UI.Controllers
             return id is null ? NotFound() : View(discount);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, DiscountViewModel discount)
@@ -112,7 +113,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index), new { serviceDataId = discount.ServiceDataId });
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id, int serviceDataId)
         {

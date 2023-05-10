@@ -46,7 +46,19 @@ namespace CarService.UI.Interfaces.HttpClients
 
         [Get("cartype/getcartypes")]
         public Task<IEnumerable<CarTypeViewModel>> GetCarTypes([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
-        
+
+        [Post("cartype/create")]
+        public Task CreateCarType([Header(AuthorizationKey)] string token, [Body] CarTypeViewModel model, CancellationToken cancellationToken = default);
+
+        [Get("cartype/edit/{id}")]
+        public Task<CarTypeViewModel> GetCarTypeViewModelForEdit([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
+
+        [Put("cartype/edit/{id}")]
+        public Task EditCarType([Header(AuthorizationKey)] string token, [Path] int id, [Body] CarTypeViewModel model, CancellationToken cancellationToken = default);
+
+        [Delete("cartype/delete/{id}")]
+        public Task DeleteCarType([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
+
         [Get("servicedata/getservicedatas")]
         public Task<IEnumerable<ServiceDataViewModel>> GetServiceDatas([Header(AuthorizationKey)] string token, [Query] int pageNumber, CancellationToken cancellationToken = default);
 

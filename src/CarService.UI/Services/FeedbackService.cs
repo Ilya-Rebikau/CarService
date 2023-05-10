@@ -27,11 +27,17 @@ namespace CarService.UI.Services
         public async Task<FeedbackListViewModel> GetFeedbacks(string token, int pageNumber)
         {
             var feedbacks = await _mainClient.GetFeedbacks(token, pageNumber);
-            var account = await _userClient.GetAccountViewModel(token);
+            var userId = string.Empty;
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                var account = await _userClient.GetAccountViewModel(token);
+                userId = account.Id;
+            }
+
             var feedbackListViewModel = new FeedbackListViewModel
             {
                 Feedbacks = feedbacks,
-                UserId = account.Id
+                UserId = userId
             };
 
             return feedbackListViewModel;

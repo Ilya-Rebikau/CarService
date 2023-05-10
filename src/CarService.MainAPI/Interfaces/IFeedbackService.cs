@@ -5,7 +5,7 @@ namespace CarService.MainAPI.Interfaces
 {
     public interface IFeedbackService : IBaseService<Feedback>
     {
-        public Task<IEnumerable<FeedbackModel>> GetAllFeedbacks(string token, int pageNumber);
-        public Task CreateFeedbackModel(FeedbackModel feedbackModel);
+        Task<IEnumerable<FeedbackModel>> GetAllFeedbacks(string token, int pageNumber);
+        Task CreateFeedbackModel(FeedbackModel feedbackModel);
     }
 }

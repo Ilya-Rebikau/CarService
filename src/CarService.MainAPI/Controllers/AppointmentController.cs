@@ -19,6 +19,7 @@ namespace CarService.MainAPI.Controllers
             _appointmentService = appointmentService;
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet("getallappointments")]
         public async Task<IActionResult> GetAllAppointments([FromHeader(Name = AuthorizationKey)] string token, [FromQuery] int pageNumber)
         {
@@ -26,6 +27,7 @@ namespace CarService.MainAPI.Controllers
             return Ok(appointments);
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet("getappointmentsbydateandservice")]
         public async Task<IActionResult> GetAppointmentsByDateAndService([FromQuery] string stringDateTime, [FromQuery] int serviceId)
         {
@@ -34,6 +36,7 @@ namespace CarService.MainAPI.Controllers
             return Ok(appointments);
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet("getappointmentsbyuser")]
         public async Task<IActionResult> GetAppointmentsByUser([FromQuery] string userId)
         {
@@ -41,6 +44,7 @@ namespace CarService.MainAPI.Controllers
             return Ok(appointments);
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] Appointment appointment)
         {
@@ -48,6 +52,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPut("finish/{id}")]
         public async Task<IActionResult> Finish([FromRoute] int id)
         {
@@ -69,6 +74,7 @@ namespace CarService.MainAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

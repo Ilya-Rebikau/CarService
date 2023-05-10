@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.UserAPI.Controllers
 {
-    
+    [Authorize(Roles = "admin")]
     [Route("[controller]")]
     [ApiController]
     [ExceptionFilter]

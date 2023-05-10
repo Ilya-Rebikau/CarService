@@ -2,6 +2,7 @@
 using CarService.UI.Interfaces;
 using CarService.UI.Models;
 using CarService.UI.Models.Feedback;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.UI.Controllers
@@ -15,6 +16,7 @@ namespace CarService.UI.Controllers
             _feedbackService = feedbackService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Index(int pageNumber = 1)
         {
@@ -30,6 +32,7 @@ namespace CarService.UI.Controllers
             return View(feedbacks);
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FeedbackListViewModel feedbackList)
@@ -43,6 +46,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

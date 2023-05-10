@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CarTypeViewModel>
+@{
+    ViewData["Title"] = "title";
+}
+
+<div class="table-responsive row">
+    <div class="col-md-auto">
+        <a class="btn btn-success shadow-none fs-5" asp-action="Create">+</a>
+    </div>
+
+    <div class="col-md-11">
+        <table class="table align-middle table-bordered table-striped table-hover">
+            <thead class="bg-dark text-center">
+                <tr>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.Name)</th>
+                    <th class="text-white">Управление</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var carType in Model)
+                {
+                    <tr>
+                        <td>@carType.Name</td>
+                        <td>
+                            <form asp-action="Delete" asp-route-id="@carType.Id" method="post">
+                                <a class="btn btn-dark shadow-none" asp-action="Edit" asp-route-id="@carType.Id">Редактировать</a>
+                                <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

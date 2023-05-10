@@ -17,6 +17,7 @@ namespace CarService.MainAPI.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         [HttpGet("getservices")]
         public async Task<IActionResult> GetServices([FromQuery] int serviceDataId)
         {
@@ -24,6 +25,7 @@ namespace CarService.MainAPI.Controllers
             return Ok(services);
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet("details/{id}")]
         public async Task<IActionResult> Details([FromRoute] int id)
         {
@@ -31,7 +33,7 @@ namespace CarService.MainAPI.Controllers
             return service is null ? NotFound() : Ok(service);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] ServiceModel service)
         {
@@ -39,7 +41,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] ServiceModel service)
         {
@@ -66,7 +68,7 @@ namespace CarService.MainAPI.Controllers
             }
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

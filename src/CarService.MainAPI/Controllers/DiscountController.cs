@@ -17,6 +17,7 @@ namespace CarService.MainAPI.Controllers
             _discountService = discountService;
         }
 
+        [AllowAnonymous]
         [HttpGet("getdiscounts")]
         public async Task<IActionResult> GetDiscounts()
         {
@@ -24,6 +25,7 @@ namespace CarService.MainAPI.Controllers
             return Ok(discounts);
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet("details/{id}")]
         public async Task<IActionResult> Details([FromRoute] int id)
         {
@@ -31,7 +33,7 @@ namespace CarService.MainAPI.Controllers
             return discount is null ? NotFound() : Ok(discount);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] DiscountModel discount)
         {
@@ -39,7 +41,7 @@ namespace CarService.MainAPI.Controllers
             return Ok();
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -47,7 +49,7 @@ namespace CarService.MainAPI.Controllers
             return discount is null ? NotFound() : Ok(discount);
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] DiscountModel discount)
         {
@@ -74,7 +76,7 @@ namespace CarService.MainAPI.Controllers
             }
         }
 
-        
+        [Authorize(Roles = "admin, manager")]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

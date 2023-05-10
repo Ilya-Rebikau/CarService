@@ -2,6 +2,7 @@
 using CarService.UI.Interfaces;
 using CarService.UI.Models;
 using CarService.UI.Models.Appointment;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 
@@ -18,6 +19,7 @@ namespace CarService.UI.Controllers
             _accountService = accountService;
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> GetAll(int pageNumber = 1)
         {
@@ -28,6 +30,7 @@ namespace CarService.UI.Controllers
             return View(appointments);
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet]
         public async Task<IActionResult> Index(int serviceId, string dateTime)
         {
@@ -51,6 +54,7 @@ namespace CarService.UI.Controllers
             return View(appointmentListViewModel);
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AppointmentListViewModel appointmentList)
@@ -70,6 +74,7 @@ namespace CarService.UI.Controllers
             });
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         public async Task<IActionResult> Finish(int id)
         {
@@ -77,6 +82,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(GetAll));
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
@@ -84,6 +90,7 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(GetAll));
         }
 
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost]
         public async Task<IActionResult> DeleteForUser(int id)
         {

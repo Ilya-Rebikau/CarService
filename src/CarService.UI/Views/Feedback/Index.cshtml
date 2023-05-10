@@ -5,17 +5,23 @@
 
 <p class="fs-1 row justify-content-center">Отзывы</p>
 
-<form asp-action="Create" method="post">
-    <input type="hidden" asp-for="NewFeedback.UserId" />
-    <input type="hidden" asp-for="NewFeedback.DateTime" />
-    <div class="form-group">
-        <label asp-for="NewFeedback.Message" class="control-label"></label>
-        <input type="text" required asp-for="NewFeedback.Message" class="form-control" />
-        <span asp-validation-for="NewFeedback.Message" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary shadow-none">Оставить отзыв</button>
-</form>
-
+@if (User.Identity.IsAuthenticated)
+{
+    <form asp-action="Create" method="post">
+        <input type="hidden" asp-for="NewFeedback.UserId" />
+        <input type="hidden" asp-for="NewFeedback.DateTime" />
+        <div class="form-group">
+            <label asp-for="NewFeedback.Message" class="control-label"></label>
+            <input type="text" required asp-for="NewFeedback.Message" class="form-control" />
+            <span asp-validation-for="NewFeedback.Message" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary shadow-none">Оставить отзыв</button>
+    </form>
+}
+else
+{
+    <p>Войдите в учётную запись, чтобы оставить отзыв</p>
+}
 @for (int i = 0; i < Model.Feedbacks.Count(); i++)
 {
     <div class="row">

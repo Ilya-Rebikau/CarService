@@ -24,12 +24,14 @@ namespace CarService.UI.Controllers
             _appointmentService = appointmentService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -42,12 +44,14 @@ namespace CarService.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -70,14 +74,14 @@ namespace CarService.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+        [Authorize(Roles = "admin, manager, user")]
         public async Task<IActionResult> Logout()
         {
             await _service.Logout(HttpContext);
             return RedirectToAction(nameof(Index), typeof(HomeController).GetControllerName());
         }
 
-        
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
@@ -85,7 +89,7 @@ namespace CarService.UI.Controllers
             return editAccountViewModel is null ? NotFound() : View(editAccountViewModel);
         }
 
-        
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost]
         public async Task<IActionResult> Edit(EditAccountViewModel model)
         {
@@ -108,7 +112,7 @@ namespace CarService.UI.Controllers
             return View(model);
         }
 
-        
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -120,7 +124,7 @@ namespace CarService.UI.Controllers
             return View(accountVm);
         }
 
-
+        [Authorize(Roles = "admin, manager, user")]
         [HttpGet]
         public IActionResult ChangePassword(string id)
         {
@@ -128,7 +132,7 @@ namespace CarService.UI.Controllers
             return View(model);
         }
 
-        
+        [Authorize(Roles = "admin, manager, user")]
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordInPersonalAccountViewModel model)
         {
