@@ -9,14 +9,17 @@ namespace CarService.UI.Models
 
         [Display(Name = "Размер скидки, %")]
         [Range(1, 100, ErrorMessage = "Размер должен быть от 1 до 100")]
+        [Required(ErrorMessage = "Размер скидки обязателен")]
         public int Percent { get; set; }
 
-        [Display(Name = "От")]
+        [Display(Name = "Дата начала акции")]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Дата начала акции обязательна")]
         public DateTime DateStart { get; set; }
 
-        [Display(Name = "До, включительно")]
+        [Display(Name = "Дата конца акции, включительно")]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Дата конца акции обязательна")]
         public DateTime DateEnd { get; set; }
         public int? ServiceDataId { get; set; }
         public int? CarBrandId { get; set; }

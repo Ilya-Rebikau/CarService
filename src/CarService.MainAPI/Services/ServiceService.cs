@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CarService.DAL.Interfaces;
 using CarService.DAL.Models;
+using CarService.MainAPI.Infrastructure;
 using CarService.MainAPI.Interfaces;
 using CarService.MainAPI.Models;
 
@@ -74,6 +75,27 @@ namespace CarService.MainAPI.Services
         {
             var service = _mapper.Map<Service>(serviceModel);
             await Update(service);
+        }
+
+        public override async Task<Service> Create(Service obj)
+        {
+            CheckForSameService(obj);
+            return await base.Create(obj);
+        }
+
+        public override async Task<Service> Update(Service obj)
+        {
+            CheckForSameService(obj);
+            return await base.Update(obj);
+        }
+
+        private void CheckForSameService(Service service)
+        {
+            if (Repository.GetAll().Any(s => s.CarTypeId == service.CarTypeId && s.CarBrandId == service.CarBrandId
+                && s.ServiceDataId == service.ServiceDataId && s.Id != service.Id))
+            {
+                throw new MyException("Такой вид услуги для такой техники и марки уже есть!");
+            }
         }
 
         private int GetMaxDiscount(int carTypeId, int carBrandId, int serviceDataId)

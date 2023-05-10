@@ -14,6 +14,7 @@ namespace CarService.MainAPI.Services
         private readonly int _promocodeDays;
         private readonly int _percent;
         private readonly int _appointmentCountForPromocode;
+        private readonly int _maxAppointmentDate;
         private readonly IRepository<Service> _serviceRepository;
         private readonly IMapper _mapper;
         private readonly IUserClient _userClient;
@@ -37,6 +38,7 @@ namespace CarService.MainAPI.Services
             _promocodeDays = configuration.GetValue<int>("PromocodeDays");
             _percent = configuration.GetValue<int>("Percent");
             _appointmentCountForPromocode = configuration.GetValue<int>("AppointmentCountForPromocode");
+            _maxAppointmentDate = configuration.GetValue<int>("MaxAppointmentDate");
         }
 
         public async Task<IEnumerable<Appointment>> GetAllByDateAndServiceData(DateTime date, int serviceId)
@@ -105,7 +107,7 @@ namespace CarService.MainAPI.Services
             return await base.Create(obj);
         }
 
-        private static void CheckForRightTime(Appointment obj)
+        private void CheckForRightTime(Appointment obj)
         {
             var maxTimeEnd = new TimeSpan(20, 0, 0);
             var minTimeStart = new TimeSpan(8, 0, 0);
@@ -114,6 +116,16 @@ namespace CarService.MainAPI.Services
             {
                 throw new MyException($"Мы не работаем в это время {obj.DateTimeStart.ToShortTimeString()} - {obj.DateTimeEnd.ToShortTimeString()}! " +
                     $"Наше время работы {minTimeStart} - {maxTimeEnd}");
+            }
+
+            if (obj.DateTimeStart.Date < DateTime.Now.Date)
+            {
+                throw new MyException("Нельзя записаться на прошедшую дату!");
+            }
+
+            if (obj.DateTimeStart.Date > DateTime.Now.Date.AddDays(_maxAppointmentDate))
+            {
+                throw new MyException($"Нельзя записаться дальше чем на {_maxAppointmentDate} дней");
             }
         }
 

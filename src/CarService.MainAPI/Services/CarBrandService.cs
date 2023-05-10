@@ -31,7 +31,7 @@ namespace CarService.MainAPI.Services
 
         private void CheckForSameBrand(CarBrand obj)
         {
-            if (Repository.GetAll().Any(cb => cb.Name == obj.Name && cb.Id != obj.Id))
+            if (Repository.GetAll().Any(cb => cb.Name.ToLower() == obj.Name.ToLower() && cb.Id != obj.Id))
             {
                 throw new MyException("Такая марка автомобиля уже есть!");
             }

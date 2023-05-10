@@ -9,7 +9,7 @@
     <input type="hidden" asp-for="NewAppointment.WasFinished" />
     <div class="form-group">
         <label asp-for="NewAppointment.DateTimeStart" class="control-label"></label>
-        <input type="datetime-local" asp-for="NewAppointment.DateTimeStart" class="form-control" />
+        <input type="datetime-local" value="@DateTime.Now" required asp-for="NewAppointment.DateTimeStart" class="form-control" />
         <span asp-validation-for="NewAppointment.DateTimeStart" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -21,8 +21,15 @@
 </form>
 
 
-@Html.ActionLink("<", "Index", new { serviceId = Model.NewAppointment.ServiceId, dateTime = Model.Date.AddDays(-1).ToString("dd-MM-yyyy") })
-@Html.ActionLink(">", "Index", new { serviceId = Model.NewAppointment.ServiceId, dateTime = Model.Date.AddDays(1).ToString("dd-MM-yyyy") })
+@if (Model.Date.AddDays(-1) >= DateTime.Now.Date)
+{
+    @Html.ActionLink("<", "Index", new { serviceId = Model.NewAppointment.ServiceId, dateTime = Model.Date.AddDays(-1).ToString("dd-MM-yyyy") })
+}
+@if (Model.Date <= DateTime.Now.Date.AddDays(14))
+{
+    @Html.ActionLink(">", "Index", new { serviceId = Model.NewAppointment.ServiceId, dateTime = Model.Date.AddDays(1).ToString("dd-MM-yyyy") })
+}
+
 @if (Model.Appointments.Any())
 {
     <p class="fs-5">Занятое время на @Model.Date.ToLongDateString().</p>

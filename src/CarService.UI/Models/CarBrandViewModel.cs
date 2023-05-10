@@ -8,6 +8,7 @@ namespace CarService.UI.Models
 
         [Display(Name = "Марка автомобиля")]
         [StringLength(50, MinimumLength = 1, ErrorMessage ="Длина должна быть от 1 до 50 символов")]
+        [Required(ErrorMessage = "Марка автомобиля обязательна")]
         public string Name { get; set; }
         public byte[] ImageData { get; set; }
 

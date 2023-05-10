@@ -8,6 +8,7 @@ namespace CarService.UI.Models.Appointment
 
         [Display(Name = "Дата и время записи")]
         [DataType(DataType.DateTime)]
+        [Required(ErrorMessage = "Дата и время обязательны")]
         public DateTime DateTimeStart { get; set; }
 
         [Display(Name = "Ожидаемое дата и время конца ремонта")]

@@ -29,11 +29,11 @@
                     <tr>
                         <td>@service.CarTypeName</td>
                         <td>@service.CarBrandName</td>
-                        <td>@service.Price.ToString("#.##")</td>
+                        <td>@service.Price.ToString("0.##")</td>
                         @if (service.NewPrice is not null)
                         {
                             var newPrice = (decimal)service.NewPrice;
-                            <td>@newPrice.ToString("#.##")</td>
+                            <td>@newPrice.ToString("0.##")</td>
                         }
                         else
                         {

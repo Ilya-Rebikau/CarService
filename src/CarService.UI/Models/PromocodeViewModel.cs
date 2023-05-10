@@ -17,6 +17,7 @@ namespace CarService.UI.Models
 
         [Display(Name = "Промокод")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Длина должна быть 10 символов")]
+        [Required(ErrorMessage = "Промокод обязателен")]
         public string Text { get; set; }
     }
 }

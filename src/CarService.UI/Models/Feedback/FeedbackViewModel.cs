@@ -7,6 +7,8 @@ namespace CarService.UI.Models.Feedback
         public int Id { get; set; }
 
         [Display(Name = "Отзыв")]
+        [Required(ErrorMessage = "Отзыв обязателен")]
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
 
         [Display(Name = "Имя")]

@@ -1,5 +1,6 @@
 ﻿using CarService.DAL.Interfaces;
 using CarService.DAL.Models;
+using CarService.MainAPI.Infrastructure;
 using CarService.MainAPI.Interfaces;
 
 namespace CarService.MainAPI.Services
@@ -19,6 +20,7 @@ namespace CarService.MainAPI.Services
                 await Repository.Delete(oldPromocode);
             }
 
+            CheckForRightDate(obj);
             obj.Text = GeneratePromocode();
             return await base.Create(obj);
         }
@@ -31,6 +33,14 @@ namespace CarService.MainAPI.Services
         public Promocode GetPromocodeByText(string text)
         {
             return Repository.GetAll().FirstOrDefault(p => p.Text == text);
+        }
+
+        private static void CheckForRightDate(Promocode obj)
+        {
+            if (obj.DateEnd.Date < DateTime.Now.Date)
+            {
+                throw new MyException("Срок действия нового промокода не должен быть прошедшей датой");
+            }
         }
 
         private string GeneratePromocode()
