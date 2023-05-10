@@ -25,6 +25,7 @@ namespace CarService.UI.Configuration
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IPromocodeService, PromocodeService>();
             services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<ExceptionFilter>();

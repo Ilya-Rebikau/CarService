@@ -115,5 +115,17 @@ namespace CarService.UserAPI.Services
             var user = await _userManager.FindByIdAsync(userId);
             return user.Email;
         }
+
+        public async Task<string> GetUserName(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            return user.FirstName;
+        }
+
+        public async Task<byte[]> GetUserPhoto(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            return user.Photo;
+        }
     }
 }

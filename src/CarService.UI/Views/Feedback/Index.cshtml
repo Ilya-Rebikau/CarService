@@ -1,0 +1,75 @@
+﻿@model FeedbackListViewModel
+@{
+    ViewData["Title"] = "Отзывы";
+}
+
+<p class="fs-1 row justify-content-center">Отзывы</p>
+
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="NewFeedback.UserId" />
+    <input type="hidden" asp-for="NewFeedback.DateTime" />
+    <div class="form-group">
+        <label asp-for="NewFeedback.Message" class="control-label"></label>
+        <input type="text" asp-for="NewFeedback.Message" class="form-control" />
+        <span asp-validation-for="NewFeedback.Message" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary shadow-none">Оставить отзыв</button>
+</form>
+
+@for (int i = 0; i < Model.Feedbacks.Count(); i++)
+{
+    <div class="row">
+        <div class="col-auto">
+            @Model.Feedbacks.ElementAt(i).UserName
+        </div>
+        <div class="col-auto">
+            @Model.Feedbacks.ElementAt(i).DateTime
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto">
+            @if (Model.Feedbacks.ElementAt(i).PhotoData is not null && Model.Feedbacks.ElementAt(i).PhotoData.Length > 0)
+            {
+                <img alt="Фото" style="height: 150px" class="img-thumbnail img-fluid"
+                     src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Feedbacks.ElementAt(i).PhotoData))" />
+            }
+        </div>
+        <div class="col-auto">
+            @Model.Feedbacks.ElementAt(i).Message
+        </div>
+        @if (Model.Feedbacks.ElementAt(i).UserId == Model.UserId)
+        {
+            <form class="col-auto" asp-action="Delete" asp-route-id="@Model.Feedbacks.ElementAt(i).Id" method="post">
+                <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
+            </form>
+        }
+    </div>
+}
+
+<div class="d-flex justify-content-center pb-3">
+    @{
+        int previousPage;
+        int nextPage;
+    }
+    @if (PageModel.PageNumber > 1)
+    {
+        <div class="pe-1">
+            <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="1">1</a>
+            @{
+                previousPage = PageModel.PageNumber - 1;
+            }
+            <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@previousPage">
+                &lt;
+            </a>
+        </div>
+    }
+    @if (PageModel.NextPage)
+    {
+        {
+            nextPage = PageModel.PageNumber + 1;
+        }
+        <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@nextPage">
+            >
+        </a>
+    }
+</div>

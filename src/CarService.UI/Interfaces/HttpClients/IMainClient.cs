@@ -1,5 +1,6 @@
 ﻿using CarService.UI.Models;
 using CarService.UI.Models.Appointment;
+using CarService.UI.Models.Feedback;
 using CarService.UI.Models.Service;
 using Microsoft.AspNetCore.Mvc;
 using RestEase;
@@ -105,5 +106,15 @@ namespace CarService.UI.Interfaces.HttpClients
 
         [Delete("appointment/delete/{id}")]
         public Task DeleteAppointment([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
+        
+        [Get("feedback/getfeedbacks")]
+        public Task<IEnumerable<FeedbackViewModel>> GetFeedbacks([Header(AuthorizationKey)] string token, [Query] int pageNumber, CancellationToken cancellationToken = default);
+        
+        [Post("feedback/create")]
+        public Task CreateFeedback([Header(AuthorizationKey)] string token, [Body] FeedbackViewModel model, CancellationToken cancellationToken = default);
+        
+        [Delete("feedback/delete/{id}")]
+        public Task DeleteFeedback([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
+
     }
 }

@@ -11,5 +11,11 @@ namespace CarService.MainAPI.Interfaces.HttpClients
 
         [Get("account/getuseremail")]
         public Task<string> GetUserEmail([Header(AuthorizationKey)] string token, [Query] string userId);
+
+        [Get("account/getusername")]
+        public Task<string> GetUserName([Header(AuthorizationKey)] string token, [Query] string userId);
+
+        [Get("account/getuserphoto")]
+        public Task<byte[]> GetUserPhotoData([Header(AuthorizationKey)] string token, [Query] string userId);
     }
 }

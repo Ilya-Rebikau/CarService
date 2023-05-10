@@ -25,6 +25,7 @@ namespace CarService.MainAPI.Configuration
             services.AddScoped<IServiceService, ServiceService>();
             services.AddScoped<IServiceDataService, ServiceDataService>();
             services.AddScoped<IPromocodeService, PromocodeService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
             services.AddHttpClient();
             services.AddTransient(scope =>
             {

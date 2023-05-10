@@ -16,5 +16,6 @@ namespace CarService.DAL.Infrastructure
         public DbSet<Promocode> Promocodes { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ServiceData> ServiceDatas { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
     }
 }

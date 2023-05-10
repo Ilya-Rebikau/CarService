@@ -86,5 +86,17 @@ namespace CarService.UserAPI.Controllers
         {
             return Ok(await _service.GetUserEmail(userId));
         }
+
+        [HttpGet("getusername")]
+        public async Task<IActionResult> GetUserName([FromQuery] string userId)
+        {
+            return Ok(await _service.GetUserName(userId));
+        }
+
+        [HttpGet("getuserphoto")]
+        public async Task<IActionResult> GetUserPhoto([FromQuery] string userId)
+        {
+            return Ok(await _service.GetUserPhoto(userId));
+        }
     }
 }

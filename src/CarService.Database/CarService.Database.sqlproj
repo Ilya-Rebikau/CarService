@@ -90,6 +90,8 @@
     <Build Include="ForeignKeys\FK_CarBrands_Discounts.sql" />
     <Build Include="ForeignKeys\FK_CarTypes_Discounts.sql" />
     <Build Include="ForeignKeys\FK_AspNetUsers_Promocodes.sql" />
+    <Build Include="Tables\Feedbacks.sql" />
+    <Build Include="ForeignKeys\FK_AspNetUsers_Feedbacks.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post\PostDeployment.sql" />
