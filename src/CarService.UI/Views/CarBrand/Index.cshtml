@@ -38,22 +38,22 @@
         int previousPage;
         int nextPage;
     }
-    @if (PageModel.PageNumber > 1)
+    @if (PageViewModel.PageNumber > 1)
     {
         <div class="pe-1">
             <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="1">1</a>
             @{
-                previousPage = PageModel.PageNumber - 1;
+                previousPage = PageViewModel.PageNumber - 1;
             }
             <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@previousPage">
                 &lt;
             </a>
         </div>
     }
-    @if (PageModel.NextPage)
+    @if (PageViewModel.NextPage)
     {
         {
-            nextPage = PageModel.PageNumber + 1;
+            nextPage = PageViewModel.PageNumber + 1;
         }
         <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@nextPage">
             >

@@ -8,6 +8,7 @@ namespace CarService.UI.Models.Account
         public string Id { get; set; }
 
         [Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Display(Name = "Имя")]
@@ -17,6 +18,7 @@ namespace CarService.UI.Models.Account
         public string Surname { get; set; }
 
         [Display(Name = "Номер телефона")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         public IEnumerable<PromocodeViewModel> Promocodes { get; set; }

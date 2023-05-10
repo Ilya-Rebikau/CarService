@@ -1,6 +1,6 @@
 ﻿namespace CarService.UI.Models
 {
-    public static class PageModel
+    public static class PageViewModel
     {
         public static int PageNumber { get; set; }
 

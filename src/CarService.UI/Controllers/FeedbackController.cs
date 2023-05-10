@@ -25,8 +25,8 @@ namespace CarService.UI.Controllers
                 DateTime = DateTime.Now,
             };
             var nextFeedbacks = await _feedbackService.GetFeedbacks(HttpContext.GetJwt(), pageNumber + 1);
-            PageModel.NextPage = nextFeedbacks.Feedbacks is not null && nextFeedbacks.Feedbacks.Any();
-            PageModel.PageNumber = pageNumber;
+            PageViewModel.NextPage = nextFeedbacks.Feedbacks is not null && nextFeedbacks.Feedbacks.Any();
+            PageViewModel.PageNumber = pageNumber;
             return View(feedbacks);
         }
 

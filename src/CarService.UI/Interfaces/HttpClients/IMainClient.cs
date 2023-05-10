@@ -45,7 +45,7 @@ namespace CarService.UI.Interfaces.HttpClients
         public Task DeleteCarBrand([Header(AuthorizationKey)] string token, [Path] int id, CancellationToken cancellationToken = default);
 
         [Get("cartype/getcartypes")]
-        public Task<IEnumerable<CarType>> GetCarTypes([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
+        public Task<IEnumerable<CarTypeViewModel>> GetCarTypes([Header(AuthorizationKey)] string token, CancellationToken cancellationToken = default);
         
         [Get("servicedata/getservicedatas")]
         public Task<IEnumerable<ServiceDataViewModel>> GetServiceDatas([Header(AuthorizationKey)] string token, [Query] int pageNumber, CancellationToken cancellationToken = default);

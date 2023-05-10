@@ -7,9 +7,11 @@ namespace CarService.UI.Models.Appointment
         public int Id { get; set; }
 
         [Display(Name = "Дата и время записи")]
+        [DataType(DataType.DateTime)]
         public DateTime DateTimeStart { get; set; }
 
         [Display(Name = "Ожидаемое дата и время конца ремонта")]
+        [DataType(DataType.DateTime)]
         public DateTime DateTimeEnd { get; set; }
 
         [Display(Name = "Дополнительное сообщение")]
@@ -24,6 +26,7 @@ namespace CarService.UI.Models.Appointment
         public string ServiceData { get; set; }
 
         [Display(Name = "Почта клиента")]
+        [DataType(DataType.EmailAddress)]
         public string UserEmail { get; set; }
     }
 }

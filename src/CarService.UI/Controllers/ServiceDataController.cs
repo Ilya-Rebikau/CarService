@@ -22,8 +22,8 @@ namespace CarService.UI.Controllers
         {
             var serviceDatas = await _service.GetServiceDatas(HttpContext.GetJwt(), pageNumber);
             var nextServiceDatas = await _service.GetServiceDatas(HttpContext.GetJwt(), pageNumber + 1);
-            PageModel.NextPage = nextServiceDatas is not null && nextServiceDatas.Any();
-            PageModel.PageNumber = pageNumber;
+            PageViewModel.NextPage = nextServiceDatas is not null && nextServiceDatas.Any();
+            PageViewModel.PageNumber = pageNumber;
             return View(serviceDatas);
         }
 

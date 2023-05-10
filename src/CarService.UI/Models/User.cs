@@ -6,9 +6,11 @@ namespace CarService.UI.Models
     public class User : IdentityUser
     {
         [Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
         public override string  Email { get; set; }
 
         [Display(Name = "Номер телефона")]
+        [DataType(DataType.PhoneNumber)]
         public override string PhoneNumber { get; set; }
 
         [Display(Name = "Имя")]

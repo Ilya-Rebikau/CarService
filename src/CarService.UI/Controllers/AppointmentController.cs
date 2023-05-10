@@ -23,8 +23,8 @@ namespace CarService.UI.Controllers
         {
             var appointments = await _appointmentService.GetAllAppointments(HttpContext.GetJwt(), pageNumber);
             var nextAppointments = await _appointmentService.GetAllAppointments(HttpContext.GetJwt(), pageNumber + 1);
-            PageModel.NextPage = nextAppointments is not null && nextAppointments.Any();
-            PageModel.PageNumber = pageNumber;
+            PageViewModel.NextPage = nextAppointments is not null && nextAppointments.Any();
+            PageViewModel.PageNumber = pageNumber;
             return View(appointments);
         }
 

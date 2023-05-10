@@ -21,8 +21,8 @@ namespace CarService.UI.Controllers
         {
             var carBrands = await _service.GetCarBrandViewModels(HttpContext.GetJwt(), pageNumber);
             var nextCarBrands = await _service.GetCarBrandViewModels(HttpContext.GetJwt(), pageNumber + 1);
-            PageModel.NextPage = nextCarBrands is not null && nextCarBrands.Any();
-            PageModel.PageNumber = pageNumber;
+            PageViewModel.NextPage = nextCarBrands is not null && nextCarBrands.Any();
+            PageViewModel.PageNumber = pageNumber;
             return View(carBrands);
         }
 

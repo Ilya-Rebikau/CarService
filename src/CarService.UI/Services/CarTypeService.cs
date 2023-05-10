@@ -12,7 +12,7 @@ namespace CarService.UI.Services
             _mainClient = mainClient;
         }
 
-        public async Task<IEnumerable<CarType>> GetAll(string token)
+        public async Task<IEnumerable<CarTypeViewModel>> GetAll(string token)
         {
             return await _mainClient.GetCarTypes(token);
         }

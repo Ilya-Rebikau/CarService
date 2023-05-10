@@ -8,12 +8,15 @@ namespace CarService.UI.Models
         public int Id { get; set; }
 
         [Display(Name = "Размер скидки, %")]
+        [Range(1, 100, ErrorMessage = "Размер должен быть от 1 до 100")]
         public int Percent { get; set; }
 
         [Display(Name = "От")]
+        [DataType(DataType.Date)]
         public DateTime DateStart { get; set; }
 
         [Display(Name = "До, включительно")]
+        [DataType(DataType.Date)]
         public DateTime DateEnd { get; set; }
         public int? ServiceDataId { get; set; }
         public int? CarBrandId { get; set; }

@@ -17,6 +17,7 @@ namespace CarService.UI.Models.Feedback
         public byte[] PhotoData { get; set; }
 
         [Display(Name = "Дата")]
+        [DataType(DataType.DateTime)]
         public DateTime DateTime { get; set; }
     }
 }

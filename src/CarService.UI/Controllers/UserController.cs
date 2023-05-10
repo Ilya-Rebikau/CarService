@@ -21,8 +21,8 @@ namespace CarService.UI.Controllers
         {
             var users = await _service.GetUsers(HttpContext.GetJwt(), pageNumber);
             var nextUsers = await _service.GetUsers(HttpContext.GetJwt(), pageNumber + 1);
-            PageModel.NextPage = nextUsers is not null && nextUsers.Any();
-            PageModel.PageNumber = pageNumber;
+            PageViewModel.NextPage = nextUsers is not null && nextUsers.Any();
+            PageViewModel.PageNumber = pageNumber;
             return View(users);
         }
 

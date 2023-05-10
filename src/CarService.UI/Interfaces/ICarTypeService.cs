@@ -4,6 +4,6 @@ namespace CarService.UI.Interfaces
 {
     public interface ICarTypeService
     {
-        Task<IEnumerable<CarType>> GetAll(string token);
+        Task<IEnumerable<CarTypeViewModel>> GetAll(string token);
     }
 }

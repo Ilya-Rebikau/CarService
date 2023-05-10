@@ -49,7 +49,7 @@ namespace CarService.UI.Controllers
             var carBrands = await _carBrandService.GetCarBrandViewModels(HttpContext.GetJwt());
             var carTypes = await _carTypeService.GetAll(HttpContext.GetJwt());
             CarBrandViewModel tempCarBrand;
-            CarType tempCarType;
+            CarTypeViewModel tempCarType;
             var serviceViewModel = new ServiceViewModel
             {
                 ServiceDataId = serviceDataId,
@@ -82,7 +82,7 @@ namespace CarService.UI.Controllers
             var carBrands = await _carBrandService.GetCarBrandViewModels(HttpContext.GetJwt());
             var carTypes = await _carTypeService.GetAll(HttpContext.GetJwt());
             CarBrandViewModel tempCarBrand;
-            CarType tempCarType;
+            CarTypeViewModel tempCarType;
             service.CarBrandSelectList = new SelectList(carBrands, nameof(tempCarBrand.Id), nameof(tempCarBrand.Name));
             service.CarTypeSelectList = new SelectList(carTypes, nameof(tempCarType.Id), nameof(tempCarType.Name));
             return id is null ? NotFound() : View(service);

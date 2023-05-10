@@ -42,7 +42,7 @@ namespace CarService.UI.Controllers
             var carTypes = await _carTypeService.GetAll(HttpContext.GetJwt());
             var serviceDatas = await _serviceDataService.GetServiceDatas(HttpContext.GetJwt());
             CarBrandViewModel tempCarBrand;
-            CarType tempCarType;
+            CarTypeViewModel tempCarType;
             ServiceDataViewModel tempServiceData;
             var discountViewModel = new DiscountViewModel
             {
@@ -77,7 +77,7 @@ namespace CarService.UI.Controllers
             var carTypes = await _carTypeService.GetAll(HttpContext.GetJwt());
             var serviceDatas = await _serviceDataService.GetServiceDatas(HttpContext.GetJwt());
             CarBrandViewModel tempCarBrand;
-            CarType tempCarType;
+            CarTypeViewModel tempCarType;
             ServiceDataViewModel tempServiceData;
             discount.CarBrandSelectList = new SelectList(carBrands, nameof(tempCarBrand.Id), nameof(tempCarBrand.Name));
             discount.CarTypeSelectList = new SelectList(carTypes, nameof(tempCarType.Id), nameof(tempCarType.Name));

@@ -8,9 +8,11 @@ namespace CarService.UI.Models.Service
         public int Id { get; set; }
 
         [Display(Name = "Цена, BYN")]
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
         [Display(Name = "Цена с учётом скидки, BYN")]
+        [DataType(DataType.Currency)]
         public decimal? NewPrice { get; set; }
 
         [Display(Name = "Примерное время ремонта, мин")]
