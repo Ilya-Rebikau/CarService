@@ -6,7 +6,7 @@
     <form method="post" asp-controller="Account" asp-action="Login"
           asp-route-returnUrl="@Model.ReturnUrl" class="col-md-5 border rounded border-dark py-5 px-5 bg-light bg-gradient">
         <p class="fs-1 row pb-3 d-flex justify-content-center">Вход в личный кабинет</p>
-        <div asp-validation-summary="ModelOnly"></div>
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group row pb-3">
             <label asp-for="Email" class="col-sm-4 col-form-label"></label>
             <div class="col-sm-8">

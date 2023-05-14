@@ -4,6 +4,7 @@ using CarService.UI.Models;
 using CarService.UI.Models.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections;
@@ -35,12 +36,20 @@ namespace CarService.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            var registerResult = await _service.RegisterUser(model, HttpContext);
+            if (registerResult.IdentityResult.Errors.Any())
+            {
+                foreach (var error in registerResult.IdentityResult.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            await _service.RegisterUser(model, HttpContext);
             return RedirectToAction(nameof(Index));
         }
 
@@ -56,6 +65,7 @@ namespace CarService.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            await _service.LoginUser(model, HttpContext);
             if (!ModelState.IsValid)
             {
                 return View(model);

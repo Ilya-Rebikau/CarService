@@ -10,5 +10,6 @@ namespace CarService.UI.Models.Service
         public string ServiceName { get; set; }
         public byte[] ServiceImageData { get; set; }
         public int ServiceDataId { get; set; }
+        public string Desciption { get; set; }
     }
 }

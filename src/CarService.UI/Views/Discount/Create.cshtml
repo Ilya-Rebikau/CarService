@@ -1,47 +1,58 @@
 ﻿@model DiscountViewModel
 @{
-    ViewData["Title"] = "Title";
+    ViewData["Title"] = "Создание акции";
 }
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Percent" class="control-label"></label>
-                <input asp-for="Percent" required class="form-control" />
-                <span asp-validation-for="Percent" class="text-danger"></span>
+<div class="row d-flex justify-content-center pt-5 pb-3">
+    <form asp-action="Create" asp-controller="Discount" class="col-md-5 border rounded
+            border-dark py-4 px-5 bg-light bg-gradient">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <p class="fs-1 row d-flex justify-content-center">Создание акции</p>
+        <div class="form-group row pb-2">
+            <label asp-for="Percent" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="text" asp-for="Percent" required class="form-control shadow-none" />
             </div>
-            <div class="form-group">
-                <label asp-for="DateStart" class="control-label"></label>
-                <input type="date" value="@DateTime.Now.Date" required asp-for="DateStart" class="form-control" />
-                <span asp-validation-for="DateStart" class="text-danger"></span>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="DateStart" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="date" value="@DateTime.Now.Date" asp-for="DateStart" required class="form-control shadow-none" />
             </div>
-            <div class="form-group">
-                <label asp-for="DateEnd" class="control-label"></label>
-                <input type="date" value="@DateTime.Now.Date" required asp-for="DateEnd" class="form-control" />
-                <span asp-validation-for="DateEnd" class="text-danger"></span>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="DateEnd" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="date" value="@DateTime.Now.Date" asp-for="DateEnd" required class="form-control shadow-none" />
             </div>
-            <div class="form-group">
-                <label asp-for="ServiceDataId" class="control-label"></label>
-                @Html.DropDownListFor(c => c.ServiceDataId, Model.ServiceDataSelectList, "-----")
-                <span asp-validation-for="ServiceDataId" class="text-danger"></span>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="ServiceDataId" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(c => c.ServiceDataId, Model.ServiceDataSelectList, "Любая",
+                new { @class = "form-select shadow-none" })
             </div>
-            <div class="form-group">
-                <label asp-for="CarBrandId" class="control-label"></label>
-                @Html.DropDownListFor(c => c.CarBrandId, Model.CarBrandSelectList, "-----")
-                <span asp-validation-for="CarBrandId" class="text-danger"></span>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="CarBrandId" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(c => c.CarBrandId, Model.CarBrandSelectList, "Любая",
+                new { @class = "form-select shadow-none" })
             </div>
-            <div class="form-group">
-                <label asp-for="CarTypeId" class="control-label"></label>
-                @Html.DropDownListFor(c => c.CarTypeId, Model.CarTypeSelectList, "-----")
-                <span asp-validation-for="CarTypeId" class="text-danger"></span>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="CarTypeId" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(c => c.CarTypeId, Model.CarTypeSelectList, "Любой",
+                new { @class = "form-select shadow-none" })
             </div>
+        </div>
+        <div class="d-flex justify-content-center pt-3">
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Создать" class="btn btn-dark shadow-none" />
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 
 @section Scripts {

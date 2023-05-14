@@ -2,23 +2,23 @@
 @{
     ViewData["Title"] = "Пользователи";
 }
-<p class="fs-1 row d-flex justify-content-center">Управление пользователями</p>
-<div class="table-responsive row">
+<p class="fs-1 d-flex justify-content-center">Управление пользователями</p>
+<div class="row">
     <div class="col-md-auto">
         <a class="btn btn-success shadow-none fs-5" asp-action="Create">+</a>
     </div>
-    <div class="col-md-11">
-        <table class="table align-middle table-bordered table-striped table-hover">
-            <thead class="bg-dark text-center">
-                <tr>
-                    <th class="text-white">@Html.DisplayNameFor(model => model.Email)</th>
-                    <th class="text-white">@Html.DisplayNameFor(model => model.PhoneNumber)</th>
-                    <th class="text-white">@Html.DisplayNameFor(model => model.FirstName)</th>
-                    <th class="text-white">@Html.DisplayNameFor(model => model.Surname)</th>
-                    <th class="text-white">Управление</th>
+    <div class="col-md-11 table-responsive">
+        <table class="table text-center align-middle table-bordered table-striped table-hover">
+            <thead class="bg-dark align-middle">
+                <tr class="text-white">
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Surname)</th>
+                    <th>Управление</th>
                 </tr>
             </thead>
-            <tbody class="text-center">
+            <tbody>
                 @foreach (var user in Model)
                 {
                     <tr>

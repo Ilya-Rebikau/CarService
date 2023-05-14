@@ -22,9 +22,9 @@ namespace CarService.UI.Services
             return await _mainClient.GetPromocodes(token, userId);
         }
 
-        public async Task UsePromocode(string token, string text)
+        public async Task<PromocodeViewModel> UsePromocode(string token, string text)
         {
-            await _mainClient.UsePromocode(token, text);
+            return await _mainClient.UsePromocode(token, text);
         }
     }
 }

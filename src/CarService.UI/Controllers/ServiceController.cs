@@ -38,7 +38,8 @@ namespace CarService.UI.Controllers
                 ServiceDataId = serviceDataId,
                 Services = services,
                 ServiceName = serviceData.Name,
-                ServiceImageData = serviceData.ImageData
+                ServiceImageData = serviceData.ImageData,
+                Desciption = serviceData.Description
             };
             return View(serviceListViewModel);
         }

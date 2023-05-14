@@ -18,7 +18,10 @@ namespace CarService.UserAPI.Configuration
         {
             var connection = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.User.RequireUniqueEmail = true;
+                })
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<IJwtService, JwtService>();

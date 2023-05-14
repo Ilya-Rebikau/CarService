@@ -34,10 +34,26 @@ namespace CarService.MainAPI.Services
                 serviceModel.NewPrice = service.Price * ((100 - discountPercent) / 100);
             }
 
-            var carBrand = await _carBrandRepository.GetById(service.CarBrandId);
-            var carType = await _carTypeRepository.GetById(service.CarTypeId);
-            serviceModel.CarBrandName = carBrand.Name;
-            serviceModel.CarTypeName = carType.Name;
+            if (service.CarBrandId is not null)
+            {
+                var carBrand = await _carBrandRepository.GetById((int)service.CarBrandId);
+                serviceModel.CarBrandName = carBrand.Name;
+            }
+            else
+            {
+                serviceModel.CarBrandName = "Любой";
+            }
+
+            if (service.CarTypeId is not null)
+            {
+                var carType = await _carTypeRepository.GetById((int)service.CarTypeId);
+                serviceModel.CarTypeName = carType.Name;
+            }
+            else
+            {
+                serviceModel.CarTypeName = "Любая";
+            }
+
             return serviceModel;
         }
 
@@ -47,11 +63,27 @@ namespace CarService.MainAPI.Services
             var serviceModels = new List<ServiceModel>();
             foreach (var service in services)
             {
-                var carBrand = await _carBrandRepository.GetById(service.CarBrandId);
-                var carType = await _carTypeRepository.GetById(service.CarTypeId);
                 var serviceModel = _mapper.Map<ServiceModel>(service);
-                serviceModel.CarBrandName = carBrand.Name;
-                serviceModel.CarTypeName = carType.Name;
+                if (service.CarBrandId is not null)
+                {
+                    var carBrand = await _carBrandRepository.GetById((int)service.CarBrandId);
+                    serviceModel.CarBrandName = carBrand.Name;
+                }
+                else
+                {
+                    serviceModel.CarBrandName = "Любой";
+                }
+
+                if (service.CarTypeId is not null)
+                {
+                    var carType = await _carTypeRepository.GetById((int)service.CarTypeId);
+                    serviceModel.CarTypeName = carType.Name;
+                }
+                else
+                {
+                    serviceModel.CarTypeName = "Любая";
+                }
+                
                 var discountPercent = GetMaxDiscount(service.CarTypeId, service.CarBrandId, service.ServiceDataId);
                 if (discountPercent > 0)
                 {
@@ -91,6 +123,12 @@ namespace CarService.MainAPI.Services
 
         private void CheckForSameService(Service service)
         {
+            if (Repository.GetAll().Any(s => s.CarBrandId == null && s.CarTypeId == null &&
+                s.ServiceDataId == service.ServiceDataId && s.Id != service.Id))
+            {
+                throw new MyException("Уже есть услуга для любых видов авто");
+            }
+
             if (Repository.GetAll().Any(s => s.CarTypeId == service.CarTypeId && s.CarBrandId == service.CarBrandId
                 && s.ServiceDataId == service.ServiceDataId && s.Id != service.Id))
             {
@@ -98,7 +136,7 @@ namespace CarService.MainAPI.Services
             }
         }
 
-        private int GetMaxDiscount(int carTypeId, int carBrandId, int serviceDataId)
+        private int GetMaxDiscount(int? carTypeId, int? carBrandId, int serviceDataId)
         {
             var currentDiscounts = _discountRepository.GetAll().Where(d => d.DateStart <= DateTime.Now &&
                 d.DateEnd >= DateTime.Now).ToList();
@@ -134,7 +172,7 @@ namespace CarService.MainAPI.Services
             return percent;
         }
 
-        private static int GetDiscountPercentForType(List<Discount> discounts, int carTypeId)
+        private static int GetDiscountPercentForType(List<Discount> discounts, int? carTypeId)
         {
             discounts = discounts.Where(d => d.CarTypeId == carTypeId &&
                 d.CarBrandId == null && d.ServiceDataId == null).ToList();
@@ -147,7 +185,7 @@ namespace CarService.MainAPI.Services
             return percent;
         }
 
-        private static int GetDiscountPercentForBrand(List<Discount> discounts, int carBrandId)
+        private static int GetDiscountPercentForBrand(List<Discount> discounts, int? carBrandId)
         {
             discounts = discounts.Where(d => d.CarTypeId == null &&
                 d.CarBrandId == carBrandId && d.ServiceDataId == null).ToList();
@@ -173,7 +211,7 @@ namespace CarService.MainAPI.Services
             return percent;
         }
 
-        private static int GetDiscountPercentForTypeAndBrand(List<Discount> discounts, int carTypeId, int carBrandId)
+        private static int GetDiscountPercentForTypeAndBrand(List<Discount> discounts, int? carTypeId, int? carBrandId)
         {
             discounts = discounts.Where(d => d.CarTypeId == carTypeId &&
                 d.CarBrandId == carBrandId && d.ServiceDataId == null).ToList();
@@ -186,7 +224,7 @@ namespace CarService.MainAPI.Services
             return percent;
         }
 
-        private static int GetDiscountPercentForTypeAndService(List<Discount> discounts, int carTypeId, int serviceDataId)
+        private static int GetDiscountPercentForTypeAndService(List<Discount> discounts, int? carTypeId, int serviceDataId)
         {
             discounts = discounts.Where(d => d.CarTypeId == carTypeId &&
                 d.CarBrandId == null && d.ServiceDataId == serviceDataId).ToList();
@@ -199,7 +237,7 @@ namespace CarService.MainAPI.Services
             return percent;
         }
 
-        private static int GetDiscountPercentForBrandAndService(List<Discount> discounts, int carBrandId, int serviceDataId)
+        private static int GetDiscountPercentForBrandAndService(List<Discount> discounts, int? carBrandId, int serviceDataId)
         {
             discounts = discounts.Where(d => d.CarTypeId == null &&
                 d.CarBrandId == carBrandId && d.ServiceDataId == serviceDataId).ToList();
@@ -212,8 +250,8 @@ namespace CarService.MainAPI.Services
             return percent;
         }
 
-        private static int GetDiscountPercentForBrandAndTypeAndService(List<Discount> discounts, int carBrandId,
-            int carTypeId, int serviceDataId)
+        private static int GetDiscountPercentForBrandAndTypeAndService(List<Discount> discounts, int? carBrandId,
+            int? carTypeId, int serviceDataId)
         {
             discounts = discounts.Where(d => d.CarTypeId == carTypeId &&
                 d.CarBrandId == carBrandId && d.ServiceDataId == serviceDataId).ToList();

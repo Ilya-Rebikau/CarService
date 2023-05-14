@@ -26,10 +26,15 @@ namespace CarService.UI.Services
             _userClient = userClient;
         }
 
-        public async Task RegisterUser(RegisterViewModel model, HttpContext httpContext)
+        public async Task<RegisterResultModel> RegisterUser(RegisterViewModel model, HttpContext httpContext)
         {
-            var token = await _userClient.Register(model);
-            await SignIn(token, httpContext);
+            var registerResultModel = await _userClient.Register(model);
+            if (registerResultModel.IdentityResult.Succeeded)
+            {
+                await SignIn(registerResultModel.Token, httpContext);
+            }
+
+            return registerResultModel;
         }
 
         public async Task LoginUser(LoginViewModel model, HttpContext httpContext)

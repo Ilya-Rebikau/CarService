@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CarService.DAL.Interfaces;
 using CarService.DAL.Models;
+using CarService.MainAPI.Infrastructure;
 using CarService.MainAPI.Interfaces;
 using CarService.MainAPI.Models;
 
@@ -23,6 +24,31 @@ namespace CarService.MainAPI.Services
             _serviceDataRepository = serviceDataRepository;
         }
 
+        public override async Task<Discount> Create(Discount obj)
+        {
+            CheckForRightDates(obj);
+            return await base.Create(obj);
+        }
+
+        public override async Task<Discount> Update(Discount obj)
+        {
+            CheckForRightDates(obj);
+            return await base.Update(obj);
+        }
+
+        private static void CheckForRightDates(Discount obj)
+        {
+            if (obj.DateStart > obj.DateEnd)
+            {
+                throw new MyException("Дата начала акции должна быть раньше её конца!");
+            }
+
+            if (obj.DateStart.Date < DateTime.Now.Date || obj.DateEnd.Date < DateTime.Now.Date)
+            {
+                throw new MyException("Акцию нельзя создать в прошедшем времени!");
+            }
+        }
+
         public async Task CreateDiscountModel(DiscountModel model)
         {
             var discount = _mapper.Map<Discount>(model);
@@ -31,7 +57,14 @@ namespace CarService.MainAPI.Services
 
         public async Task<IEnumerable<DiscountModel>> GetAllDiscountModels()
         {
-            var discounts = Repository.GetAll();
+            var discounts = Repository.GetAll().ToList();
+            var discountsForDelete = discounts.Where(d => d.DateEnd.Date < DateTime.Now.Date);
+            foreach (var discount in discountsForDelete)
+            {
+                discounts.Remove(discount);
+                await Delete(discount);
+            }
+
             var discountModels = new List<DiscountModel>();
             foreach (var discount in discounts)
             {

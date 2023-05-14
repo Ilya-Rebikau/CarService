@@ -96,7 +96,7 @@ namespace CarService.UI.Interfaces.HttpClients
         public Task<IEnumerable<PromocodeViewModel>> GetPromocodes([Header(AuthorizationKey)] string token, [Query] string userId, CancellationToken cancellationToken = default);
 
         [Post("promocode/usepromocode")]
-        public Task UsePromocode([Header(AuthorizationKey)] string token, [Query] string text, CancellationToken cancellationToken = default);
+        public Task<PromocodeViewModel> UsePromocode([Header(AuthorizationKey)] string token, [Query] string text, CancellationToken cancellationToken = default);
 
         [Post("promocode/create")]
         public Task CreatePromocode([Header(AuthorizationKey)] string token, [Body] PromocodeViewModel promocode, CancellationToken cancellationToken = default);

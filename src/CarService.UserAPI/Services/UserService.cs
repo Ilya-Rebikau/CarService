@@ -4,6 +4,7 @@ using CarService.UserAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using AutoMapper;
+using CarService.UserAPI.Infrastructure;
 
 namespace CarService.UserAPI.Services
 {
@@ -80,8 +81,19 @@ namespace CarService.UserAPI.Services
             var userRoles = await _userManager.GetRolesAsync(user);
             var addedRoles = model.UserRoles.Except(userRoles).ToList();
             var removedRoles = userRoles.Except(model.UserRoles).ToList();
+            var admins = await _userManager.GetUsersInRoleAsync("admin");
+            if (admins.Count == 1 && removedRoles.Contains("admin"))
+            {
+                throw new MyException("Нельзя убрать единственного администратора");
+            }
+
             await _userManager.AddToRolesAsync(user, addedRoles);
             await _userManager.RemoveFromRolesAsync(user, removedRoles);
+            userRoles = await _userManager.GetRolesAsync(user);
+            if (!userRoles.Any())
+            {
+                await _userManager.AddToRoleAsync(user, "user");
+            }
         }
 
         public Task<IEnumerable<User>> GetUsers(int pageNumber)

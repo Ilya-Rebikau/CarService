@@ -35,7 +35,7 @@ namespace CarService.MainAPI.Controllers
             }
 
             await _promocodeService.DeleteById(promocode.Id);
-            return Ok();
+            return Ok(promocode);
         }
 
         [Authorize(Roles = "admin, manager, user")]

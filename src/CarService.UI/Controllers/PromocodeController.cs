@@ -25,8 +25,14 @@ namespace CarService.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> UsePromocode(PromocodeViewModel promocode)
         {
-            await _promocodeService.UsePromocode(HttpContext.GetJwt(), promocode.Text);
-            return RedirectToAction(nameof(Index), typeof(HomeController).GetControllerName());
+            promocode = await _promocodeService.UsePromocode(HttpContext.GetJwt(), promocode.Text);
+            return RedirectToAction(nameof(UsePromocodeResult), new { percent = promocode.Percent });
+        }
+
+        [HttpGet]
+        public IActionResult UsePromocodeResult(int percent)
+        {
+            return View(percent);
         }
 
         [HttpGet]

@@ -1,22 +1,22 @@
 ﻿@model CarTypeViewModel
 @{
-    ViewData["Title"] = "Редактирование типа";
+    ViewData["Title"] = "Редактирование типа техники";
 }
-<div class="row d-flex justify-content-center pb-3">
+<div class="row d-flex justify-content-center py-5">
     <form asp-action="Edit" asp-controller="CarType" class="col-md-5 border rounded
             border-dark py-5 px-5 bg-light bg-gradient">
-        <p class="fs-1 row d-flex justify-content-center">Редактирование типа техники</p>
+        <p class="fs-1 row d-flex justify-content-center text-center pb-3">Редактирование типа техники</p>
         <div asp-validation-summary="All" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
         <div class="form-group row pb-2">
-            <label asp-for="Name" class="col-sm-5 col-form-label"></label>
-            <div class="col-sm-7">
+            <label asp-for="Name" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9">
                 <input type="text" asp-for="Name" required class="form-control shadow-none" />
             </div>
         </div>
         <div class="d-flex justify-content-center">
             <div class="form-group">
-                <input type="submit" value="Редактировать" class="btn btn-dark shadow-none" />
+                <input type="submit" value="Редактировать" class="btn btn-dark shadow-none mt-4" />
             </div>
         </div>
     </form>

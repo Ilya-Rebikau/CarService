@@ -99,4 +99,7 @@
   <ItemGroup>
     <RefactorLog Include="CarService.Database.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="CarService.Database.publish.xml" />
+  </ItemGroup>
 </Project>

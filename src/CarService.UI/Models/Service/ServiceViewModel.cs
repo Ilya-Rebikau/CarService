@@ -17,12 +17,16 @@ namespace CarService.UI.Models.Service
         [DataType(DataType.Currency)]
         public decimal? NewPrice { get; set; }
 
-        [Display(Name = "Примерное время ремонта, мин")]
+        [Display(Name = "Примерное время работы, мин")]
         [Range(1, int.MaxValue, ErrorMessage = "Время работы не может быть 0 или отрицательным")]
-        [Required(ErrorMessage = "Примерное время ремонта обязательно для ввода")]
+        [Required(ErrorMessage = "Примерное время работы обязательно для ввода")]
         public int MinutesSpent { get; set; }
-        public int CarBrandId { get; set; }
-        public int CarTypeId { get; set; }
+
+        [Display(Name = "Марка авто")]
+        public int? CarBrandId { get; set; }
+
+        [Display(Name = "Тип техники")]
+        public int? CarTypeId { get; set; }
         public int ServiceDataId { get; set; }
 
         [Display(Name = "Тип техники")]

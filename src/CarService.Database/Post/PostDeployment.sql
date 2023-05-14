@@ -17,13 +17,3 @@ values
 insert into dbo.AspNetUserRoles
 values 
 ('72357c52-99fd-43c1-898e-9ff3bb7aa6e9', '420ecee9-cf46-4824-9dd5-84cabe7748aa')
-
----CarBrands
-insert into dbo.CarBrands
-values
-('BMW', NULL), ('Mersedes', NULL), ('Audi', NULL)
-
----CarTypes
-insert into dbo.CarTypes
-values
-(N'Легковой автомобиль'), (N'Грузовой автомобиль'), (N'Мотоцикл')

@@ -2,5 +2,6 @@
 (
 	[Id] INT identity PRIMARY KEY, 
 	[Name] NVARCHAR(100) NOT NULL, 
-	[ImageData] VARBINARY(MAX) NULL
+	[ImageData] VARBINARY(MAX) NULL, 
+    [Description] NVARCHAR(MAX) NULL
 )

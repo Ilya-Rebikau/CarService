@@ -6,6 +6,6 @@ namespace CarService.UI.Interfaces
     {
         Task Create(string token, PromocodeViewModel promocode);
         Task<IEnumerable<PromocodeViewModel>> GetAllByUser(string token, string userId);
-        Task UsePromocode(string token, string text);
+        Task<PromocodeViewModel> UsePromocode(string token, string text);
     }
 }

@@ -10,8 +10,8 @@ namespace CarService.DAL.Models
         public int Id { get; set; }
         public decimal Price { get; set; }
         public int MinutesSpent { get; set; }
-        public int CarBrandId { get; set; }
-        public int CarTypeId { get; set; }
+        public int? CarBrandId { get; set; }
+        public int? CarTypeId { get; set; }
         public int ServiceDataId { get; set; }
     }
 }

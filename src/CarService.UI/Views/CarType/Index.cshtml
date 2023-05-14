@@ -1,22 +1,22 @@
 ﻿@model IEnumerable<CarTypeViewModel>
 @{
-    ViewData["Title"] = "title";
+    ViewData["Title"] = "Обслуживаемые типы техники";
 }
 
+<p class="fs-1 d-flex justify-content-center">Обслуживаемые типы техники</p>
 <div class="table-responsive row">
     <div class="col-md-auto">
         <a class="btn btn-success shadow-none fs-5" asp-action="Create">+</a>
     </div>
-
     <div class="col-md-11">
-        <table class="table align-middle table-bordered table-striped table-hover">
-            <thead class="bg-dark text-center">
+        <table class="table align-middle text-center table-bordered table-striped table-hover">
+            <thead class="bg-dark align-middle">
                 <tr>
                     <th class="text-white">@Html.DisplayNameFor(model => model.Name)</th>
                     <th class="text-white">Управление</th>
                 </tr>
             </thead>
-            <tbody class="text-center">
+            <tbody>
                 @foreach (var carType in Model)
                 {
                     <tr>

@@ -11,7 +11,7 @@ namespace CarService.UI.Interfaces.HttpClients
         private const string AuthorizationKey = "Authorization";
 
         [Post("account/register")]
-        public Task<string> Register([Body] RegisterViewModel userModel, CancellationToken cancellationToken = default);
+        public Task<RegisterResultModel> Register([Body] RegisterViewModel userModel, CancellationToken cancellationToken = default);
 
         [Post("account/login")]
         public Task<string> Login([Body] LoginViewModel userModel, CancellationToken cancellationToken = default);

@@ -3,41 +3,75 @@
     ViewData["Title"] = "Запись на услугу";
 }
 
-<p class="fs-1 row d-flex justify-content-center">Запись</p>
-<form asp-action="Create" method="post">
-    <input type="hidden" asp-for="NewAppointment.ServiceId" />
-    <input type="hidden" asp-for="NewAppointment.WasFinished" />
-    <div class="form-group">
-        <label asp-for="NewAppointment.DateTimeStart" class="control-label"></label>
-        <input type="datetime-local" value="@DateTime.Now" required asp-for="NewAppointment.DateTimeStart" class="form-control" />
-        <span asp-validation-for="NewAppointment.DateTimeStart" class="text-danger"></span>
+<p class="fs-1 d-flex justify-content-center">Запись</p>
+<div class="d-flex justify-content-center">
+    <div class="col-md-6 border rounded border-dark py-3 px-5 bg-light bg-gradient">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="NewAppointment.ServiceId" />
+            <input type="hidden" asp-for="NewAppointment.WasFinished" />
+            <div class="form-group row pb-2">
+                <label asp-for="NewAppointment.DateTimeStart" class="col-sm-6 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="datetime-local" value="@DateTime.Now" asp-for="NewAppointment.DateTimeStart" required class="form-control shadow-none" />
+                </div>
+            </div>
+            <div class="form-group row pb-2">
+                <label asp-for="NewAppointment.Message" class="col-sm-6 col-form-label"></label>
+                <div class="col-sm-6">
+                    <textarea type="datetime-local" rows="4" asp-for="NewAppointment.Message" class="form-control shadow-none"></textarea>
+                </div>
+            </div>
+            <div class="text-center pt-3">
+                <button type="submit" class="btn btn-dark shadow-none">Записаться</button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label asp-for="NewAppointment.Message" class="control-label"></label>
-        <input asp-for="NewAppointment.Message" class="form-control" />
-        <span asp-validation-for="NewAppointment.Message" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary shadow-none">Записаться</button>
-</form>
+</div>
 
-@if (Model.Date.AddDays(-1) >= DateTime.Now.Date)
-{
-    @Html.ActionLink("<", "Index", new { serviceId = Model.NewAppointment.ServiceId, dateTime = Model.Date.AddDays(-1).ToString("dd-MM-yyyy") })
-}
-@if (Model.Date <= DateTime.Now.Date.AddDays(14))
-{
-    @Html.ActionLink(">", "Index", new { serviceId = Model.NewAppointment.ServiceId, dateTime = Model.Date.AddDays(1).ToString("dd-MM-yyyy") })
-}
+<div class="d-flex justify-content-center pt-3">
+    <p class="fs-4">Занятое время на @Model.Date.ToLongDateString()</p>
+</div>
 
-@if (Model.Appointments.Any())
-{
-    <p class="fs-5">Занятое время на @Model.Date.ToLongDateString().</p>
-    foreach (var appointment in Model.Appointments)
+<div class="d-flex justify-content-center">
+    @if (Model.Date.AddDays(-1) >= DateTime.Now.Date)
     {
-        <button disabled class="btn btn-danger">@appointment.DateTimeStart.ToShortTimeString() - @appointment.DateTimeEnd.ToShortTimeString()</button>
+        @Html.ActionLink("<", "Index",
+    new { serviceId = Model.NewAppointment.ServiceId, dateTime = Model.Date.AddDays(-1).ToString("dd-MM-yyyy") },
+    new { @class = "btn btn-dark shadow-none" })
     }
-}
-else
-{
-    <p class="fs-5">На @Model.Date.ToLongDateString() записей ещё нет. Станьте первым!</p>
-}
+
+    @if (Model.Date <= DateTime.Now.Date.AddDays(14))
+    {
+        @Html.ActionLink(">", "Index",
+    new { serviceId = Model.NewAppointment.ServiceId, dateTime = Model.Date.AddDays(1).ToString("dd-MM-yyyy") },
+    new { @class = "btn btn-dark shadow-none ms-1" })
+    }
+</div>
+<div class="pt-3">
+    @{
+        int totalInRow = 8;
+    }
+    @if (Model.Appointments.Any())
+    {
+        @for (int i = 0; i < Math.Ceiling(Model.Appointments.Count() / (float)totalInRow); i++)
+        {
+            <div class="d-flex justify-content-center row pb-3">
+                @{
+                    int rowCount = 0;
+                }
+                @for (int j = i * totalInRow; j < Model.Appointments.Count() && rowCount < totalInRow; j++)
+                {
+                    <button disabled class="col-auto btn btn-danger mx-1">
+                        @Model.Appointments.ElementAt(j).DateTimeStart.ToShortTimeString() - @Model.Appointments.ElementAt(j).DateTimeEnd.ToShortTimeString()
+                    </button>
+                    rowCount++;
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <p class="d-flex justify-content-center fs-5">Записей ещё нет. Станьте первым!</p>
+    }
+</div>

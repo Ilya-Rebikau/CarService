@@ -18,5 +18,9 @@ namespace CarService.UI.Models.Service
 
         [Display(Name = "Удалить текущую картинку?")]
         public bool DeletePhoto { get; set; }
+
+        [Display(Name = "Почему это важно?")]
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
     }
 }

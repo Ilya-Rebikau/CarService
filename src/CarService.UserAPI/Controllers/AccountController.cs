@@ -26,8 +26,12 @@ namespace CarService.UserAPI.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var registerResult = await _service.RegisterUser(model);
-            return registerResult.IdentityResult.Succeeded ? Ok(_jwtService.GetJwt(registerResult.User, registerResult.Roles))
-                : throw new MyException("Ошибка регистрации. user уже существует.");
+            if (registerResult.IdentityResult.Succeeded)
+            {
+                registerResult.Token = _jwtService.GetJwt(registerResult.User, registerResult.Roles);
+            }
+
+            return Ok(registerResult);
         }
 
         [AllowAnonymous]

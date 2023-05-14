@@ -36,6 +36,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Appointment" asp-action="GetAll">Записи</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Promocode" asp-action="UsePromocode">Активировать промокод</a>
+                            </li>
                         }
                         @if (User.IsInRole("admin"))
                         {
@@ -47,24 +50,30 @@
                             </li>
                         }
                     </ul>
+                    <ul class="navbar-nav d-flex justify-content-end px-1">
+                        <li class="nav-item text-center text-white">
+                            Без выходных с 8:00 до 20:00<br />
+                            +375 (29) 108-65-83
+                        </li>
+                    </ul>
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <ul class="navbar-nav flex-grow-1 justify-content-end">
-                            <li class="nav-item justify-content-end">
+                        <ul class="navbar-nav d-flex justify-content-end">
+                            <li class="nav-item">
                                 <a class="nav-link text-white" asp-controller="Account" asp-action="Login">Вход</a>
                             </li>
-                            <li class="nav-item justify-content-end">
+                            <li class="nav-item">
                                 <a class="nav-link text-white" asp-controller="Account" asp-action="Register">Регистрация</a>
                             </li>
                         </ul>
                     }
                     else
                     {
-                        <ul class="navbar-nav flex-grow-1 justify-content-end">
-                            <li class="nav-item justify-content-end">
+                        <ul class="navbar-nav d-flex justify-content-end">
+                            <li class="nav-item">
                                 <a class="nav-link text-white" asp-controller="Account" asp-action="Index">Личный кабинет</a>
                             </li>
-                            <li class="nav-item justify-content-end">
+                            <li class="nav-item">
                                 <form method="post" asp-controller="Account" asp-action="Logout">
                                     <input class="btn_exit" type="submit" value="Выход" />
                                 </form>

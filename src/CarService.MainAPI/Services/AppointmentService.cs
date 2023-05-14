@@ -79,9 +79,29 @@ namespace CarService.MainAPI.Services
                 var appointmentModel = _mapper.Map<AppointmentModel>(appointment);
                 var service = await _serviceRepository.GetById(appointment.ServiceId);
                 var serviceData = await _serviceDataRepository.GetById(service.ServiceDataId);
-                var carBrand = await _carBrandRepository.GetById(service.CarBrandId);
-                var carType = await _carTypeRepository.GetById(service.CarTypeId);
-                appointmentModel.ServiceData = $"{serviceData.Name}, марка {carBrand.Name}, тип {carType.Name}";
+                var carBrandName = string.Empty;
+                var carTypeName = string.Empty;
+                if (service.CarBrandId is not null)
+                {
+                    var carBrand = await _carBrandRepository.GetById((int)service.CarBrandId);
+                    carBrandName = carBrand.Name;
+                }
+                else
+                {
+                    carBrandName = "Любой";
+                }
+
+                if (service.CarTypeId is not null)
+                {
+                    var carType = await _carTypeRepository.GetById((int)service.CarTypeId);
+                    carTypeName = carType.Name;
+                }
+                else
+                {
+                    carTypeName = "Любая";
+                }
+
+                appointmentModel.ServiceData = $"{serviceData.Name}, марка {carBrandName}, тип {carTypeName}";
                 appointmentModels.Add(appointmentModel);
             }
 
@@ -159,10 +179,30 @@ namespace CarService.MainAPI.Services
                 var appointmentModel = _mapper.Map<AppointmentModel>(appointment);
                 var service = await _serviceRepository.GetById(appointment.ServiceId);
                 var serviceData = await _serviceDataRepository.GetById(service.ServiceDataId);
-                var carBrand = await _carBrandRepository.GetById(service.CarBrandId);
-                var carType = await _carTypeRepository.GetById(service.CarTypeId);
+                var carBrandName = string.Empty;
+                var carTypeName = string.Empty;
+                if (service.CarBrandId is not null)
+                {
+                    var carBrand = await _carBrandRepository.GetById((int)service.CarBrandId);
+                    carBrandName = carBrand.Name;
+                }
+                else
+                {
+                    carBrandName = "Любой";
+                }
+
+                if (service.CarTypeId is not null)
+                {
+                    var carType = await _carTypeRepository.GetById((int)service.CarTypeId);
+                    carTypeName = carType.Name;
+                }
+                else
+                {
+                    carTypeName = "Любая";
+                }
+
                 appointmentModel.UserEmail = await _userClient.GetUserEmail(token, appointment.UserId);
-                appointmentModel.ServiceData = $"{serviceData.Name}, марка {carBrand.Name}, тип {carType.Name}";
+                appointmentModel.ServiceData = $"{serviceData.Name}, марка {carBrandName}, тип {carTypeName}";
                 appointmentModels.Add(appointmentModel);
             }
 

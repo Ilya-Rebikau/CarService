@@ -4,9 +4,14 @@
 }
 
 <p class="fs-1 row d-flex justify-content-center">Подробности об услуге @Model.ServiceName</p>
-<img alt="Картинка услуги" style="height: 300px" class="img-thumbnail img-fluid"
-        src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ServiceImageData))" />
-<div class="table-responsive row">
+<div class="d-flex justify-content-center">
+    <p class="fs-5" align="justify">
+        <img alt="Картинка услуги" style="height: 300px" class="img-thumbnail img-fluid me-5 mb-1" align="left"
+         src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ServiceImageData))" />
+    @Model.Desciption</p>
+</div>
+<hr />
+<div class="row pt-3">
     @if (User.IsInRole("admin") || User.IsInRole("manager"))
     {
         <div class="col-md-auto">
@@ -14,15 +19,16 @@
            asp-route-serviceDataId="@Model.ServiceDataId">+</a>
         </div>
     }
-    <div class="col-md-11">
-        <table class="table align-middle table-bordered table-striped table-hover">
-            <thead class="bg-dark text-center">
+    <div class="col-md-11 table-responsive">
+        <table class="table text-center align-middle table-bordered table-striped table-hover">
+            <thead class="bg-dark align-middle">
                 <tr class="text-white">
                     <th>Тип техники</th>
                     <th>Марка автомобиля</th>
                     <th>Цена, BYN</th>
                     <th>Цена с учётом скидки, BYN</th>
-                    <th >Примерное время ремонта, мин</th>
+                    <th>Примерное время ремонта, мин</th>
+                    <th>Запись</th>
                     <th>Управление</th>
                 </tr>
             </thead>
@@ -44,27 +50,29 @@
                         }
 
                         <td>@service.MinutesSpent</td>
-                        <td>
-                            <div class="row d-flex justify-content-center">
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a class="col-auto btn btn-dark shadow-none" asp-controller="Appointment" asp-action="Index" asp-route-serviceId="@service.Id">Записаться</a>
-                                }
-                                else
-                                {
-                                    <p>Для записи на услугу необходимо войти в учётную запись</p>
-                                }
-                                @if (User.IsInRole("admin") || User.IsInRole("manager"))
-                                {
-                                    <a class="col-auto btn btn-dark shadow-none" asp-action="Edit" asp-route-id="@service.Id">Редактировать</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <td>
+                                <a class="col-auto btn btn-dark shadow-none" asp-controller="Appointment" asp-action="Index" asp-route-serviceId="@service.Id">Записаться</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td rowspan="4">Для записи на услугу необходимо войти в учётную запись</td>
+                        }
+
+                        @if (User.IsInRole("admin") || User.IsInRole("manager"))
+                        {
+                            <td style="width:22%">
+                                <div class="row">
+                                    <a class="ms-3 btn btn-dark shadow-none col-auto" asp-action="Edit" asp-route-id="@service.Id">Редактировать</a>
                                     <form class="col-auto" asp-action="Delete" asp-route-id="@service.Id"
-                                  asp-route-serviceDataId="@Model.ServiceDataId" method="post">
+                                        asp-route-serviceDataId="@Model.ServiceDataId" method="post">
                                         <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
                                     </form>
-                                }
-                            </div>
-
-                        </td>
+                                </div>
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>

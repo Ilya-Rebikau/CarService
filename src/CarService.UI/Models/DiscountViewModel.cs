@@ -17,12 +17,18 @@ namespace CarService.UI.Models
         [Required(ErrorMessage = "Дата начала акции обязательна")]
         public DateTime DateStart { get; set; }
 
-        [Display(Name = "Дата конца акции, включительно")]
+        [Display(Name = "Дата конца акции")]
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Дата конца акции обязательна")]
         public DateTime DateEnd { get; set; }
+
+        [Display(Name = "Услуга")]
         public int? ServiceDataId { get; set; }
+
+        [Display(Name = "Марка авто")]
         public int? CarBrandId { get; set; }
+
+        [Display(Name = "Тип техники")]
         public int? CarTypeId { get; set; }
 
         [Display(Name = "Тип услуги")]

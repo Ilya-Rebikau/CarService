@@ -11,23 +11,26 @@
     </div>
 }
 
-@for (int i = 0; i < Math.Ceiling(Model.Count() / 3f); i++)
+@{
+    int totalInRow = 3;
+}
+@for (int i = 0; i < Math.Ceiling(Model.Count() / (float)totalInRow); i++)
 {
     <div class="row pb-3">
         @{
             int rowCount = 0;
         }
-        @for (int j = i * 3; j < Model.Count() && rowCount < 3; j++)
+        @for (int j = i * totalInRow; j < Model.Count() && rowCount < totalInRow; j++)
         {
             <div class="col-auto" style="max-width: 33%;">
-                <a asp-controller="Service" asp-action="Index"
+                <a asp-controller="Service" asp-action="Index" class="shadow-none" style="text-decoration:none; color:black"
                     asp-route-serviceDataId="@Model.ElementAt(j).Id">
                     @if (Model.ElementAt(j).ImageData is not null && Model.ElementAt(j).ImageData.Length > 0)
                     {
                         <img alt="Картинка услуги" style="height: 300px" class="img-thumbnail img-fluid"
                              src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ElementAt(j).ImageData))" />
                     }
-                    <figcaption>
+                    <figcaption class="d-flex justify-content-center fs-4">
                         @Model.ElementAt(j).Name
                     </figcaption>
                 </a>

@@ -1,52 +1,50 @@
 ﻿@model ServiceViewModel
 @{
-    ViewData["Title"] = "Title";
+    ViewData["Title"] = "Создание услуги";
 }
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ServiceDataId" />
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" required class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+<div class="row d-flex justify-content-center pt-5 pb-3">
+    <form asp-action="Create" asp-controller="Service" class="col-md-7 border rounded
+            border-dark py-4 px-5 bg-light bg-gradient">
+        <input type="hidden" asp-for="ServiceDataId" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <p class="fs-1 row d-flex justify-content-center">Создание услуги</p>
+        <div class="form-group row pb-2">
+            <label asp-for="Price" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="number" asp-for="Price" required class="form-control shadow-none" />
             </div>
-            <div class="form-group">
-                <label asp-for="MinutesSpent" class="control-label"></label>
-                <input asp-for="MinutesSpent" required class="form-control" />
-                <span asp-validation-for="MinutesSpent" class="text-danger"></span>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="MinutesSpent" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="text" asp-for="MinutesSpent" required class="form-control shadow-none" />
             </div>
-            <div class="form-group">
-                <label asp-for="CarBrandId" class="control-label"></label>
-                @Html.DropDownListFor(c => c.CarBrandId, Model.CarBrandSelectList)
-                <span asp-validation-for="CarBrandId" class="text-danger"></span>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="CarBrandId" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(c => c.CarBrandId, Model.CarBrandSelectList, "Любая",
+                new { @class = "form-select shadow-none" })
             </div>
-            <div class="form-group">
-                <label asp-for="CarTypeId" class="control-label"></label>
-                @Html.DropDownListFor(c => c.CarTypeId, Model.CarTypeSelectList)
-                <span asp-validation-for="CarTypeId" class="text-danger"></span>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="CarTypeId" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(c => c.CarTypeId, Model.CarTypeSelectList, "Любой",
+                new { @class = "form-select shadow-none" })
             </div>
+        </div>
+        <div class="d-flex justify-content-center pt-3">
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Создать" class="btn btn-dark shadow-none" />
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    <script>
-        $.validator.methods.range = function (value, element, param) {
-            var globalizedValue = value.replace(",", ".");
-            return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
-        }
-
-        $.validator.methods.number = function (value, element) {
-            return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
-        }
-    </script>
 }
