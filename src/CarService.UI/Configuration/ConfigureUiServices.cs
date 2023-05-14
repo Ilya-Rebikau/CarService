@@ -49,6 +49,10 @@ namespace CarService.UI.Configuration
                 return RestClient.For<IMainClient>(baseUrl);
             });
             services.AddDetection();
+            services.AddHttpsRedirection(options =>
+            {
+                options.HttpsPort = 443;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MVC", Version = "v1" });
