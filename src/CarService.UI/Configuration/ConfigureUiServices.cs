@@ -48,6 +48,7 @@ namespace CarService.UI.Configuration
                 var baseUrl = configuration["MainApiAddress"];
                 return RestClient.For<IMainClient>(baseUrl);
             });
+            services.AddDetection();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MVC", Version = "v1" });

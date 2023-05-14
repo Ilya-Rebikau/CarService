@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CarBrandViewModel>
+@inject Wangkanai.Detection.Services.IDetectionService detectionService
 @{
     ViewData["Title"] = "Обслуживаемые марки";
 }
@@ -13,6 +14,12 @@
 <div class="container ps-5">
     @{
         int totalInRow = 4;
+        int height = 200;
+    }
+    @if (detectionService.Device.Type == Wangkanai.Detection.Models.Device.Mobile)
+    {
+        totalInRow = 3;
+        height = 100;
     }
     @for (int i = 0; i < Math.Ceiling(Model.Count() / (float)totalInRow); i++)
     {
@@ -25,7 +32,7 @@
                 <div class="col-auto px-5" style="max-width: 25%;">
                     @if (Model.ElementAt(j).ImageData is not null && Model.ElementAt(j).ImageData.Length > 0)
                     {
-                        <img alt="Лого марки" style="height: 200px" class="img-fluid"
+                        <img alt="Лого марки" style="height: {@height}px" class="img-fluid"
                              src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ElementAt(j).ImageData))" />
                         <figcaption class="d-flex justify-content-center fs-4">
                             @Model.ElementAt(j).Name

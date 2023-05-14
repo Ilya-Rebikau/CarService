@@ -1,12 +1,21 @@
 ﻿@model AccountViewModel
+@inject Wangkanai.Detection.Services.IDetectionService detectionService
 @{
     ViewData["Title"] = "Личный кабинет";
 }
 
 <p class="fs-1 pb-3 justify-content-center">Личный кабинет</p>
-
+@{
+    string col = "col-5";
+    int maxWidth = 35;
+}
+@if (detectionService.Device.Type == Wangkanai.Detection.Models.Device.Mobile)
+{
+    maxWidth = 100;
+    col = "col-auto";
+}
 <div class="row d-flex">
-    <div class="col-6 border rounded border-dark py-3 px-5 bg-light bg-gradient" style="max-width: 35%">
+    <div class="@col border rounded border-dark py-3 px-5 bg-light bg-gradient" style="max-width: {@maxWidth}%">
         @{
             if (Model.Photo is not null && Model.Photo.Length != 0)
             {

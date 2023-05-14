@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ServiceDataViewModel>
+@inject Wangkanai.Detection.Services.IDetectionService detectionService
 @{
     ViewData["Title"] = "Список услуг";
 }
@@ -13,7 +14,13 @@
 
 @{
     int totalInRow = 3;
+    int height = 300;
 }
+@if (detectionService.Device.Type == Wangkanai.Detection.Models.Device.Mobile)
+{
+    height = 100;
+}
+
 @for (int i = 0; i < Math.Ceiling(Model.Count() / (float)totalInRow); i++)
 {
     <div class="row pb-3">
@@ -27,7 +34,7 @@
                     asp-route-serviceDataId="@Model.ElementAt(j).Id">
                     @if (Model.ElementAt(j).ImageData is not null && Model.ElementAt(j).ImageData.Length > 0)
                     {
-                        <img alt="Картинка услуги" style="height: 300px" class="img-thumbnail img-fluid"
+                        <img alt="Картинка услуги" style="height: {@height}px;" class="img-thumbnail img-fluid"
                              src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ElementAt(j).ImageData))" />
                     }
                     <figcaption class="d-flex justify-content-center fs-4">
