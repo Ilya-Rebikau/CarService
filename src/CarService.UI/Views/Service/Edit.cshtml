@@ -1,0 +1,51 @@
+﻿@model ServiceViewModel
+@{
+    ViewData["Title"] = "Редактирование услуги";
+}
+
+<div class="row d-flex justify-content-center pt-5 pb-3">
+    <form asp-action="Edit" asp-controller="Service" class="col-md-7 border rounded
+            border-dark py-4 px-5 bg-light bg-gradient">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ServiceDataId" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <p class="fs-1 row d-flex justify-content-center">Редактирование услуги</p>
+        <div class="form-group row pb-2">
+            <label asp-for="Price" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="number" asp-for="Price" required class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="MinutesSpent" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="text" asp-for="MinutesSpent" required class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="CarBrandId" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(c => c.CarBrandId, Model.CarBrandSelectList, "Любая",
+                new { @class = "form-select shadow-none" })
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="CarTypeId" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(c => c.CarTypeId, Model.CarTypeSelectList, "Любой",
+                new { @class = "form-select shadow-none" })
+            </div>
+        </div>
+        <div class="d-flex justify-content-center pt-3">
+            <div class="form-group">
+                <input type="submit" value="Редактировать" class="btn btn-dark shadow-none" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -4,7 +4,7 @@
     {
         private const string CookiesKey = "JwtTokenCookie";
 
-        public static string GetJwtToken(this HttpContext httpContext)
+        public static string GetJwt(this HttpContext httpContext)
         {
             httpContext.Request.Cookies.TryGetValue(CookiesKey, out var token);
             return token;

@@ -5,7 +5,7 @@ namespace CarService.UI.Interfaces
 {
     public interface IAccountService
     {
-        Task RegisterUser(RegisterViewModel model, HttpContext httpContext);
+        Task<RegisterResultModel> RegisterUser(RegisterViewModel model, HttpContext httpContext);
 
         Task LoginUser(LoginViewModel model, HttpContext httpContext);
 

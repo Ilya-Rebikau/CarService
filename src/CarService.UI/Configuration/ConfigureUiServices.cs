@@ -17,21 +17,41 @@ namespace CarService.UI.Configuration
         public static IServiceCollection AddUiServices(this IServiceCollection services, string connection, IConfiguration configuration)
         {
             services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IServiceService, ServiceService>();
+            services.AddScoped<ICarBrandService, CarBrandService>();
+            services.AddScoped<IServiceDataService, ServiceDataService>();
+            services.AddScoped<ICarTypeService, CarTypeService>();
+            services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<IPromocodeService, PromocodeService>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
             services.AddControllersWithViews(options =>
-                options.CacheProfiles.Add("Caching",
-                new CacheProfile
+            {
+                options.Filters.Add<ExceptionFilter>();
+                options.CacheProfiles.Add("Caching", new CacheProfile
                 {
                     Location = ResponseCacheLocation.Client,
                     Duration = 300,
-                }));
+                });
+            });
             services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
             services.AddHttpClient();
             services.AddScoped(scope =>
             {
-                var baseUrl = configuration["UsersApiAddress"];
-                return RestClient.For<IUsersClient>(baseUrl);
+                var baseUrl = configuration["UserApiAddress"];
+                return RestClient.For<IUserClient>(baseUrl);
+            });
+            services.AddScoped(scope =>
+            {
+                var baseUrl = configuration["MainApiAddress"];
+                return RestClient.For<IMainClient>(baseUrl);
+            });
+            services.AddDetection();
+            services.AddHttpsRedirection(options =>
+            {
+                options.HttpsPort = 443;
             });
             services.AddSwaggerGen(c =>
             {

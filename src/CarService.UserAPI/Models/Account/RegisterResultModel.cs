@@ -7,5 +7,6 @@ namespace CarService.UserAPI.Models.Account
         public IdentityResult IdentityResult { get; set; }
         public User User { get; set; }
         public IList<string> Roles { get; set; }
+        public string Token { get; set; }
     }
 }

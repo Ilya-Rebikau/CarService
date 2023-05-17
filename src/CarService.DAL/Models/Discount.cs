@@ -9,8 +9,10 @@ namespace CarService.DAL.Models
     {
         public int Id { get; set; }
         public int Percent { get; set; }
-        public DateOnly DateStart { get; set; }
-        public DateOnly DateEnd { get; set; }
-        public int ServiceId { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateEnd { get; set; }
+        public int? ServiceDataId { get; set; }
+        public int? CarBrandId { get; set; }
+        public int? CarTypeId { get; set; }
     }
 }

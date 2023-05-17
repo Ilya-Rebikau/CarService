@@ -12,8 +12,8 @@ namespace CarService.DAL.Configuration
         {
             services.AddDbContext<CarServiceContext>(options =>
                 options.UseSqlServer(connection));
-            services.AddScoped<DbContext, CarServiceContext>();
-            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<DbContext, CarServiceContext>();
+            services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
             return services;
         }
     }

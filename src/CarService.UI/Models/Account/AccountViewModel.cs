@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CarService.UI.Models.Appointment;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarService.UI.Models.Account
 {
@@ -7,6 +8,7 @@ namespace CarService.UI.Models.Account
         public string Id { get; set; }
 
         [Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Display(Name = "Имя")]
@@ -16,7 +18,12 @@ namespace CarService.UI.Models.Account
         public string Surname { get; set; }
 
         [Display(Name = "Номер телефона")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+
+        public IEnumerable<PromocodeViewModel> Promocodes { get; set; }
+
+        public IEnumerable<AppointmentViewModel> Appointments { get; set; }
 
         public byte[] Photo { get; set; }
     }

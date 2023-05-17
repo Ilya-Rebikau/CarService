@@ -1,0 +1,40 @@
+﻿@model ServiceDataViewModel
+@{
+    ViewData["Title"] = "Создание услуги";
+}
+<div class="row d-flex justify-content-center pt-5 pb-3">
+    <form asp-action="Create" asp-controller="ServiceData" enctype="multipart/form-data" class="col-md-5 border rounded
+            border-dark py-5 px-5 bg-light bg-gradient">
+        <p class="fs-1 row d-flex justify-content-center">Создание услуги</p>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group row pb-2">
+            <label asp-for="Name" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="text" asp-for="Name" required class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="Description" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <textarea type="text" rows=5 asp-for="Description" required class="form-control shadow-none"></textarea>
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="Image" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="file" asp-for="Image" class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="d-flex justify-content-center pt-3">
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-dark shadow-none" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

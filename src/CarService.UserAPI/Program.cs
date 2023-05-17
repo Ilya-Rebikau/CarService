@@ -1,6 +1,5 @@
-using CarService.DAL.Configuration;
+using CarService.UserAPI.Configuration;
 using CarService.UserAPI.Infrastructure;
-using Microsoft.AspNetCore.Hosting;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,7 +29,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseSerilogRequestLogging();
-
+app.UseHttpsRedirection();
 app.UseRouting();
 app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseMiddleware<JwtMiddleware>();

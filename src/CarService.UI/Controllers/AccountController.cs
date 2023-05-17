@@ -1,8 +1,10 @@
 ﻿using CarService.UI.Infrastructure;
 using CarService.UI.Interfaces;
+using CarService.UI.Models;
 using CarService.UI.Models.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections;
@@ -10,44 +12,60 @@ using System.Collections;
 namespace CarService.UI.Controllers
 {
     [ResponseCache(CacheProfileName = "Caching")]
-    [ExceptionFilter]
     public class AccountController : Controller
     {
         private readonly IAccountService _service;
-
-        public AccountController(IAccountService service)
+        private readonly IPromocodeService _promocodeService;
+        private readonly IAppointmentService _appointmentService;
+        public AccountController(IAccountService service, IPromocodeService promocodeService,
+            IAppointmentService appointmentService)
         {
             _service = service;
+            _promocodeService = promocodeService;
+            _appointmentService = appointmentService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            var registerResult = await _service.RegisterUser(model, HttpContext);
+            if (registerResult.IdentityResult.Errors.Any())
+            {
+                foreach (var error in registerResult.IdentityResult.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            await _service.RegisterUser(model, HttpContext);
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            await _service.LoginUser(model, HttpContext);
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -109,6 +127,10 @@ namespace CarService.UI.Controllers
         public async Task<IActionResult> Index()
         {
             var accountVm = await _service.GetAccountViewModel(HttpContext);
+            var appointments = await _appointmentService.GetAppointmentsByUser(HttpContext.GetJwt(), accountVm.Id);
+            var promocodes = await _promocodeService.GetAllByUser(HttpContext.GetJwt(), accountVm.Id);
+            accountVm.Promocodes = promocodes;
+            accountVm.Appointments = appointments;
             return View(accountVm);
         }
 

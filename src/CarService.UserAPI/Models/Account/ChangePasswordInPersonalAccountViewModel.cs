@@ -10,7 +10,6 @@ namespace CarService.UserAPI.Models.Account
 
         public string NewPassword { get; set; }
 
-        [Compare("NewPassword", ErrorMessage = "Passwords are different")]
         public string NewPasswordConfirmation { get; set; }
     }
 }

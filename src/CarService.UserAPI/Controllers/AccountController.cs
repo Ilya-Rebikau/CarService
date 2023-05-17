@@ -21,14 +21,20 @@ namespace CarService.UserAPI.Controllers
             _jwtService = jwtService;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var registerResult = await _service.RegisterUser(model);
-            return registerResult.IdentityResult.Succeeded ? Ok(_jwtService.GetJwt(registerResult.User, registerResult.Roles))
-                : throw new MyException("Ошибка регистрации. Пользователь уже существует.");
+            if (registerResult.IdentityResult.Succeeded)
+            {
+                registerResult.Token = _jwtService.GetJwt(registerResult.User, registerResult.Roles);
+            }
+
+            return Ok(registerResult);
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
@@ -60,7 +66,7 @@ namespace CarService.UserAPI.Controllers
             return Ok(await _service.UpdateUserInEdit(model));
         }
 
-        [Authorize(Roles = "admin, manager, user")]
+        [AllowAnonymous]
         [HttpPost("validatetoken")]
         public IActionResult ValidateToken([FromHeader(Name = AuthorizationKey)] string token)
         {
@@ -79,6 +85,27 @@ namespace CarService.UserAPI.Controllers
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordInPersonalAccountModel model)
         {
             return Ok(await _service.ChangePassword(model));
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getuseremail")]
+        public async Task<IActionResult> GetUserEmail([FromQuery] string userId)
+        {
+            return Ok(await _service.GetUserEmail(userId));
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getusername")]
+        public async Task<IActionResult> GetUserName([FromQuery] string userId)
+        {
+            return Ok(await _service.GetUserName(userId));
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getuserphoto")]
+        public async Task<IActionResult> GetUserPhoto([FromQuery] string userId)
+        {
+            return Ok(await _service.GetUserPhoto(userId));
         }
     }
 }

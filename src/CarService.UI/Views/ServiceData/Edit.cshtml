@@ -1,0 +1,56 @@
+﻿@model ServiceDataViewModel
+@{
+    ViewData["Title"] = "Редактирование услуги";
+}
+<div class="row d-flex justify-content-center pb-3">
+    <form asp-action="Edit" asp-controller="ServiceData" enctype="multipart/form-data" class="col-md-5 border rounded
+            border-dark py-5 px-5 bg-light bg-gradient">
+        <p class="fs-1 row d-flex justify-content-center">Редактирование услуги</p>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group row pb-2">
+            <label asp-for="Name" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="text" asp-for="Name" required class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="Description" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <textarea type="text" rows=5 asp-for="Description" required class="form-control shadow-none"></textarea>
+            </div>
+        </div>
+        <div class="form-group row pb-2">
+            <label asp-for="Image" class="col-sm-5 col-form-label"></label>
+            <div class="col-sm-7">
+                <input type="file" asp-for="Image" class="form-control shadow-none" />
+            </div>
+        </div>
+        @{
+            if (Model.ImageData is not null && Model.ImageData.Length != 0)
+            {
+                <input type="hidden" asp-for="ImageData" />
+                <div class="pb-2">
+                    <img alt="Текущее лого" class="img-thumbnail img-fluid w-auto" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ImageData))" />
+                    <div class="row d-flex justify-content-center">
+                        <label class="col-auto" asp-for="DeletePhoto"></label>
+                        <div class="form-check col-auto">
+                            <input asp-for="DeletePhoto" class="form-check-input shadow-none ms-1" />
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <div class="d-flex justify-content-center">
+            <div class="form-group">
+                <input type="submit" value="Редактировать" class="btn btn-dark shadow-none" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

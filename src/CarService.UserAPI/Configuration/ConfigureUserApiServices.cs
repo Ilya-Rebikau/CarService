@@ -1,7 +1,6 @@
 ﻿using CarService.UserAPI.Automapper;
 using CarService.UserAPI.Infrastructure;
 using CarService.UserAPI.Interfaces;
-using CarService.UserAPI.Models.Account;
 using CarService.UserAPI.Models;
 using CarService.UserAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,9 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using CarService.UserAPI.Models.Users;
 
-namespace CarService.DAL.Configuration
+namespace CarService.UserAPI.Configuration
 {
     public static class ConfigureUserApiServices
     {
@@ -20,15 +18,15 @@ namespace CarService.DAL.Configuration
         {
             var connection = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.User.RequireUniqueEmail = true;
+                })
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<IJwtService, JwtService>();
             services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IUsersService, UsersService>();
-            services.AddScoped<IConverter<User, EditAccountModel>, ModelsConverter<User, EditAccountModel>>();
-            services.AddScoped<IConverter<User, AccountModel>, ModelsConverter<User, AccountModel>>();
-            services.AddScoped<IConverter<User, EditUserModel>, ModelsConverter<User, EditUserModel>>();
+            services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
             var tokenSettings = configuration.GetSection(nameof(JwtSettings));
             services.AddAuthentication(options =>
@@ -57,7 +55,7 @@ namespace CarService.DAL.Configuration
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "UsersAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserAPI", Version = "v1" });
                 var jwtSecurityScheme = new OpenApiSecurityScheme
                 {
                     Scheme = "bearer",

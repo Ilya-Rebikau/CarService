@@ -1,0 +1,35 @@
+﻿@model PromocodeViewModel
+@{
+    ViewData["Title"] = "Выдача промокода";
+}
+<div class="row d-flex justify-content-center pt-5 mt-5">
+    <form asp-action="Create" asp-controller="Promocode" class="col-md-5 border rounded
+            border-dark py-5 px-5 bg-light bg-gradient">
+        <p class="fs-3 text-center row pb-3  d-flex justify-content-center">Выдача промокода</p>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="UserId" />
+        <div class="form-group row pb-3">
+            <label asp-for="Percent" class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                <input type="text" asp-for="Percent" required class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="form-group row pb-3">
+            <label asp-for="DateEnd" class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                <input type="date" value="@DateTime.Now.Date" asp-for="DateEnd" required class="form-control shadow-none" />
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="form-group">
+                <input type="submit" value="Выдать промокод" class="btn btn-dark shadow-none" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

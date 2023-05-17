@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DiscountViewModel>
+@{
+    ViewData["Title"] = "Акции и скидки";
+}
+
+<p class="fs-1 d-flex justify-content-center">Акции и скидки</p>
+<div class="row">
+    @if (User.IsInRole("admin") || User.IsInRole("manager"))
+    {
+        <div class="col-md-auto">
+            <a class="btn btn-success shadow-none fs-5" asp-action="Create">+</a>
+        </div>
+    }
+    <div class="col-md-11 table-responsive">
+        <table class="table text-center align-middle table-bordered table-striped table-hover">
+            <thead class="bg-dark align-middle">
+                <tr class="text-white">
+                    <th>@Html.DisplayNameFor(model => model.ServiceDataName)</th>
+                    <th>@Html.DisplayNameFor(model => model.CarTypeName)</th>
+                    <th>@Html.DisplayNameFor(model => model.CarBrandName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Percent)</th>
+                    <th>@Html.DisplayNameFor(model => model.DateStart)</th>
+                    <th>@Html.DisplayNameFor(model => model.DateEnd)</th>
+                    @if (User.IsInRole("admin") || User.IsInRole("manager"))
+                    {
+                        <th>Управление</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var discount in Model)
+                {
+                    <tr>
+                        <td>@discount.ServiceDataName</td>
+                        <td>@discount.CarTypeName</td>
+                        <td>@discount.CarBrandName</td>
+                        <td>@discount.Percent</td>
+                        <td>@discount.DateStart.ToLongDateString()</td>
+                        <td>@discount.DateEnd.ToLongDateString()</td>
+                        @if (User.IsInRole("admin") || User.IsInRole("manager"))
+                        {
+                            <td>
+                                <div class="row">
+                                    <a class="ms-3 btn btn-dark shadow-none col-auto" asp-action="Edit" asp-route-id="@discount.Id">Редактировать</a>
+                                    <form class="col-auto" asp-action="Delete" asp-route-id="@discount.Id" method="post">
+                                        <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
+                                    </form>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

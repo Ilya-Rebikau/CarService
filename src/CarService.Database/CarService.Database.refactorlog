@@ -49,4 +49,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="DateEnd" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="451a57ca-ee12-44d0-baca-f4f9d07d8bc2" ChangeDateTime="05/03/2023 11:15:19">
+    <Property Name="ElementName" Value="[dbo].[Services].[CarBrandTypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Services]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CarTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="916e4c18-5ddc-4b4f-8060-7cfef542742e" ChangeDateTime="05/03/2023 11:17:31">
+    <Property Name="ElementName" Value="[dbo].[Services].[Photo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Services]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ImageData" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6ddb016b-3f71-4884-aa0d-8fad9491bcc0" ChangeDateTime="05/03/2023 12:35:08">
+    <Property Name="ElementName" Value="[dbo].[Services].[TimeSpent]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Services]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MinutesSpent" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a8d01ba8-51f0-4107-9912-808e0f8a1d99" ChangeDateTime="05/06/2023 08:27:05">
+    <Property Name="ElementName" Value="[dbo].[Discounts].[ServiceId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Discounts]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ServiceDataId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="34375c92-421e-48dd-888b-42c3449c1d3f" ChangeDateTime="05/09/2023 11:42:16">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[Date]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateTimeStart" />
+  </Operation>
 </Operations>

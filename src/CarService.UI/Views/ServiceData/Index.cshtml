@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ServiceDataViewModel>
+@inject Wangkanai.Detection.Services.IDetectionService detectionService
+@{
+    ViewData["Title"] = "Список услуг";
+}
+
+<p class="fs-1 row justify-content-center">Список всех услуг</p>
+@if (User.IsInRole("admin") || User.IsInRole("manager"))
+{
+    <div class="pb-3">
+        <a class="btn btn-success shadow-none fs-5" asp-action="Create">+</a>
+    </div>
+}
+
+@{
+    int totalInRow = 3;
+    int height = 300;
+}
+@if (detectionService.Device.Type == Wangkanai.Detection.Models.Device.Mobile)
+{
+    height = 100;
+}
+
+@for (int i = 0; i < Math.Ceiling(Model.Count() / (float)totalInRow); i++)
+{
+    <div class="row pb-3">
+        @{
+            int rowCount = 0;
+        }
+        @for (int j = i * totalInRow; j < Model.Count() && rowCount < totalInRow; j++)
+        {
+            <div class="col-auto" style="max-width: 33%;">
+                <a asp-controller="Service" asp-action="Index" class="shadow-none" style="text-decoration:none; color:black"
+                    asp-route-serviceDataId="@Model.ElementAt(j).Id">
+                    @if (Model.ElementAt(j).ImageData is not null && Model.ElementAt(j).ImageData.Length > 0)
+                    {
+                        <img alt="Картинка услуги" style="height: {@height}px;" class="img-thumbnail img-fluid"
+                             src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ElementAt(j).ImageData))" />
+                    }
+                    <figcaption class="d-flex justify-content-center fs-4">
+                        @Model.ElementAt(j).Name
+                    </figcaption>
+                </a>
+                @if (User.IsInRole("admin") || User.IsInRole("manager"))
+                {
+                    <div class="row justify-content-center pt-1">
+                        <form class="col-auto" asp-action="Delete" asp-route-id="@Model.ElementAt(j).Id" method="post">
+                            <a class="btn btn-dark shadow-none col-auto" asp-action="Edit" asp-route-id="@Model.ElementAt(j).Id">Редактировать</a>
+                            <button type="submit" class="btn btn-danger shadow-none">Удалить</button>
+                        </form>
+                    </div>
+                }
+                @{
+                    rowCount++;
+                }
+            </div>
+        }
+    </div>
+}
+<div class="d-flex justify-content-center pb-3">
+    @{
+        int previousPage;
+        int nextPage;
+    }
+    @if (PageViewModel.PageNumber > 1)
+    {
+        <div class="pe-1">
+            <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="1">1</a>
+            @{
+                previousPage = PageViewModel.PageNumber - 1;
+            }
+            <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@previousPage">
+                &lt;
+            </a>
+        </div>
+    }
+    @if (PageViewModel.NextPage)
+    {
+        {
+            nextPage = PageViewModel.PageNumber + 1;
+        }
+        <a class="btn btn-dark shadow-none" asp-action="Index" asp-route-pageNumber="@nextPage">
+            >
+        </a>
+    }
+</div>
