@@ -20,6 +20,11 @@
            asp-route-serviceDataId="@Model.ServiceDataId">+</a>
         </div>
     }
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p class="fs-3 text-center">Для записи на услугу необходимо войти в учётную запись!</p>
+    }
     <div class="col-md-11 table-responsive">
         <table class="table text-center align-middle table-bordered table-striped table-hover">
             <thead class="bg-dark align-middle">
@@ -29,7 +34,11 @@
                     <th>Цена, BYN</th>
                     <th>Цена с учётом скидки, BYN</th>
                     <th>Примерное время ремонта, мин</th>
-                    <th>Запись</th>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <th>Запись</th>
+                    }
+                    
                     @if (User.IsInRole("admin") || User.IsInRole("manager"))
                     {
                         <th>Управление</th>
@@ -59,10 +68,6 @@
                             <td>
                                 <a class="col-auto btn btn-dark shadow-none" asp-controller="Appointment" asp-action="Index" asp-route-serviceId="@service.Id">Записаться</a>
                             </td>
-                        }
-                        else
-                        {
-                            <td>Для записи на услугу необходимо войти в учётную запись</td>
                         }
 
                         @if (User.IsInRole("admin") || User.IsInRole("manager"))

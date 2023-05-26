@@ -24,7 +24,7 @@
             if (Model.ImageData is not null && Model.ImageData.Length != 0)
             {
                 <input type="hidden" asp-for="ImageData" />
-                <div class="pb-2">
+                <div class="pb-2 d-flex flex-column justify-content-center">
                     <img alt="Текущее лого" class="img-thumbnail img-fluid w-auto" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ImageData))" />
                     <div class="row d-flex justify-content-center">
                         <label class="col-auto" asp-for="DeletePhoto"></label>
