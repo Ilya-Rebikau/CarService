@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CarService.UserAPI.Automapper.AutoMapperProfile" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Automapper\AutoMapperProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Configuration.ConfigureUserApiServices" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Configuration\ConfigureUserApiServices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Controllers.AccountController" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAACgAAQAQAAAAoCAAABACACAABQAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Controllers.UserController" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAAAAAAAgAAQAAAAAAAAAAEAAEACAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Infrastructure.ExceptionFilterAttribute" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Infrastructure\ExceptionFilterAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UserAPI.Infrastructure.IdentityContext" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\IdentityContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Infrastructure.JwtMiddleware" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAACAAAAAAAgAABAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\JwtMiddleware.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Infrastructure.MyException" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\MyException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Account.AccountModel" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAACAAAAAAQAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Account\AccountModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Account.ChangePasswordInPersonalAccountModel" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\Account\ChangePasswordInPersonalAccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Account.EditAccountModel" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAACAAAAAAQAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Account\EditAccountModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Account.LoginModel" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAIAAAAgAAA=</HashCode>
+      <FileName>Models\Account\LoginModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Account.LoginResultModel" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAggAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Account\LoginResultModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Account.RegisterModel" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAgAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Account\RegisterModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Account.RegisterResultModel" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAEAAAAAAAAAAAgAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\Account\RegisterResultModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Users.ChangePasswordModel" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\ChangePasswordModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Users.ChangeRoleModel" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAgAAAAAAAgAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Users\ChangeRoleModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Users.CreateUserModel" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\CreateUserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.Users.EditUserModel" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAACAAAAAAQAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\EditUserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.JwtSettings" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\JwtSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Models.User" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAACAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UserAPI.Services.AccountService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAABAAABAASgAAAAQBBAAoAAAAAAAAAEAAQAAAAAAA=</HashCode>
+      <FileName>Services\AccountService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UserAPI.Services.JwtService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\JwtService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UserAPI.Services.UserService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ZAAABAAAgQAAgAAEAAABAEAgQAAAAAAAAAgAAAAAAQA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="CarService.UserAPI.Interfaces.IAccountService" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAAAAAABAACgAAAAQAAAAoAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAccountService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UserAPI.Interfaces.IJwtService" Collapsed="true">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IJwtService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UserAPI.Interfaces.IUserService" Collapsed="true">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ZAAAAAAAgQAAgAAEAAAAAEAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Interfaces\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CarService.UI.Configuration.ConfigureUiServices" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Configuration\ConfigureUiServices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.AccountController" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAiAAQAAAAAAIAAAABAAACAAEQAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.AppointmentController" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgABACAAAAAAAAAAAAAAAAAEAAEAAAgEAAAAAAAg=</HashCode>
+      <FileName>Controllers\AppointmentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.CarBrandController" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CarBrandController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.CarTypeController" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAEACAAEAAABAAAA=</HashCode>
+      <FileName>Controllers\CarTypeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.DiscountController" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAABGAAEACAAEAAABAAAA=</HashCode>
+      <FileName>Controllers\DiscountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.FeedbackController" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAEAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\FeedbackController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.HomeController" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.PromocodeController" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAACAAAAAAAAAAAAAAAAEAAAAAAAAgAAAA=</HashCode>
+      <FileName>Controllers\PromocodeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.ServiceController" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAACAAAAAGAAEACAAEAAABAAAA=</HashCode>
+      <FileName>Controllers\ServiceController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.ServiceDataController" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ServiceDataController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Controllers.UserController" Collapsed="true">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAgAAQAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Infrastructure.ExceptionFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Infrastructure\ExceptionFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Infrastructure.HttpContextExtensions" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAIAAAAAAAIAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Infrastructure\HttpContextExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Infrastructure.IdentityContext" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\IdentityContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Infrastructure.TypeExtension" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Infrastructure\TypeExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Account.AccountViewModel" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAACAAAAAAQAAARAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Models\Account\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Account.ChangePasswordInPersonalAccountViewModel" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\Account\ChangePasswordInPersonalAccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Account.EditAccountModel" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAACAAAAAAQAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Account\EditAccountModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Account.EditAccountViewModel" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAACQAAAAAQAAABAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\Account\EditAccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Account.LoginViewModel" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAIAAAAgAAA=</HashCode>
+      <FileName>Models\Account\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Account.RegisterResultModel" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\Account\RegisterResultModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Account.RegisterViewModel" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAgAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Account\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Appointment.AppointmentListViewModel" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQIAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Appointment\AppointmentListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Appointment.AppointmentViewModel" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAAAAAAAAAAgAAAQQAAAAACAIKAAAAAA=</HashCode>
+      <FileName>Models\Appointment\AppointmentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Feedback.FeedbackListViewModel" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAgAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\Feedback\FeedbackListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Feedback.FeedbackViewModel" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAAAAAAAgAAAAAAAQAAQAAIAAAAAA=</HashCode>
+      <FileName>Models\Feedback\FeedbackViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Service.ServiceDataViewModel" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAIQAAAAAABAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\Service\ServiceDataViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Service.ServiceListViewModel" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggAAAQAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Models\Service\ServiceListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Service.ServiceViewModel" Collapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAwEAAAAAAAAAFAABAAAACAAIAAAAACAAAAA=</HashCode>
+      <FileName>Models\Service\ServiceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Users.ChangePasswordViewModel" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\ChangePasswordViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Users.ChangeRoleViewModel" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAgAAAAAAAgAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Users\ChangeRoleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Users.CreateUserViewModel" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\CreateUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Users.EditUserModel" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAACAAAAAAQAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\EditUserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.Users.EditUserViewModel" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAACQAAAAAQAAABAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\Users\EditUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.CarBrandViewModel" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAIQAAAAAABAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\CarBrandViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.CarTypeViewModel" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CarTypeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.DiscountViewModel" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACCAAAAgEACAAAAAAABAABAAAAAACIAAAACCAAAAA=</HashCode>
+      <FileName>Models\DiscountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.ErrorViewModel" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.PageViewModel" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\PageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.PromocodeViewModel" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\PromocodeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Models.User" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAACAAAAAAQAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.UI.Services.AccountService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAABACAAAAAgAAACABAAAoAAAEAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Services\AccountService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.AppointmentService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAACAAAAACAACAQQAAAAAE=</HashCode>
+      <FileName>Services\AppointmentService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.CarBrandService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAgAAAAAIgAAAAAAAAAAAAAAAQAAE=</HashCode>
+      <FileName>Services\CarBrandService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.CarTypeService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAABIAAAAAAAgAgAAAAAAE=</HashCode>
+      <FileName>Services\CarTypeService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.DiscountService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAgAAAAgAgAAAAAAAE=</HashCode>
+      <FileName>Services\DiscountService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.FeedbackService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAACAAAAAIAAAEAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Services\FeedbackService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.PromocodeService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAABAAAAAAAAAAAAAAEAAAAAAAAAAAAE=</HashCode>
+      <FileName>Services\PromocodeService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.ServiceDataService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAgIAAAAACAAAAAAAAAAAAIAAAAAAE=</HashCode>
+      <FileName>Services\ServiceDataService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.ServiceService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAIAAAQAAAAEAAABAE=</HashCode>
+      <FileName>Services\ServiceService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.UI.Services.UserService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgQIAAEAEAAAAAEAgAAAAAAAAAAAAAAAAAwA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="CarService.UI.Interfaces.HttpClients.IMainClient" Collapsed="true">
+    <Position X="11" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIIAMKAAAYBAAAwqAAAAAKmDIQoAACAgCg4UAAQBAA=</HashCode>
+      <FileName>Interfaces\HttpClients\IMainClient.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.HttpClients.IUserClient" Collapsed="true">
+    <Position X="4" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgQAAgAAECAAAAEIiAAABAAACAAAQAAAAAgE=</HashCode>
+      <FileName>Interfaces\HttpClients\IUserClient.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.IAccountService" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAAAAAAAAAAgAAACAAAAAoAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Interfaces\IAccountService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.IAppointmentService" Collapsed="true">
+    <Position X="2.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAACAAAAACAACAQQAAAAAA=</HashCode>
+      <FileName>Interfaces\IAppointmentService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.ICarBrandService" Collapsed="true">
+    <Position X="4" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAgAAAAAIgAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Interfaces\ICarBrandService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.ICarTypeService" Collapsed="true">
+    <Position X="5.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAABIAAAAAAAgAgAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICarTypeService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.IDiscountService" Collapsed="true">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAgAAAAgAgAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDiscountService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.IFeedbackService" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAACAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFeedbackService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.IPromocodeService" Collapsed="true">
+    <Position X="12.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAABAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPromocodeService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.IServiceDataService" Collapsed="true">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAgIAAAAACAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Interfaces\IServiceDataService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.IServiceService" Collapsed="true">
+    <Position X="2.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAIAAAQAAAAEAAABAA=</HashCode>
+      <FileName>Interfaces\IServiceService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.UI.Interfaces.IUserService" Collapsed="true">
+    <Position X="5.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgQIAAAAEAAAAAEAgAAAAAAAAAAAAAAAAAwA=</HashCode>
+      <FileName>Interfaces\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
