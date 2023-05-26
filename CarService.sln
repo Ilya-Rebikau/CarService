@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.UserAPI", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.UI", "src\CarService.UI\CarService.UI.csproj", "{710958E5-A4DD-4656-A3FC-206CB16BB1C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarService.MainAPI", "src\CarService.MainAPI\CarService.MainAPI.csproj", "{89696883-60D7-4D99-AE21-35886CC0BFE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarService.MainAPI", "src\CarService.MainAPI\CarService.MainAPI.csproj", "{89696883-60D7-4D99-AE21-35886CC0BFE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
