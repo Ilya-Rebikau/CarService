@@ -9,7 +9,6 @@ namespace CarService.UserAPI.Controllers
     [Authorize(Roles = "admin")]
     [Route("[controller]")]
     [ApiController]
-    [ExceptionFilter]
     public class UserController : ControllerBase
     {
         private readonly IUserService _service;

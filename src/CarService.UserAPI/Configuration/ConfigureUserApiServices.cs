@@ -5,6 +5,7 @@ using CarService.UserAPI.Models;
 using CarService.UserAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -51,7 +52,16 @@ namespace CarService.UserAPI.Configuration
                 });
 
             services.Configure<JwtSettings>(tokenSettings);
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ExceptionFilter>();
+                options.Filters.Add(
+                    new ResponseCacheAttribute
+                    {
+                        Duration = 300,
+                        Location = ResponseCacheLocation.Any
+                    });
+            });
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

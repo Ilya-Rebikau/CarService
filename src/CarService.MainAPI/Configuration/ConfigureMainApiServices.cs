@@ -5,6 +5,7 @@ using CarService.MainAPI.Interfaces;
 using CarService.MainAPI.Interfaces.HttpClients;
 using CarService.MainAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using RestEase;
@@ -35,6 +36,12 @@ namespace CarService.MainAPI.Configuration
             services.AddControllers(options =>
             {
                 options.Filters.Add<ExceptionFilter>();
+                options.Filters.Add(
+                    new ResponseCacheAttribute
+                    {
+                        Duration = 300,
+                        Location = ResponseCacheLocation.Any
+                    });
             });
             services.AddCors();
             services.AddSwaggerGen(c =>

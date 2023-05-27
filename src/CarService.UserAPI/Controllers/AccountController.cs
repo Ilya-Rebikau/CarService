@@ -8,7 +8,6 @@ namespace CarService.UserAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [ExceptionFilter]
     public class AccountController : ControllerBase
     {
         private const string AuthorizationKey = "Authorization";
