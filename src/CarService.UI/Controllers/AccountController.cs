@@ -11,7 +11,6 @@ using System.Collections;
 
 namespace CarService.UI.Controllers
 {
-    [ResponseCache(CacheProfileName = "Caching")]
     public class AccountController : Controller
     {
         private readonly IAccountService _service;

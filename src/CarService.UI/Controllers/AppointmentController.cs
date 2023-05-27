@@ -8,7 +8,6 @@ using System.Globalization;
 
 namespace CarService.UI.Controllers
 {
-    [ResponseCache(CacheProfileName = "Caching")]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentService _appointmentService;

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CarService.UI.Controllers
 {
     [Authorize(Roles = "admin, manager")]
-    [ResponseCache(CacheProfileName = "Caching")]
     public class PromocodeController : Controller
     {
         private readonly IPromocodeService _promocodeService;

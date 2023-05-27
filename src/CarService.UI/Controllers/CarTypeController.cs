@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 namespace CarService.UI.Controllers
 {
     [Authorize(Roles = "admin")]
-    [ResponseCache(CacheProfileName = "Caching")]
     public class CarTypeController : Controller
     {
         private readonly ICarTypeService _carTypeService;

@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarService.UI.Controllers
 {
-    [ResponseCache(CacheProfileName = "Caching")]
     public class ServiceDataController : Controller
     {
         private readonly IServiceDataService _service;

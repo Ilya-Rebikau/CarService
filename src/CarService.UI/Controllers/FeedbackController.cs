@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.UI.Controllers
 {
-    [ResponseCache(CacheProfileName = "Caching")]
     public class FeedbackController : Controller
     {
         private readonly IFeedbackService _feedbackService;
