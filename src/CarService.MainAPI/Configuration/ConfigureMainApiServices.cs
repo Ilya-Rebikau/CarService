@@ -36,12 +36,6 @@ namespace CarService.MainAPI.Configuration
             services.AddControllers(options =>
             {
                 options.Filters.Add<ExceptionFilter>();
-                options.Filters.Add(
-                    new ResponseCacheAttribute
-                    {
-                        Duration = 300,
-                        Location = ResponseCacheLocation.Any
-                    });
             });
             services.AddCors();
             services.AddSwaggerGen(c =>
