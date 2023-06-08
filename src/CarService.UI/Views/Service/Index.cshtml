@@ -6,8 +6,11 @@
 <p class="fs-1 row d-flex justify-content-center">Подробности об услуге @Model.ServiceName</p>
 <div class="d-flex justify-content-center">
     <p class="fs-5" align="justify">
-        <img alt="Картинка услуги" style="height: 300px" class="img-thumbnail img-fluid me-5 mb-1" align="left"
-             src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ServiceImageData))" />
+        @if (Model.ServiceImageData is not null && Model.ServiceImageData.Length > 0)
+        {
+            <img alt="Картинка услуги" style="height: 300px" class="img-thumbnail img-fluid me-5 mb-1" align="left"
+            src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ServiceImageData))" />
+        }
         @Model.Desciption
     </p>
 </div>
