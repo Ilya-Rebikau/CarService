@@ -14,7 +14,7 @@ namespace CarService.MainAPI.Services
 
         public override async Task<Promocode> Create(Promocode obj)
         {
-            var oldPromocodes = Repository.GetAll().Where(p => p.DateEnd.Date < DateTime.Now.Date);
+            var oldPromocodes = Repository.GetAll().Where(p => p.DateEnd.Date < DateTime.Now.Date).ToList();
             foreach (var oldPromocode in oldPromocodes)
             {
                 await Repository.Delete(oldPromocode);
